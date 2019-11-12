@@ -1,0 +1,29 @@
+main{
+  .Announcement{
+    background-image: url(image-path("download_app_bg-b57d6f1a32f2aebd89cf6f43bc2e4b39.jpg"));
+    height: 260px;
+    background-size: cover;
+    &__box{
+      display: flex;
+      justify-content: space-between;
+      width: 750px;
+      height: 260px;
+      margin: 0 auto;
+      &__left{
+        display: flex;
+        -webkit-align-items: center;
+        &__sub{
+          color: $white;
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
+        &__title{
+          color: $white;
+          font-size: 35px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,116 @@
+header {
+  width: 100%;
+  background: $white;
+  box-shadow: 0 5px 5px $grey1;
+  .header {
+    width: 1020px;
+    margin: 0 auto;
+    padding: 8px 0 0;
+    &__top {
+      display: flex;
+      justify-content: space-between;
+      &__logo {
+        height: 40px;
+        margin-right: 45px;
+        .logo-svg {
+          height: 36px;
+          width: 134px;
+        }
+      }
+      &__form {
+        width: 100%;
+        position: relative;
+        &__input {
+          input {
+            width: 100%;
+            height: 40px;
+            background: $grey1;
+            border: 1px solid $grey2;
+            border-radius: 4px;
+            font-size: 16px;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 40px 0 10px;
+          }
+        }
+        &__btn {
+          position: absolute;
+          top:0px;
+          right: 0px;
+          button {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            font-size: 16px;
+            background:none;
+            border: none;
+            padding: 6px 11px;
+          }
+        }
+      }
+    }
+    &__menu {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      height: 44px;
+      &__left {
+        &__nav {
+          display: inline-block;
+          cursor: pointer;
+          &__category {
+            display: inline-block;
+            padding: 0 10px 0 0;
+            height: 40px;
+            line-height: 40px;
+            h2 {
+              font-size: 14px;
+              font-weight: 600;
+              a {
+                i {
+                  color: $red1;
+                  padding-right: 3px;
+                }
+              }
+            }
+            &:hover{
+              span{
+                color: $blue1;
+              }
+            }
+          }
+        }
+      }
+      &__right{
+        &__lists{
+          display: flex;
+          &__list{
+            padding: 0 0 0 20px;
+            a{
+              display: flex;
+              height: 32px;
+              line-height: 32px;
+              font-size: 14px;
+              align-items: center;
+              i{
+                color: $grey2;
+                margin-right: 10px;
+              }
+              img{
+                width: 32px;
+                border-radius: 50%;
+                margin-right: 10px;
+              }
+            }
+            a:hover{
+              i, span{
+                color: $blue1;
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

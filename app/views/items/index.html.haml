@@ -1,0 +1,209 @@
+%header
+  .header
+    .header__top
+      .header__top__logo
+        = embedded_svg "logo.svg", class: "logo-svg"
+      .header__top__form
+        %form
+          .header__top__form__input
+            %input{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
+          .header__top__form__btn
+            %button
+              %i.fas.fa-search
+    .header__menu
+      %nav.header__menu__left
+        %ul.header__menu__left__nav
+          %li.header__menu__left__nav__category
+            %h2
+              %a{:href => ""}
+                %i.fas.fa-list-ul
+                %span カテゴリーから探す
+            %ul.header__menu__left__nav__category__list.hidden
+              %li
+                %a(href="#") カテゴリー１
+                %ul
+                  %li
+                    %a(href="#") カテゴリー2
+                    %ul
+                      %li
+                      %a(href="#") カテゴリー3
+          %li.header__menu__left__nav__category
+            %h2
+              %a{:href => ""}
+                %i.fas.fa-tag
+                %span ブランドから探す
+            %ul.header__menu__left__nav__category__list.hidden
+              %li
+                %a(href="#") ブランド１
+      %nav.header__menu__right
+        %ul.header__menu__right__lists
+          %li.header__menu__right__lists__list
+            %a{:href => ""}
+              %i.far.fa-heart
+              %span いいね一覧
+          %li.header__menu__right__lists__list
+            %a{:href => ""}
+              %i.far.fa-bell
+              %span お知らせ
+          %li.header__menu__right__lists__list
+            %a{:href => ""}
+              %i.fas.fa-check
+              %span やることリスト
+          %li.header__menu__right__lists__list
+            %a{:href => ""}
+              = image_tag 'member_photo_noimage_thumb.png'
+              %span マイページ
+%main
+  %section.slider
+    %a(href="")
+    .slider__image
+  %section.container
+    .topics__title
+      %h2 aaa
+      %ul.topics__title__lists
+        %li.topics__title__lists__list
+          a1
+        %li.topics__title__lists__list
+          a2
+        %li.topics__title__lists__list
+          a3
+        %li.topics__title__lists__list
+          a4
+    .items__box
+      .items__box__title
+        %h3
+        %a(href="") 222
+      .items__box__lists
+        %ul
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              %a(href="")333
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 4444444
+                .items__box__lists__list__item__price
+                  %span 5555
+  %aside.Announcement
+    .Announcement__box
+      .Announcement__box__left
+        .Announcement__box__left__sub
+          スマホでかんたんフリマアプリ
+        .Announcement__box__left__title
+          今すぐ無料ダウンロード！
+        .Announcement__box__left__image
+      .Announcement__box__right
+%footer
+  %nav
+    .footer__navi
+      %ul.footer__navi__lists
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+      %ul.footer__navi__lists
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+      %ul.footer__navi__lists
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+      %ul.footer__navi__lists
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+        %li.footer__navi__lists__list
+          %a(href="###")aaaaaaaaa
+
+  .copyright
+    %a.copyright__img(href="")
+    %span.copyright__text
