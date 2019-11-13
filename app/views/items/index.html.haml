@@ -15,47 +15,47 @@
         %ul.header__menu__left__nav
           %li.header__menu__left__nav__category
             %h2
-              %a{:href => ""}
+              = link_to "" do
                 %i.fas.fa-list-ul
                 %span カテゴリーから探す
             %ul.header__menu__left__nav__category__list.hidden
               %li
-                %a(href="#") カテゴリー１
+                = link_to "カテゴリー１", ""
                 %ul
                   %li
-                    %a(href="#") カテゴリー2
+                    = link_to "カテゴリー2", ""
                     %ul
                       %li
-                      %a(href="#") カテゴリー3
+                      = link_to "カテゴリー3", ""
           %li.header__menu__left__nav__category
             %h2
-              %a{:href => ""}
+              = link_to "" do
                 %i.fas.fa-tag
                 %span ブランドから探す
             %ul.header__menu__left__nav__category__list.hidden
               %li
-                %a(href="#") ブランド１
+                = link_to "ブランド１", ""
       %nav.header__menu__right
         %ul.header__menu__right__lists
           %li.header__menu__right__lists__list
-            %a{:href => ""}
+            = link_to "" do
               %i.far.fa-heart
               %span いいね一覧
           %li.header__menu__right__lists__list
-            %a{:href => ""}
+            = link_to "" do
               %i.far.fa-bell
               %span お知らせ
           %li.header__menu__right__lists__list
-            %a{:href => ""}
+            = link_to "" do
               %i.fas.fa-check
               %span やることリスト
           %li.header__menu__right__lists__list
-            %a{:href => ""}
+            = link_to "" do
               = image_tag 'member_photo_noimage_thumb.png'
               %span マイページ
 %main
   %section.slider
-    %a(href="")
+    = link_to "", ""
     .slider__image
   %section.container
     .topics__title
@@ -72,12 +72,20 @@
     .items__box
       .items__box__title
         %h3
-        %a(href="") 222
+        = link_to "222", ""
       .items__box__lists
         %ul
           %li.items__box__lists__list
             .items__box__lists__list__item
-              %a(href="")333
+              = link_to "333", ""
+              %figure.items__box__lists__list__item__img
+                %figcaption
+                  %span 444444
+                .items__box__lists__list__item__price
+                  %span 5555
+          %li.items__box__lists__list
+            .items__box__lists__list__item
+              = link_to "333", ""
               %figure.items__box__lists__list__item__img
                 %figcaption
                   %span 4444444
@@ -85,7 +93,7 @@
                   %span 5555
           %li.items__box__lists__list
             .items__box__lists__list__item
-              %a(href="")333
+              = link_to "333", ""333
               %figure.items__box__lists__list__item__img
                 %figcaption
                   %span 4444444
@@ -93,7 +101,7 @@
                   %span 5555
           %li.items__box__lists__list
             .items__box__lists__list__item
-              %a(href="")333
+              = link_to "", ""333
               %figure.items__box__lists__list__item__img
                 %figcaption
                   %span 4444444
@@ -101,7 +109,7 @@
                   %span 5555
           %li.items__box__lists__list
             .items__box__lists__list__item
-              %a(href="")333
+              = link_to "", ""333
               %figure.items__box__lists__list__item__img
                 %figcaption
                   %span 4444444
@@ -109,7 +117,7 @@
                   %span 5555
           %li.items__box__lists__list
             .items__box__lists__list__item
-              %a(href="")333
+              = link_to "", ""333
               %figure.items__box__lists__list__item__img
                 %figcaption
                   %span 4444444
@@ -117,7 +125,7 @@
                   %span 5555
           %li.items__box__lists__list
             .items__box__lists__list__item
-              %a(href="")333
+              = link_to "", ""333
               %figure.items__box__lists__list__item__img
                 %figcaption
                   %span 4444444
@@ -125,7 +133,7 @@
                   %span 5555
           %li.items__box__lists__list
             .items__box__lists__list__item
-              %a(href="")333
+              = link_to "", ""333
               %figure.items__box__lists__list__item__img
                 %figcaption
                   %span 4444444
@@ -133,7 +141,7 @@
                   %span 5555
           %li.items__box__lists__list
             .items__box__lists__list__item
-              %a(href="")333
+              = link_to "", ""333
               %figure.items__box__lists__list__item__img
                 %figcaption
                   %span 4444444
@@ -141,15 +149,7 @@
                   %span 5555
           %li.items__box__lists__list
             .items__box__lists__list__item
-              %a(href="")333
-              %figure.items__box__lists__list__item__img
-                %figcaption
-                  %span 4444444
-                .items__box__lists__list__item__price
-                  %span 5555
-          %li.items__box__lists__list
-            .items__box__lists__list__item
-              %a(href="")333
+              = link_to "", ""333
               %figure.items__box__lists__list__item__img
                 %figcaption
                   %span 4444444
@@ -163,13 +163,16 @@
         .Announcement__box__left__title
           今すぐ無料ダウンロード！
         .Announcement__box__left__image
+          = image_tag "mercari_icon-f75780e32e41e052c8aaa8b446331cd8.png", size: "68x68", alt: "logo", class: "logo"
+          = link_to "" do
+            = image_tag "mercari_icon-f75780e32e41e052c8aaa8b446331cd8.png", size: "68x68", alt: "logo", class: "logo"
       .Announcement__box__right
 %footer
   %nav
     .footer__navi
       %ul.footer__navi__lists
         %li.footer__navi__lists__list
-          %a(href="###")aaaaaaaaa
+          %a(href="###")aaaaaaaaaaaaa
         %li.footer__navi__lists__list
           %a(href="###")aaaaaaaaa
         %li.footer__navi__lists__list
