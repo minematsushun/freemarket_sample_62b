@@ -7,4 +7,13 @@ class ItemsController < ApplicationController
 
   def sell
   end
+
+  def myProfile
+  end
+
+  def cardRegister
+  end
+
+  def howToPay
+  end
 end
