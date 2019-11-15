@@ -1,0 +1,50 @@
+.signup-contents {
+  display: block;
+  min-height: 300px;
+  width: 700px;
+  margin: auto;
+  background-color: white;
+  margin-bottom: 106px;
+  &__new--member {
+    font-size: 22px;
+    padding: 32px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    font-weight: bold;
+  }
+  &__registration {
+    padding: 24px 16px 40px;
+    max-width: 343px;
+    margin: 0 auto;
+  }
+  &__btn--email {
+    @include red-box;
+    border-radius: 4px;
+    .far {
+      font-size: 22px;
+      padding-top: 14px;
+      padding-left: 13px;
+      float: left;
+      color: #fff;
+    }
+  }
+  &__btn--facebook {
+    @include facebook;
+    border-radius: 4px;
+    margin: 16px 0 0;
+    .fab {
+      @include facebook-icon;
+    }
+  }
+  &__btn--google {
+    @include google;
+    border-radius: 4px;
+    img {
+      float: left;
+    }
+  } 
+}
+
+.contents__form--logout {
+  @include red-box;
+}

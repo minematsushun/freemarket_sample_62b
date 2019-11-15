@@ -16,4 +16,10 @@ class ItemsController < ApplicationController
 
   def howToPay
   end
+
+  def newUserRegistration
+  end
+
+  def userLogin
+  end
 end

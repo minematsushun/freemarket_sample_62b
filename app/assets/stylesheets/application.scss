@@ -3,6 +3,7 @@
 @import "./reset";
 @import "config/color";
 @import "config/setting";
+@import "mixin/mixin";
 @import "modules/header";
 @import "modules/footer";
 @import "modules/exhibit-btn";
@@ -17,3 +18,5 @@
 @import "modules/cardRegister";
 @import "modules/howToPay";
 @import "modules/sidebar";
+@import "modules/newUserRegistration";
+@import "modules/userlogin";
