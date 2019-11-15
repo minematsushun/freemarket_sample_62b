@@ -28,4 +28,7 @@ class ItemsController < ApplicationController
 
   def userTelConfirmation
   end
+
+  def userTelAuthentication
+  end
 end
