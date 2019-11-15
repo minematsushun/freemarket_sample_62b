@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get "items/myProfile" => "items#myProfile"
   get "items/cardRegister" => "items#cardRegister"
   get "items/howToPay" => "items#howToPay"
+  get "items/newUserRegistration" => "items#newUserRegistration"
+  get "items/userLogin" => "items#userLogin"
 end
