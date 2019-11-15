@@ -1,0 +1,259 @@
+-# ページのヘッダー部分
+%header.header
+  = render 'shared/sub_header'
+  
+-# メインコンテンツ
+%main.main-contents
+  .contents-box
+    %section.contents-box__sell-container
+      商品の情報を入力
+    = form_with model: @good, class: 'contents-box__form-list' do |f|
+      -# 画像アップロード部分
+      %section.contents-box__form-list__upload-box
+        .contents-box__form-list__upload-box__image-text
+          出品画像
+        .form-require
+          必須
+        .capture 
+          最大10枚までアップロードできます
+        .drop-box-item
+          .drop-box-item-text
+            ドラッグアンドドロップまたはクリックしてファイルをアップロード
+      -# 商品名、商品説明入力部分
+      %section.contents-box__descript-section
+        .contents-box__descript-section__item-name
+          .contents-box__descript-section__item-name__text
+            商品名
+          .form-require
+            必須
+          = f.text_field :goods_name, class:'contents-box__descript-section__name-form', placeholder: '商品名(必須40文字まで)'
+          .contents-box__descript-section__item-description
+          .contents-box__descript-section__item-description__text
+            商品の説明
+          .form-require
+            必須
+          = f.text_area :goods_description, class:'contents-box__descript-section__descript-form',placeholder: '商品の説明(必須1,000文字以内)(色、素材、重さ、定価、注意点等)例)2010年頃に１万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+
+      -# 商品の詳細、カテゴリ選択部分
+      %section.contents-box__category-section
+        %h3.contents-box__category-section__sub-head
+          商品の詳細
+        .contents-box__category-section__category-box
+
+          -# カテゴリ繰り替えし
+          .contents-box__category-section__category-box__tag#async-select-box
+            カテゴリー
+            .form-require
+              必須
+            %select.select-default
+              %option{value: ""} ---
+              %option{value: "1"} レディース
+              %option{value: "2"} メンズ
+              %option{value: "3"} ベビー・キッズ
+              %option{value: "4"} インテリア・住まい・小物
+              %option{value: "5"} 本・音楽・ゲーム
+              %option{value: "1328"} おもちゃ・ホビー・グッズ
+              %option{value: "6"} コスメ・香水・美容
+              %option{value: "7"} 家電・スマホ・カメラ
+              %option{value: "8"} スポーツ・レジャー
+              %option{value: "9"} ハンドメイド
+              %option{value: "1027"} チケット
+              %option{value: "1318"} 自動車・オートバイ
+              %option{value: "10"} その他
+            %select.select-default
+              %option{value: ""} ---
+              %option{value: "11"} トップス
+              %option{value: "12"} ジャケット/アウター
+              %option{value: "13"} パンツ
+              %option{value: "14"} スカート
+              %option{value: "15"} ワンピース
+              %option{value: "16"} 靴
+              %option{value: "17"} ルームウェア/パジャマ
+              %option{value: "18"} レッグウェア
+              %option{value: "19"} 帽子
+              %option{value: "20"} バッグ
+              %option{value: "21"} アクセサリー
+              %option{value: "22"} ヘアアクセサリー
+              %option{value: "23"} 小物
+              %option{value: "24"} 時計
+              %option{value: "25"} ウィッグ/エクステ
+              %option{value: "26"} 浴衣/水着
+              %option{value: "27"} スーツ/フォーマル/ドレス
+              %option{value: "28"} マタニティ
+              %option{value: "29"} その他
+            %select.select-default
+              %option{value: ""} ---
+              %option{value: "119"} Tシャツ/カットソー(半袖/袖なし)
+              %option{value: "120"} Tシャツ/カットソー(七分/長袖)
+              %option{value: "121"} シャツ/ブラウス(半袖/袖なし)
+              %option{value: "122"} シャツ/ブラウス(七分/長袖)
+              %option{value: "123"} ポロシャツ
+              %option{value: "124"} キャミソール
+              %option{value: "125"} タンクトップ
+              %option{value: "126"} ホルターネック
+              %option{value: "127"} ニット/セーター
+              %option{value: "128"} チュニック
+              %option{value: "129"} カーディガン/ボレロ
+              %option{value: "130"} アンサンブル
+              %option{value: "131"} ベスト/ジレ
+              %option{value: "132"} パーカー
+              %option{value: "133"} トレーナー/スウェット
+              %option{value: "134"} ベアトップ/チューブトップ
+              %option{value: "135"} ジャージ
+              %option{value: "136"} その他
+
+          .contents-box__category-section__category-box__tag#size
+
+          .contents-box__category-section__category-box__tag
+            ブランド
+            .form-any
+              任意
+            %input.input-default{placeholder: "例）シャネル", value: ""}/
+
+          -# 商品の状態プルダウン
+          .contents-box__category-section__category-box__tag
+            商品の状態
+            .form-require
+              必須
+            %select.select-default
+              %option{value: ""} ---
+              %option{value: "1"} 新品、未使用
+              %option{value: "2"} 未使用に近い
+              %option{value: "3"} 目立った傷や汚れなし
+              %option{value: "4"} やや傷や汚れあり
+              %option{value: "5"} 傷や汚れあり
+              %option{value: "6"} 全体的に状態が悪い
+
+          
+          -# 配送の設定
+      %section.contents-box__category-section#delivery
+        %h3.contents-box__category-section__sub-head
+          配送について
+          =link_to "#", class: "contents-box__category-section__sub-head__icon" do
+            %i.fas.fa-question-circle
+            
+        .contents-box__category-section__category-box
+          .contents-box__category-section__category-box__tag#async-select-box2
+            配送料の負担
+            .form-require
+              必須
+            %select.select-default
+              %option{value: ""} ---
+              %option{value: "1"} 未定
+              %option{value: "3"} クロネコヤマト
+              %option{value: "4"} ゆうパック
+              %option{value: "15"} ゆうメール
+
+        .contents-box__category-section__category-box
+          .contents-box__category-section__category-box__tag
+            発送元の地域
+            .form-require
+              必須
+            %select.select-default
+              %option{value: ""} ---
+              %option{value: "1"} 北海道
+              %option{value: "2"} 青森県
+              %option{value: "3"} 岩手県
+              %option{value: "4"} 宮城県
+              %option{value: "5"} 秋田県
+              %option{value: "6"} 山形県
+              %option{value: "7"} 福島県
+              %option{value: "8"} 茨城県
+              %option{value: "9"} 栃木県
+              %option{value: "10"} 群馬県
+              %option{value: "11"} 埼玉県
+              %option{value: "12"} 千葉県
+              %option{value: "13"} 東京都
+              %option{value: "14"} 神奈川県
+              %option{value: "15"} 新潟県
+              %option{value: "16"} 富山県
+              %option{value: "17"} 石川県
+              %option{value: "18"} 福井県
+              %option{value: "19"} 山梨県
+              %option{value: "20"} 長野県
+              %option{value: "21"} 岐阜県
+              %option{value: "22"} 静岡県
+              %option{value: "23"} 愛知県
+              %option{value: "24"} 三重県
+              %option{value: "25"} 滋賀県
+              %option{value: "26"} 京都府
+              %option{value: "27"} 大阪府
+              %option{value: "28"} 兵庫県
+              %option{value: "29"} 奈良県
+              %option{value: "30"} 和歌山県
+              %option{value: "31"} 鳥取県
+              %option{value: "32"} 島根県
+              %option{value: "33"} 岡山県
+              %option{value: "34"} 広島県
+              %option{value: "35"} 山口県
+              %option{value: "36"} 徳島県
+              %option{value: "37"} 香川県
+              %option{value: "38"} 愛媛県
+              %option{value: "39"} 高知県
+              %option{value: "40"} 福岡県
+              %option{value: "41"} 佐賀県
+              %option{value: "42"} 長崎県
+              %option{value: "43"} 熊本県
+              %option{value: "44"} 大分県
+              %option{value: "45"} 宮崎県
+              %option{value: "46"} 鹿児島県
+              %option{value: "47"} 沖縄県
+              %option{value: "99"} 未定
+
+        .contents-box__category-section__category-box
+          .contents-box__category-section__category-box__tag
+            発送までの日数
+            .form-require
+              必須
+            %select.select-default
+              %option{value: ""} ---
+              %option{value: "1"} 1~2日で発送
+              %option{value: "2"} 2~3日で発送
+              %option{value: "3"} 4~7日で発送
+
+
+      -# 販売価格、手数料の表示 
+      %section.contents-box__category-section
+        %h3.contents-box__category-section__sub-head
+          販売価格(300~9,999,999)
+          =link_to "#", class: "contents-box__category-section__sub-head__icon" do
+            %i.fas.fa-question-circle
+            
+        .contents-box__price-section
+          .contents-box__price-section__price-box-left
+            .contents-box__price-section__price-box-left__text
+              価格
+            .form-require
+              必須
+          .contents-box__price-section__price-box-right
+            .contents-box__price-section__price-box-right__text
+              ¥
+            = f.text_field :price, id: 'sell_center', class:'contents-box__price-section__price-box-right__price-form', placeholder: '例)300'
+          .contents-box__price-section__border
+
+          .contents-box__price-section__fee-left
+            販売手数料(10%)
+          .contents-box__price-section__fee-right
+            .contents-box__price-section__fee-right.sales-commission -
+          .contents-box__price-section__border
+
+          .contents-box__price-section__result
+            .contents-box__price-section__result-left
+              販売利益
+            .contents-box__price-section__result-right
+              .contents-box__price-section__result-right.sales-profit -
+      %section.contents-box__sell-decision-container
+        %p.contents-box__sell-decision-container__note
+          禁止されている出品、行為を必ずご確認ください。
+        %p.contents-box__sell-decision-container__note
+          またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
+        %p.contents-box__sell-decision-container__note
+          また、出品をもちまして加盟店規約に同意したことになります。
+        = f.submit nil, class: 'btn btn-primary btn-red' , value: "出品する" do
+          出品する
+        = link_to "", class:'btn-default btn-gray' do
+          もどる
+
+-# merucariロゴフッター
+%footer.footer
+  = render 'shared/sub_footer'

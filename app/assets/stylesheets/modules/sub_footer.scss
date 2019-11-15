@@ -1,0 +1,39 @@
+    .footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  height: 150px;
+  padding: 40px 0;
+  margin: 0 auto;
+  text-align: center;
+  .clearfix {
+    font-size: 12px;
+    list-style: none;
+    li {
+      display: inline-block;
+      margin: 0 0 0 16px;
+      .footer__explanation {
+        color: #333;
+        text-decoration: none;
+        touch-action: manipulation;
+      }
+      .footer__explanation:hover {
+        text-decoration: underline;
+        color: rgb(124, 120, 120);
+      }
+    }
+  }
+  &__logo {
+    width: 80px;
+    height: 65px;
+    margin: 40px auto 0;
+    .img {
+      vertical-align: middle;
+    }
+    p {
+      margin: 8px 0 0;
+      font-size: 13px
+    }
+  }
+}
