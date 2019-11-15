@@ -1,0 +1,359 @@
+html{
+    background: #eee;
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+
+}
+// メインコンテンツ全体
+.main-contents {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    .contents-box{
+        width: 700px;
+        margin: 0 auto;
+        background: #fff;
+        // コンテンツタイトル
+        &__sell-container{
+            padding: 32px 16px;
+            font-size:  22px;
+            font-weight: 600;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        // 画像アップロード部分
+        &__form-list{
+            height: auto;
+            overflow: hidden;
+            width: 700px;
+            &__upload-box{
+                padding: 40px 40px 40px 40px;
+                height: auto;
+                overflow: hidden;
+                &__image-text{
+                    height: 30px;
+                    width:  70px;
+                    font-weight: bold;
+                    float: left;
+                }
+                .form-require{
+                    margin-right: 510px;
+                    background: #ea352d;
+                    padding: 2px 4px;
+                    border-radius: 2px;
+                    color: #fff;
+                    font-size: 12px;
+                    vertical-align: top;
+                    float: right;
+                    font-weight: 600;
+                }
+                .capture {
+                    padding-top: 30px;
+                    height: 20px;
+                    width: 500px;
+                    font-size: 12px;
+                    padding-bottom: 10px;
+                    text-align: left;
+                }
+                .drop-box-item {
+                  background-color: #f8f8f8;
+                  height: 162px;
+                  width: 620px;
+                }
+                .drop-box-item-text {
+                  padding: 40px;
+                  font-size: 13px;
+                  text-align: center;
+                }
+              }
+            }
+        // 商品名、商品説明部分
+        &__descript-section{
+            border-top: 1px solid #eee;
+            background: #fff;
+            padding: 40px;
+            &__item-name{
+                &__text{
+                    height: 30px;
+                    width:  70px;
+                    font-weight: bold;
+                    float: left;
+                    font-size: 14px;
+                }
+                .form-require{
+                  margin-right: 510px;
+                  background: #ea352d;
+                  padding: 2px 4px;
+                  border-radius: 2px;
+                  color: #fff;
+                  font-size: 12px;
+                  vertical-align: top;
+                  float: right;
+                  font-weight: 600;
+                }
+              }
+                &__name-form{
+                width: 100%;
+                height: 48px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+                background: #fff;
+                line-height: 1.5;
+                font-size: 16px;
+                box-sizing: border-box;
+                padding: 10px;
+            }
+            &__item-description{
+                margin-top: 40px;
+                &__text{
+                    height: 30px;
+                    width:  70px;
+                    font-weight: bold;
+                    float: left;
+                    font-size: 14px;
+                }
+                .form-require{
+                    margin-right: 490px;
+                    background: #ea352d;
+                    padding: 2px 4px;
+                    border-radius: 2px;
+                    color: #fff;
+                    font-size: 12px;
+                    vertical-align: top;
+                    float: right;
+                    font-weight: 600;
+                }
+            }
+            &__descript-form{
+                width: 100%;
+                height: 142px;
+                border: 1px solid #ccc;
+                background: #fff;
+                line-height: 1.5;
+                font-size: 16px;
+                box-sizing: border-box;
+                padding: 10px;
+            }
+          }
+            // カテゴリ選択
+        &__category-section{
+            border-top: 1px solid #eee;
+            background: #fff;
+            height: auto;
+            overflow: hidden;
+            padding-right: 40px;
+            padding-left: 40px;
+            &__sub-head{
+                margin-top: 40px;
+                font-weight: 600;
+                float: left;
+                color: #888;
+                font-size: 14px;
+              }
+            &__category-box{
+                float: right;
+                width: 400px;
+                margin-bottom: 40px;
+                &__tag{
+                    margin-top: 40px;
+                    width: 140px;
+                    font-size: 15px;
+                    font-weight: 600;
+                    .form-require{
+                        background: #ea352d;
+                        padding: 2px 4px;
+                        border-radius: 2px;
+                        color: #fff;
+                        font-size: 12px;
+                        vertical-align: top;
+                        float: right;
+                    }
+                    .form-any{
+                        float: right;
+                        width: 25px;
+                        padding: 2px 4px;
+                        border-radius: 2px;
+                        color: #fff;
+                        font-size: 12px;
+                        vertical-align: top;
+                        background: #ccc;
+                    }
+                    .input-default{
+                    font-weight:  300;
+                    background: #eee;
+                    margin-top: 10px;
+                    z-index: 2;
+                    height: 48px;
+                    width: 365px;
+                    padding: 0 16px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    background: 0;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    }
+                    #category{
+                    font-weight:  300;
+                    background: #eee;
+                    margin-top: 10px;
+                    z-index: 2;
+                    height: 48px;
+                    width: 400px;
+                    padding: 0 16px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    background: 0;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    cursor: pointer;
+                }
+                .select-default{
+                    font-weight:  300;
+                    background: #eee;
+                    margin-top: 10px;
+                    z-index: 2;
+                    height: 48px;
+                    width: 400px;
+                    padding: 0 16px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    background: 0;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+                &__price-section{
+            float: right;
+            margin-top: 50px;
+            height: auto;
+            overflow: hidden;
+            width: 400px;
+            position: relative;
+            &__price-box-left{
+                padding-top: 10px;
+                height: 80px;
+                width: 30px;
+                margin-right: 8px;
+                font-weight: 600;
+                font-size: 14px;
+                float: left;
+                .form-require{
+                    background: #ea352d;
+                    padding: 2px 4px;
+                    border-radius: 2px;
+                    color: #fff;
+                    font-size: 12px;
+                    vertical-align: top;
+                    float: right;
+                    position: absolute;
+                    left: 40px;
+                    top: 10px;
+                }
+            }
+            &__price-box-right{
+                width: 250px;
+                height: 80px;
+                float: right;
+                font-size: 12px;
+                &__text{
+                    position: absolute;
+                    top: 14px;
+                    left: 212px;
+                }
+                &__price-form{
+                    height: 46px;
+                    width: 150px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    background: #fff;
+                    line-height: 1.5;
+                    font-size: 16px;
+                    float: right;
+                    text-align: right;
+                    padding-right: 20px;
+                }
+            }
+            &__border{
+                margin-top: 60px;
+                width: 400px;
+                height: 20px;
+                border-bottom: 1px solid #ccc;
+            }
+            &__fee-left{
+                float: left;
+                padding: 30px 0 20px 0;
+                font-size: 13px;
+                position: absolute;
+            }
+            &__fee-right{
+                float: right;
+                padding: 15px 0 20px 0;
+                font-size: 13px;
+            }
+            &__result {
+                height: auto;
+                overflow: hidden;
+                width: 400px;
+
+            }
+            &__result-left{
+                margin-top: 30px;
+                font-size: 16px;
+                font-weight: 600;
+                float: left;
+
+            }
+            &__result-right{
+                margin-top: 12px;
+                font-size: 26px;
+                font-weight: 600;
+                float: right;
+            }
+        }
+        &__sell-decision-container{
+            padding:   40px;
+            border-top: 1px solid #eee;
+            height: 250px;
+            background: #fff;
+            &__note{
+                font-size: 14px;
+            }
+            .btn-red{
+                margin: 40px 0 0;
+                background: #ea352d;
+                border: 1px solid #ea352d;
+                color: #fff;
+                transition: all ease-out .3s;
+                cursor: pointer;
+                text-align: center;
+                display: block;
+                width: 100%;
+                line-height: 48px;
+                font-size: 14px;
+            }
+            .btn-gray{
+                display: block;
+                width: 45%;
+                margin: 24px auto 0;
+                background: #aaa;
+                border: 1px solid #aaa;
+                color: #fff;
+                transition: all ease-out .3s;
+                cursor: pointer;
+                text-align: center;
+                line-height: 48px;
+                font-size: 14px;
+                text-decoration: none;
+            }
+          }
+        }
+      }
