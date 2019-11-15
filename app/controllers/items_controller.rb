@@ -22,4 +22,10 @@ class ItemsController < ApplicationController
 
   def userLogin
   end
+
+  def userEdit
+  end
+
+  def userTelConfirmation
+  end
 end

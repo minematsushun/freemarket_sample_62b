@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get "items/howToPay" => "items#howToPay"
   get "items/newUserRegistration" => "items#newUserRegistration"
   get "items/userLogin" => "items#userLogin"
+  get "items/userEdit" => "items#userEdit"
+  get "items/userTelConfirmation" => "items#userTelConfirmation"
 end
