@@ -1,0 +1,100 @@
+*{box-sizing: border-box;}
+body{
+  position: relative;
+    min-height: 100%;
+    background: #f5f5f5;
+    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+    color: #333;
+}
+.default-container{
+  padding: 100px 0 0;
+}
+.pc-head{
+  display: block;
+}
+.i-container{
+  margin: 40px auto 0;
+  width: 1020px;
+  background: #f5f5f5
+}
+.i-content{
+  float: right;
+  width: 700px;
+}
+.i-chapter-container{
+  margin: 0;
+  background: #fff;
+}
+.clearfix:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+.i-chapter-head{
+  font-size: 24px;
+  border-bottom: 1px solid #f5f5f5;
+  text-align: center;padding: 8px 24px;
+  font-weight: bolder;
+}
+.i-single-inside{
+  padding: 64px;
+  border-top: 1px solid #f5f5f5;
+}
+.i-single-contents{
+  max-width: 320px;
+  margin: 0 auto;
+  position: relative;
+  }
+.i-chapter-vice-head{
+  font-size: 16px;
+  font-weight: bolder;
+}
+.settings-pay-list{
+  list-style: none;
+}
+.settings-pay-list
+li{
+  padding: 24px 0;
+  border-bottom: 1px solid #eee;
+}
+.img{
+  vertical-align: middle;
+}
+.setting-pay-num{
+  margin: 8px 0 0;
+  font-size: 15px;
+}
+.submit-remove-btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #fff;
+  border-radius:  3px;
+  border: 1px solid #ea352d;
+  color: #ea352d;
+  padding: 1px 6px;
+  font-size: 13px;
+}
+.settings-not-save a{
+  display: block;
+  margin: 40px 0 0;
+  text-align: right;
+  font-size: 14px;
+}
+.settings-not-save a span{
+  vertical-align: middle;
+  color: #0099e8;
+  text-decoration: none;
+}
+.fa-chevron-right{
+  color: #0099e8;
+  margin: 0 0 0 8px;
+}
+span:hover{
+  text-decoration: underline;
+}
+//仮のfooter
+.footer{
+  height: 500px;
+}
+
