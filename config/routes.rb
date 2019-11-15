@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :items ,only: :index
   get "items/sell" => "items#sell"
   get "items/exhibit" => "items#exhibit"
+  get "items/myProfile" => "items#myProfile"
+  get "items/cardRegister" => "items#cardRegister"
+  get "items/howToPay" => "items#howToPay"
 end
