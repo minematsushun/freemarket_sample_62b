@@ -1,0 +1,70 @@
+-# ページのヘッダー部分
+%header.header
+  = render 'shared/sub_header'
+  
+-# メイン画面
+%main.confirmation-main
+  %section.confirmation-main__container
+    -# メイン画面ヘッダー
+    %h2.confirmation-main__container__header
+      購入内容の確認
+    
+    -# 商品情報、値段              
+    %section.confirmation-main__container__buy-content
+      .confirmation-main__container__buy-content__inner
+        %h3.confirmation-main__container__buy-content__inner__item
+          image
+        %p.confirmation-main__container__buy-content__inner__item-name__box
+          ひきフェス2017 志麻缶バッジ
+
+        -# ポイント、支払い金額、購入ボタン
+        .confirmation-main__container__buy-content__inner__buy-form
+          .confirmation-main__container__buy-content__inner__buy-form__list
+            %p.confirmation-main__container__buy-content__inner__buy-form__list__price
+              ¥600
+              %span.confirmation-main__container__buy-content__inner__buy-form__list__price__text
+                送料込み
+            %ul.confirmation-main__container__buy-content__inner__buy-form__list__point
+              ポイントはありません
+            .confirmation-buy-box
+              %ul.confirmation-main__container__buy-content__inner__buy-form__list__table
+                %li.confirmation-main__container__buy-content__inner__buy-form__list__table__list
+                  .confirmation-main__container__buy-content__inner__buy-form__list__table__list__left-text
+                    支払い金額
+                  .confirmation-main__container__buy-content__inner__buy-form__list__table__list__right-text
+                    ¥600
+              .confirmation-main__container__buy-content__inner__buy-form__list__buy-btn
+                購入する
+
+              -# 配送先とユーザーの住所
+    %section.confirmation-main__container__buy-info
+      .confirmation-main__container__buy-info__container
+        %h3 配送先
+        %address.confirmation-main__container__buy-info__container__address
+          .confirmation-main__container__buy-info__container__address__postal-code 
+            〒aaaa-bbbb
+          .confirmation-main__container__buy-info__container__address__address-name 
+            東京都目黒区八雲4-10-13
+          .confirmation-main__container__buy-info__container__address__user-name  
+            タモリ
+          =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
+            %span 変更する >
+            -# %i.fas.fa-chevron-right
+
+    -# クレジットカード情報
+    %section.confirmation-main__container__credit-info
+      .confirmation-main__container__credit-info__inner
+        %h3 支払い方法
+        .confirmation-main__container__credit-info__inner__card-number
+          ************1234
+        .confirmation-main__container__credit-info__inner__deadline
+          10/25
+        %img.confirmation-main__container__credit-info__inner__logo{ src: "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?210491352"}
+
+          =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
+            %span 変更する >
+            -# %i.fas.fa-chevron-right
+              
+-# merucariロゴフッター
+%footer.footer
+  = render 'shared/sub_footer'
