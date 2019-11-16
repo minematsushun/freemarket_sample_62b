@@ -1,0 +1,47 @@
+label {
+  font-weight: 600;
+  display: inline-block;
+}
+.require {
+  background: #ea352d;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+  &__any {
+    background: #cccccc;
+    margin: 0 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+  }
+}
+
+.form-group {
+  margin: 24px 0 0;
+  position: relative;
+  .full-name {
+    @include form;
+    margin: 8px 0 0;
+  }
+  .first {
+    margin-bottom: 24px;
+    -webkit-appearance: none;
+  }
+  .icon1 {
+    position: absolute;
+    top: 42%;
+    right: 4%;
+    font-size: 19px;
+    color: #888;
+    pointer-events: none;
+  }
+}
+
+.next-btn {
+  cursor: pointer;
+}
