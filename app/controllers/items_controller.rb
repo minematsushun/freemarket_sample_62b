@@ -37,4 +37,10 @@ class ItemsController < ApplicationController
 
   def userAddress
   end
+
+  def userCompRegistration
+  end
+
+  def userLogout
+  end
 end
