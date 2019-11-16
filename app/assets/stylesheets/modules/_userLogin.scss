@@ -1,0 +1,77 @@
+.contents {
+  display: block;
+  height: 100%;
+  width: 456px;
+  margin: auto;
+  background-color: #fff;
+  &__new {
+    text-align: center;
+    padding: 40px 64px;
+    border-bottom: 1px solid #eee;
+    p {
+      font-size: 14px;
+    }
+    &--btn {
+      font-size: 14px;
+      display: block;
+      margin: 8px 0 0;
+      border: 1px solid #0099e8;
+      background: #0099e8;
+      color: #fff;
+      line-height: 40px;
+      text-decoration: none;
+    }
+  }
+  &__sns {
+    padding: 32px 64px;
+    &--facebook {
+      @include facebook;
+      .fab {
+        @include facebook-icon;
+      }
+    }
+    &--google {
+      @include google;
+      img {
+        float: left;
+      }
+    }
+  }
+  
+  &__form {
+    padding: 24px 64px 32px;
+    &--email {
+      @include form;
+    }
+    &--password {
+      @include form;
+      margin: 24px 0 0;
+    }
+    &--robot {
+      height: 40px;
+      width: 200px;
+      margin: 24px 0 0;
+      padding: 10px 16px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background: #fff;
+      line-height: 1.5;
+      font-size: 16px
+    }
+    &--login {
+      @include red-box;
+      margin: 24px 0 0;
+    }
+    &--forget {
+      display: block;
+      margin: 40px 0 0;
+      color: #0099e8;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+    &--forget:hover{
+      text-decoration: underline;
+      color: #63c4f1;
+    }
+  }
+}

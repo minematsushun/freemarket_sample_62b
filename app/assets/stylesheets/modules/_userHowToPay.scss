@@ -1,0 +1,162 @@
+
+.clearfix:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.i-content{
+  width: 700px;
+  margin: 0 auto;
+}
+.i-chapter-container{
+  margin: 0;
+  background: #fff;
+}
+.i-chapter-head{
+  font-size: 24px;
+  padding: 32px;
+  border-bottom: 1px solid #f5f5f5;
+  text-align: center;
+  font-weight: bold;
+}
+.card-form{
+  padding: 40px 40px 64px;
+}
+.i-single-content{
+  max-width: 343px;
+  margin: 0 auto;
+}
+.form-groups{
+  margin-top: 32px;
+  & label{
+  font-weight: 600;
+ }
+}
+.form-groups:first-child {
+  margin: 0;
+}
+.form-want{
+  background: #ea352d;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+.input-defaultss{
+  @include form;
+  margin: 8px 0 0;
+}
+.has-trouble-text{
+  color: #ea352d;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.signup-cards{
+  margin: 8px 0 0;
+  display: inline-block;
+  & li{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0px 5px 0px 0px;
+  }
+  }
+.form-groups.signup-form-deadline{
+  margin-top: 32px;
+}
+.select-wrap-remainder{
+  display: inline-block;
+  width: calc(50% - 2px);
+  margin: 5px 0 0;
+}
+.payment-card-deadline-month{
+  width: calc(100% - 38px);
+}
+.select-defaults{
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  cursor: pointer;
+  width: calc(100% - 38px);
+  -webkit-appearance: none;
+  outline: none;
+  &:focus {
+    border: 1px solid #0099e8;
+  }
+}
+.icon4 {
+  font-size: 19px;
+  margin: 0 6px 0 -15px;
+  position: relative;
+  top: 3px;
+  pointer-events: none;
+  right: 16px;
+  color: #888;
+}
+.has-disability-text{
+  color: #ea352d;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.signup-code{
+  margin: 8px 0 0;
+&-text{
+  text-align: right;
+  color: #0099e8;
+  margin-top: -4px;
+}
+&-info{
+  z-index: 1;
+  padding: 16px;
+  border-radius: 6px;
+  background: #eee;
+  color: #333;
+  line-height: 1.5;
+  text-align: center;
+  transition: all ease-out .3s;
+}
+}
+.signup-code-info::before{
+  top: -8px;
+  right: 32px;
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #eee transparent;
+  display: block;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+.form-doubt{
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0099e8;
+  color: #fff;
+  line-height: 14px;
+  font-size: 12px;
+  text-align: center;
+}
+.btn-color-red{
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+}
+.btn-default{
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 32px;
+}

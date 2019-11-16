@@ -1,0 +1,86 @@
+.contents-main {
+  display: block;
+  &__authentication {
+    width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    &__text1 {
+      @include head-text;
+    }
+    &__form {
+      border-bottom: 1px solid #eee;
+      &__content {
+        padding: 24px 16px 40px;
+        max-width: 343px;
+        margin: 0 auto;
+        &__group {
+          margin: 0 auto;
+          label {
+            font-weight: 600;
+            display: inline-block;
+          }
+          .input-default {
+            @include form;
+            margin: 8px 0 0;
+          }
+        }
+      } 
+    }
+    .text1 {
+      margin: 8px 0 0;
+      padding: 0;
+      line-height: 1.5;
+    }
+    .next-btn {
+      @include red-box;
+      margin: 24px 0 0;
+    }
+    &__listen {
+      padding: 24px 16px 40px;
+      border-bottom: 1px solid #eee;
+      &__content {
+        max-width: 343px;
+        margin: 0 auto;
+        h3 {
+          font-size: 16px;
+          font-weight: bold;
+        }
+        p {
+          margin: 8px 0 0;
+          line-height: 1.5;
+        }
+      }
+    }
+    &__resend {
+      padding: 24px 16px 40px;
+      max-width: 343px;
+      margin: 0 auto;
+      h3 {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      p {
+        line-height: 1.5;
+        .about {
+        color: #0099e8;
+        cursor: pointer;
+        text-decoration: none;
+        }
+        .about:hover {
+          text-decoration: underline;
+          color: #63c4f1;
+        }
+      }
+      .terms {
+        color: #0099e8;
+        cursor: pointer;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+          color: #63c4f1;
+        }
+      }
+    }
+  }
+}
+
