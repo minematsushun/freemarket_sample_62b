@@ -1,0 +1,21 @@
+.slick-prev{
+  left: 50px;
+  height: 80px;
+  width: 80px;
+  background-image: image-url("carousel-prev-af7ca886ce42c4c02610cd15421ddcad.png");
+  z-index: 100;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.slick-next{
+  right: 50px;
+  height: 80px;
+  width: 80px;
+  background-image: image-url("carousel-next-bc3a1438a1435e953bc67d720cd05c61.png");
+  z-index: 100;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+}

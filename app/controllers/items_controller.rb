@@ -1,52 +1,55 @@
 class ItemsController < ApplicationController
-  def index
+  def index #TOP
   end
 
-  def exhibit
+  def show #商品詳細
   end
 
-  def sell
+  def exhibit #購入内容の確認
   end
 
-  def myProfile
+  def sell  #商品情報の入力
   end
 
-  def cardRegister
+  def myProfile #マイプロフィール
   end
 
-  def howToPay
+  def cardRegister  #カード登録
   end
 
-  def newUserRegistration
+  def howToPay  #支払い方法一覧
   end
 
-  def userLogin
+  def newUserRegistration  #新規ユーザー登録
   end
 
-  def userEdit
+  def userLogin  #ログイン
   end
 
-  def userTelConfirmation
+  def userEdit  #ユーザー編集
   end
 
-  def userTelAuthentication
+  def userTelConfirmation  #ユーザー電話番号確認
   end
 
-  def userHowToPay
+  def userTelAuthentication  #ユーザー電話番号の認証
   end
 
-  def userAddress
+  def userHowToPay  #支払い方法登録
   end
 
-  def userCompRegistration
+  def userAddress  #ユーザー住所
   end
 
-  def userLogout
+  def userCompRegistration  #ユーザー登録完了
   end
 
-  def identification
+  def userLogout  #ログアウト
   end
 
-  def myPage
+  def identification  #本人確認
+  end
+
+  def myPage  #マイページ
   end
 end

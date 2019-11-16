@@ -1,0 +1,17 @@
+%div.slick
+  %div.slide_img.slide_img_camp
+  %div.slide_img.slide_img_info
+    .slide_img_info__box
+      = image_tag 'top-banner-info-sp.png', alt: '', height: '390px', width: '', class: 'slide_img_info__box__rightimg'
+      .slide_img_info__box__title
+        %p スマホで かんたん
+        %p フリマアプリ
+      %p.slide_img_info__box__sub
+        メルカリはスマホカメラからすぐに出品できる
+        %br
+        購入時も安心な独自システムのアプリです
+      .slide_img_info__box__imgs
+        =link_to "" do
+          = embedded_svg "app-store.svg", class: "slide_img_info__box__img"
+        =link_to "" do
+          = embedded_svg "google-play.svg", class: "slide_img_info__box__img"
