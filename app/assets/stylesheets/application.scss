@@ -1,34 +1,47 @@
+// 共通設定
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import "./reset";
 @import "config/color";
 @import "config/setting";
 @import "mixin/mixin";
-@import "modules/header";
-@import "modules/footer";
-@import "modules/exhibit-btn";
-@import "modules/top_container";
+
+// 部分テンプレート
+@import "modules/main_header";
+@import "modules/main_footer";
+@import "modules/sub_header";
+@import "modules/sub_footer";
 @import "modules/top_slider";
 @import "modules/top_aside";
+@import "modules/announcement";
+@import "modules/progressBar";
+@import "modules/sidebar";
+@import "modules/exhibit-btn";
+@import "modules/topCategoryTitle";
+
+// スライダー
+@import "modules/slick-theme";
+@import "modules/slick";
+@import "modules/carousel";
+
+// 各ページ
+@import "modules/top_container";
 @import "modules/exhibit";
-@import "modules/sub_footer";
 @import "modules/sell";
-@import "modules/sub_header";
+@import "modules/myPage";
 @import "modules/myProfile";
 @import "modules/cardRegister";
 @import "modules/howToPay";
-@import "modules/sidebar";
-@import "modules/newUserRegistration";
+@import "modules/identification";
+
 @import "modules/userlogin";
+@import "modules/userLogout";
 @import "modules/userEdit";
-@import "modules/progressBar";
+@import "modules/userAddress";
+@import "modules/userHowToPay";
 @import "modules/userTelConfirmation";
 @import "modules/userTelAuthentication";
-@import "modules/userHowToPay";
-@import "modules/userAddress";
-@import "modules/userLogout";
+@import "modules/newUserRegistration";
 @import "modules/userCompRegistration";
-@import "modules/announcement";
-@import "modules/main_footer";
-@import "modules/identification";
-@import "modules/myPage";
+
+@import "./show";
