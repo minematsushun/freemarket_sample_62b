@@ -2,6 +2,9 @@ class ItemsController < ApplicationController
   def index #TOP
   end
 
+  def show #商品詳細
+  end
+
   def exhibit #購入内容の確認
   end
 
