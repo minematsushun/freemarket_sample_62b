@@ -31,4 +31,10 @@ class ItemsController < ApplicationController
 
   def userTelAuthentication
   end
+
+  def userHowToPay
+  end
+
+  def userAddress
+  end
 end

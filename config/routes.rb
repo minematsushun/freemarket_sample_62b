@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get "items/userEdit" => "items#userEdit"
   get "items/userTelConfirmation" => "items#userTelConfirmation"
   get "items/userTelAuthentication" => "items#userTelAuthentication"
+  get "items/userHowToPay" => "items#userHowToPay"
+  get "items/userAddress" => "items#userAddress"
 end
