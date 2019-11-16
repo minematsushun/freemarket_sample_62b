@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "items#index"
-  resources :items ,only: [:index, :show]
+  resources :items ,only: :index
   get "items/sell" => "items#sell"
   get "items/exhibit" => "items#exhibit"
   get "items/myProfile" => "items#myProfile"
@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   get "items/userLogout" => "items#userLogout"
   get "items/userCompRegistration" => "items#userCompRegistration"
   get "items/myPage" => "items#myPage"
-  get "items/myPage" => "items#myPage"
   get "items/identification" => "items#identification"
+  get "items/info" => "items#info"
 end
