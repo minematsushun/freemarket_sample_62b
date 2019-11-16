@@ -16,4 +16,37 @@ class ItemsController < ApplicationController
 
   def howToPay
   end
+
+  def newUserRegistration
+  end
+
+  def userLogin
+  end
+
+  def userEdit
+  end
+
+  def userTelConfirmation
+  end
+
+  def userTelAuthentication
+  end
+
+  def userHowToPay
+  end
+
+  def userAddress
+  end
+
+  def userCompRegistration
+  end
+
+  def userLogout
+  end
+
+  def identification
+  end
+
+  def myPage
+  end
 end

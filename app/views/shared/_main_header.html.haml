@@ -1,0 +1,55 @@
+%header.main_header
+  .header
+    .header__top
+      .header__top__logo
+        = embedded_svg "logo.svg", class: "logo-svg"
+      .header__top__form
+        %form
+          .header__top__form__input
+            %input{:name => "keyword", :placeholder => "何をお探しですか？", :type => "search", :value => ""}/
+          .header__top__form__btn
+            %button
+              %i.fas.fa-search
+    .header__menu
+      %nav.header__menu__left
+        %ul.header__menu__left__nav
+          %li.header__menu__left__nav__category
+            %h2
+              = link_to "" do
+                %i.fas.fa-list-ul
+                %span カテゴリーから探す
+            %ul.header__menu__left__nav__category__list.hidden
+              %li
+                = link_to "カテゴリー１", ""
+                %ul
+                  %li
+                    = link_to "カテゴリー2", ""
+                    %ul
+                      %li
+                      = link_to "カテゴリー3", ""
+          %li.header__menu__left__nav__category
+            %h2
+              = link_to "" do
+                %i.fas.fa-tag
+                %span ブランドから探す
+            %ul.header__menu__left__nav__category__list.hidden
+              %li
+                = link_to "ブランド１", ""
+      %nav.header__menu__right
+        %ul.header__menu__right__lists
+          %li.header__menu__right__lists__list
+            = link_to "" do
+              %i.far.fa-heart
+              %span いいね一覧
+          %li.header__menu__right__lists__list
+            = link_to "" do
+              %i.far.fa-bell
+              %span お知らせ
+          %li.header__menu__right__lists__list
+            = link_to "" do
+              %i.fas.fa-check
+              %span やることリスト
+          %li.header__menu__right__lists__list
+            = link_to "" do
+              = image_tag 'member_photo_noimage_thumb.png'
+              %span マイページ
