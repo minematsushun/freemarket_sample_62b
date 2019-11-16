@@ -43,4 +43,10 @@ class ItemsController < ApplicationController
 
   def userLogout
   end
+
+  def identification
+  end
+
+  def myPage
+  end
 end
