@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   get "items/userAddress" => "items#userAddress"
   get "items/userLogout" => "items#userLogout"
   get "items/userCompRegistration" => "items#userCompRegistration"
+  get "items/myPage" => "items#myPage"
+  get "items/myPage" => "items#myPage"
+  get "items/identification" => "items#identification"
 end
