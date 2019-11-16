@@ -1,0 +1,25 @@
+main {
+  width: 700px;
+  margin: 24px auto 0;
+  padding: 0 0 40px;
+  display: block;
+}
+
+.logout-contents {
+  float: none;
+  width: 700px;
+  &__box {
+    margin: 0;
+    background: #fff;
+    &__red {
+      padding: 64px;
+      &__btn {
+        max-width: 320px;
+        margin: 0 auto;
+        &__submit {
+          @include red-box;
+        }
+      }
+    }
+  }
+}

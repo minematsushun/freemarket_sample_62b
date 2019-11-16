@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get "items/userTelAuthentication" => "items#userTelAuthentication"
   get "items/userHowToPay" => "items#userHowToPay"
   get "items/userAddress" => "items#userAddress"
+  get "items/userLogout" => "items#userLogout"
+  get "items/userCompRegistration" => "items#userCompRegistration"
 end
