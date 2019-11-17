@@ -1,4 +1,5 @@
-.default-container
+.wrapper.clearfix
+  = render 'shared/main_header'
   %main.i-container.clearfix
     .i-content
       %section.i-chapter-container
@@ -17,3 +18,6 @@
               変更する
     .side_bar
       =render 'shared/side_bar'
+  .footer
+    = render 'shared/announcement'
+    = render 'shared/main_footer'
