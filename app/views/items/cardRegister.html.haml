@@ -1,6 +1,5 @@
-.default-container
-  %header.pc-head
-    = render 'shared/main_header'
+.wrapper.clearfix
+  = render 'shared/main_header'
   %main.i-container.clearfix
     = render 'shared/btn_exhibit'
     .i-content
@@ -83,7 +82,8 @@
             %p#primary-error.has-disability-text
             %input{name: "after_save_callback", type: "hidden", value: ""}/
             %button#submit-button.btn-default.btn-color-red{type: "button"} 追加する
-    .side-bar
-      =render 'shared/side_bar'
+    .side_bar
+      = render 'shared/side_bar'
   .footer
+    = render 'shared/announcement'
     = render 'shared/main_footer'
