@@ -1,167 +1,172 @@
-.info-contents {
-  width: 700px;
+.main-info-contents {
   margin: 0 auto;
-  background: #fff;
-  &__input {
-    @include head-text;
-  }
-  &__form {
-    max-width: 343px;
+  display: flex;
+  .info-contents {
+    width: 700px;
     margin: 0 auto;
-    padding: 24px 16px 40px;
-    label {
-      font-weight: 600;
-      display: inline-block;
+    background: #fff;
+    &__input {
+      @include head-text;
     }
-    .require {
-      background: #ea352d;
-      margin: 0 0 0 8px;
-      padding: 2px 4px;
-      border-radius: 2px;
-      color: #fff;
-      font-size: 12px;
-      vertical-align: top;
-    }
-    &--group {
-      margin: 40px 0 0;
-      &--nickname {
-        @include form;
-        margin: 8px 0 0;
-      }
-      &--email {
-        @include form;
-        margin: 8px 0 0;
-      }
-      &--password {
-        @include form;
-        margin: 8px 0 0;
-        &--checkbox {
-          margin: 16px 0 0;
-          position: relative;
-          .far {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            z-index: 1;
-            width: 20px;
-            height: 20px;
-            border-radius: 2px;
-            background: #fff;
-            border: 1px solid #ccc;
-            font-size: 10px;
-            line-height: 17px;
-            text-align: center;
-            color: #fff;
-            vertical-align: middle;
-            transition: all ease-out .3s;
-            transform: translate(0, -50%);
-          }
-          .display {
-            position: relative;
-            z-index: 2;
-            padding: 0 0 0 28px;
-            font-size: 14px;
-            font-weight: 400;
-            vertical-align: middle;
-            cursor: pointer;
-          }
-        }
-      }
-    }
-    &--person {
-      margin: 24px 0 0;
-      .confirmation {
-        font-size: 16px;
-        font-weight: bold;
-      }
-      .text1 {
-        margin: 8px 0 0;
-        line-height: 1.5;
-      }
-    }
-    .full-name {
-      @include form;
-      display: inline;
-      width: calc(50% - 48px);
-      margin: 8px 8px 0 0;
-    }
-    &--birthday {
-      margin: 24px 0 0;
-      position: relative;
-      .select-wrap {
-        margin: 8px 0 0;
-        select {
+    &__forms {
+      padding: 24px 16px 40px;
+      &__form {
+        max-width: 343px;
+        margin: 0 auto;
+        label {
+          font-weight: 600;
           display: inline-block;
-          -webkit-appearance: none;
-          outline: none;
-          &:focus {
-            border: 1px solid #0099e8;
+        }
+        .require {
+          background: #ea352d;
+          margin: 0 0 0 8px;
+          padding: 2px 4px;
+          border-radius: 2px;
+          color: #fff;
+          font-size: 12px;
+          vertical-align: top;
+        }
+        &--group {
+          margin: 40px 0 0;
+          &--nickname {
+            @include form;
+            margin: 8px 0 0;
+          }
+          &--email {
+            @include form;
+            margin: 8px 0 0;
+          }
+          &--password {
+            @include form;
+            margin: 8px 0 0;
+            &--checkbox {
+              margin: 16px 0 0;
+              position: relative;
+              .far {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                z-index: 1;
+                width: 20px;
+                height: 20px;
+                border-radius: 2px;
+                background: #fff;
+                border: 1px solid #ccc;
+                font-size: 10px;
+                line-height: 17px;
+                text-align: center;
+                color: #fff;
+                vertical-align: middle;
+                transition: all ease-out .3s;
+                transform: translate(0, -50%);
+              }
+              .display {
+                position: relative;
+                z-index: 2;
+                padding: 0 0 0 28px;
+                font-size: 14px;
+                font-weight: 400;
+                vertical-align: middle;
+                cursor: pointer;
+              }
+            }
           }
         }
-        .icon2 {
-          position: absolute;
-          z-index: 2;
+        &--person {
+          margin: 24px 0 0;
+          .confirmation {
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .text1 {
+            margin: 8px 0 0;
+            line-height: 1.5;
+          }
+        }
+        .full-name {
+          @include form;
+          display: inline;
+          width: calc(50% - 48px);
+          margin: 8px 8px 0 0;
+        }
+        &--birthday {
+          margin: 24px 0 0;
+          position: relative;
+          .select-wrap {
+            margin: 8px 0 0;
+            select {
+              display: inline-block;
+              -webkit-appearance: none;
+              outline: none;
+              &:focus {
+                border: 1px solid #0099e8;
+              }
+            }
+            .icon2 {
+              position: absolute;
+              z-index: 2;
+              color: #888;
+              font-size: 20px;
+              transform: translate(0, -50%);
+              top: 57%;
+              margin-left: 56px;
+            }
+            &__year {
+              @include select;
+              padding: 0 11px;
+            }
+            &__month {
+              @include select;
+              padding: 0 11px;
+            }
+            &__date {
+              @include select;
+              padding: 0 11px;
+            }
+          }
+        }
+        .text2 {
           color: #888;
-          font-size: 20px;
-          transform: translate(0, -50%);
-          top: 57%;
-          margin-left: 56px;
-        }
-        &__year {
-          @include select;
-          padding: 0 11px;
-        }
-        &__month {
-          @include select;
-          padding: 0 11px;
-        }
-        &__date {
-          @include select;
-          padding: 0 11px;
-        }
-      }
-    }
-    .text2 {
-      color: #888;
-      line-height: 1.5;
-    }
-  }
-  &__form {
-    max-width: 343px;
-    margin: 0 auto;
-    .form-group {
-      margin: 24px 0 0;
-      .text3 {
-      text-align: center;
-        .terms {
-          color: #0099e8;
-          text-decoration: none;
-          touch-action: manipulation;
-        }
-        .terms:hover {
-          text-decoration: underline;
-          color: #63c4f1;
-        }
-      }
-      .next-btn {
-        @include red-box;
-        width: 100%;
-        font-size: 14px;
-        cursor: pointer;
-        outline: none;
-      }
-      &__text {
-        margin: 24px 0 0;
-        text-align: right;
-        p {
           line-height: 1.5;
-          .about {
-          color: #0099e8;
+        }
+      }
+    }
+    &__forms {
+      .form-group {
+        margin: 24px 0 0;
+        .text3 {
+          text-align: center;
+          .terms {
+            display: inline-block;
+            color: #0099e8;
+            text-decoration: none;
+            touch-action: manipulation;
+          }
+          .terms:hover {
+            text-decoration: underline;
+            color: #63c4f1;
+          }
+        }
+        .next-btn {
+          @include red-box;
+          width: 100%;
+          font-size: 14px;
           cursor: pointer;
-          text-decoration: none;
-            &:hover {
-              text-decoration: underline;
-              color: #63c4f1;
+          outline: none;
+        }
+        &__text {
+          margin: 24px 0 0;
+          text-align: right;
+          p {
+            line-height: 1.5;
+            .about {
+            color: #0099e8;
+            cursor: pointer;
+            text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+                color: #63c4f1;
+              }
             }
           }
         }
@@ -169,3 +174,4 @@
     }
   }
 }
+

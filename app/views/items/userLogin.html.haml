@@ -1,22 +1,22 @@
 = render 'shared/sub_header'
-.contents
-  .contents__new
+.contents-login
+  .contents-login__new
     %p アカウントをお持ちでない方はこちら
-    =link_to "", class: "contents__new--btn" do
+    =link_to "", class: "contents-login__new--btn" do
       新規会員登録
-  .contents__sns
-    =link_to "", class: "contents__sns--facebook" do
+  .contents-login__sns
+    =link_to "", class: "contents-login__sns--facebook" do
       = icon 'fab', 'facebook-square'
       Facebookで登録する
-    =link_to "", class: "contents__sns--google" do
+    =link_to "", class: "contents-login__sns--google" do
       %img{ src: "https://www.mercari.com/jp/assets/img/common/common/google.svg" }
       Googleで登録する
-  .contents__form
-    %input.contents__form--email{name: "email", placeholder: "メールアドレス", type: "email", value: ""}/
-    %input.contents__form--password{name: "password", placeholder: "パスワード", type: "password", value: "",}/
-    %input.contents__form--robot
-    =link_to "", class: "contents__form--login" do
+  .contents-login__form
+    %input.contents-login__form--email{name: "email", placeholder: "メールアドレス", type: "email", value: ""}/
+    %input.contents-login__form--password{name: "password", placeholder: "パスワード", type: "password", value: "",}/
+    %input.contents-login__form--robot
+    =link_to "", class: "contents-login__form--login" do
       ログイン
-    =link_to "", class: "contents__form--forget" do
+    =link_to "", class: "contents-login__form--forget" do
       パスワードをお忘れの方
 = render 'shared/sub_footer'

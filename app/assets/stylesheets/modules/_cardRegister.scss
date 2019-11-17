@@ -4,7 +4,6 @@ body{
   min-height: 100%;
   background: #f5f5f5;
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
-
   font-size: 14px;
 }
 .default-container{
@@ -110,7 +109,7 @@ cursor: pointer;
 width: calc(100% - 38px);
 -webkit-appearance: none;
 }
-.fa-chevron-down{
+.arrow{
 font-size: 19px;
 margin: 0 6px 0 -15px;
 position: relative;
