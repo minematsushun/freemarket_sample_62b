@@ -1,0 +1,220 @@
+= render 'shared/main_header'
+
+-# 商品詳細ページ機能
+.product-details-wrapper
+  .container
+    = form_with url: "#", method: :post , class: 'item-box' do
+      %h1.item-box__name
+        アイテム名
+      %p.item-box__detail 
+      .item-main
+        .item-photo
+          .photo-big
+          .photo-smallbox
+            .photo-small-item
+        %table.item-detail
+          %tr
+            %th.category 出品者
+            %td
+              = link_to "",  class:"name" do
+                ユーザー名
+              .user-rating
+                .item-user-ratings
+                  %i.fas.fa-laugh 
+                    %span.text 20
+                .item-user-ratings
+                  %i.fas.fa-meh
+                    %span.text 0
+                .item-user-ratings
+                  %i.fas.fa-frown
+                    %span.text 0
+            %tr
+              %th.category カテゴリー
+              %td
+                .item-detail-table-sub-category
+                  = link_to "#",  class:"name" do
+                    カテゴリー名
+                %i.fa.fa-chevron-right.items-link_to
+                  = link_to "#",  class:"name" do
+                    カテゴリー名
+                .item-detail-table-sub-sub-category
+                %i.fa.fa-chevron-right.items-link_to
+                  = link_to "#",  class:"name" do
+                    カテゴリー名
+            %tr
+              %th.category ブランド
+              %td
+                = link_to "#",  class:"name" do
+                  ブランド名
+
+            %tr
+              %th.category 商品のサイズ
+              %td 
+                商品サイズ
+              
+            %tr
+              %th.category 商品の状態
+              %td
+                商品状態
+              
+            %tr
+              %th.category 配送料の負担
+              %td 
+                配送料の負担
+            %tr
+              %th.category 配送の方法
+              %td 
+                配送方法
+              
+            %tr
+              %th.category 発送元地域
+              %td
+                = link_to "#",  class:"name" do
+                  配送地域
+              
+            %tr
+              %th.category 発送日の目安
+
+
+              %td
+                発送日の目安
+
+      .price-box
+        %span.price-box__price
+          ¥500円
+        %span.price-box__tax
+          (税込)
+        %span.price-box__fee
+          送料込み
+          = link_to "", class: "item-buy-btn" do
+            購入画面に進む
+
+      .item-description
+        %p.item-description__inner
+          出品者のコメント（商品説明詳細）
+          
+      .button-content
+        .button-content__left
+          .button-like
+            %i.far.fa-heart
+            = link_to "#", class: "button-like__text" do
+              いいね！ 0
+          .button-report
+            %i.far.fa-flag
+            = link_to "#", class: "button-report__text" do
+              不適切な商品の報告
+        
+        = link_to "#", class: "button-content__right" do
+          %i.fas.fa-lock
+            あんしんあんぜんへの取り組み
+
+  .item-comment-message
+    .item-comment-message__box
+      %form.message-content-form
+        %p 
+        相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        .message-content-form-box
+      %input.message-content-form-box__text
+        .message-submit
+          .message-submit__btn-gray
+            コメントする
+
+
+    .product-show-messeagecontent
+      .product-show-itemlink
+        = link_to "" ,class: "product-show-messagelink" do
+          < ユーザー１のページへ移動
+    
+      .product-show-itemlink
+        = link_to "" ,class: "product-show-messagelink" do
+          ユーザー２のページへ移動 >
+
+    .product-show-sns-box
+      = link_to "", class: "product-show-facebook" do
+        %i.fab.fa-facebook-square
+          .product-show-facebook-icon
+
+      = link_to "", class: "product-show-twitter" do
+        %i.fab.fa-twitter-square
+          .product-show-twitter-icon
+
+      = link_to "", class: "product-show-pinterest" do
+        %i.fab.fa-pinterest-square 
+        .product-show-pinterest-icon
+    
+    .product-show-boxposition
+      .product-show-items-box
+        .product-show-items-name
+          = link_to "", class: "product-show-text-link" do
+            お客Aさんのその他の出品
+
+          .product-show-items
+            .product-show-items-list
+              .product-show-items-list__box
+                = link_to "", class: "show-product-link" do
+                  .product-show-item-box-photo
+                  .product-show-item-box-body
+                    .product-show-item-box-body-name
+                      aaaaaaaaa
+                      .product-show-item-box-body-price
+                        ¥600
+
+            .product-show-items-list
+              .product-show-items-list__box
+                = link_to "", class: "show-product-link" do
+                  .product-show-item-box-photo
+                  .product-show-item-box-body
+                    .product-show-item-box-body-name
+                      aaaaaaaaa
+                      .product-show-item-box-body-price
+                        ¥600
+
+            .product-show-items-list
+              .product-show-items-list__box
+                = link_to "", class: "show-product-link" do
+                  .product-show-item-box-photo
+                  .product-show-item-box-body
+                    .product-show-item-box-body-name
+                      aaaaaaaaa
+                      .product-show-item-box-body-price
+                        ¥600
+      
+        .product-show-boxposition
+        .product-show-items-box
+          .product-show-items-name
+            = link_to "", class: "product-show-text-link" do
+              バッテリー/充電器 （家電・スマホ・カメラ） その他の商品
+          
+          .product-show-items
+            .product-show-items-list
+              .product-show-items-list__box
+                = link_to "", class: "show-product-link" do
+                  .product-show-item-box-photo
+                  .product-show-item-box-body
+                    .product-show-item-box-body-name
+                      aaaaaaaaa
+                      .product-show-item-box-body-price
+                        ¥600
+
+            .product-show-items-list
+              .product-show-items-list__box
+                = link_to "", class: "show-product-link" do
+                  .product-show-item-box-photo
+                  .product-show-item-box-body
+                    .product-show-item-box-body-name
+                      aaaaaaaaa
+                      .product-show-item-box-body-price
+                        ¥600
+
+            .product-show-items-list
+              .product-show-items-list__box
+                = link_to "", class: "show-product-link" do
+                  .product-show-item-box-photo
+                  .product-show-item-box-body
+                    .product-show-item-box-body-name
+                      aaaaaaaaa
+                      .product-show-item-box-body-price
+                        ¥600
+
+= render 'shared/announcement'
+= render 'shared/main_footer'

@@ -82,4 +82,8 @@
             %p#primary-error.has-disability-text
             %input{name: "after_save_callback", type: "hidden", value: ""}/
             %button#submit-button.btn-default.btn-color-red{type: "button"}  次へ進む
-= render 'shared/sub_footer'
+    .side_bar
+      = render 'shared/side_bar'
+  .footer
+    = render 'shared/announcement'
+    = render 'shared/main_footer'
