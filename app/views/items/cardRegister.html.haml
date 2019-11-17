@@ -1,4 +1,6 @@
 .default-container
+  %header.pc-head
+    = render 'shared/main_header'
   %main.i-container.clearfix
     = render 'shared/btn_exhibit'
     .i-content
@@ -82,4 +84,6 @@
             %input{name: "after_save_callback", type: "hidden", value: ""}/
             %button#submit-button.btn-default.btn-color-red{type: "button"} 追加する
     .side-bar
-  .footers
+      =render 'shared/side_bar'
+  .footer
+    = render 'shared/main_footer'

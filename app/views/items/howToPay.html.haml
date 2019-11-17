@@ -1,5 +1,5 @@
-.default-container
-  %header.pc-head
+.wrapper.clearfix
+  = render 'shared/main_header'
   %main.i-container.clearfix
     .i-content
       %section.i-chapter-container
@@ -26,4 +26,6 @@
               %i.fas.fa-chevron-right
     .side_bar
       = render 'shared/side_bar'
-    .footer
+  .footer
+    = render 'shared/announcement'
+    = render 'shared/main_footer'
