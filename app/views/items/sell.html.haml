@@ -127,13 +127,12 @@
           
           -# 配送の設定
       %section.contents-box__category-section#delivery
-        %h3.contents-box__category-section__sub-head
+        .contents-box__category-section__sub-head
           配送について
-          =link_to "#", class: "contents-box__category-section__sub-head__icon" do
-            %i.fas.fa-question-circle
+          =link_to "?","", class: "question-btn"
             
         .contents-box__category-section__category-box
-          .contents-box__category-section__category-box__tag#async-select-box2
+          .contents-box__category-section__category-box__tag
             配送料の負担
             .form-require
               必須
@@ -216,8 +215,7 @@
       %section.contents-box__category-section
         %h3.contents-box__category-section__sub-head
           販売価格(300~9,999,999)
-          =link_to "#", class: "contents-box__category-section__sub-head__icon" do
-            %i.fas.fa-question-circle
+          =link_to "?","", class: "question-btn"
             
         .contents-box__price-section
           .contents-box__price-section__price-box-left
