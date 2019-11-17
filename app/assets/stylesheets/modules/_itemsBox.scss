@@ -1,5 +1,5 @@
 .top-contents{
-  padding: 42px 0 0;
+  margin-top: 40px;
   img{
     max-width: 100%;
   }
@@ -24,11 +24,20 @@
   }
   h6{
     width: 90%;
-    margin-bottom: 16px;
+    margin-bottom: 6px;
     font-size: 24px;
+    font-weight: 600;
   }
   &__main{
+    padding: 0 10px;
     display: flex;
+    position: relative;
+    a {
+      font-weight: 600;
+      position: absolute;
+      bottom: 0;
+      right: 1%;
+    }
   }
   &__items{
     figcaption{
