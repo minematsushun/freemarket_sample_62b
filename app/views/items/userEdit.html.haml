@@ -17,10 +17,9 @@
         .info-contents__forms__form--group
           %label.password パスワード
           %span.require 必須
-          %input.info-contents__forms__form--group--password{name: "password", placeholder: "7文字以上", type: "nickname", value: "",}/
+          %input.info-contents__forms__form--group--password{name: "password", placeholder: "7文字以上", type: "password", class: "field", id: "password", value: "hogehoge"}/
           .info-contents__forms__form--group--password--checkbox
-            %input{type: "checkbox", id: "reveal_password", class: "check-icon"}
-            = icon 'far', 'check-square'
+            %input{type: "checkbox", id: "password-check", class: "checkbox"}
             %label.display パスワードを表示する
         .info-contents__forms__form--person
           %h3.confirmation
