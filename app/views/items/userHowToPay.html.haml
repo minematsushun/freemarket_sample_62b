@@ -3,7 +3,7 @@
 .main-info-contents
   .info-contents
     .i-content
-      %section.chapter
+      %section.i-chapter-container
         %h2.i-chapter-head  支払い方法
         %form.card-form{action: "https://www.mercari.com/jp/mypage/card/add/", "data-adyen-id" => "card-form", method: "POST", novalidate: "novalidate"}
           %input{name: "__csrf_value", type: "hidden", value: "8a19d41f3929e4d1dc5d71ca33da2ef593f7a6f0f8a5f23e0e2accf8c4c2932eb1dcfd3fe6bf49ebb763a5c1338edc0094aaa100233abcf6885a3f80db34dc2a7"}/
@@ -82,8 +82,4 @@
             %p#primary-error.has-disability-text
             %input{name: "after_save_callback", type: "hidden", value: ""}/
             %button#submit-button.btn-default.btn-color-red{type: "button"}  次へ進む
-    .side_bar
-      = render 'shared/side_bar'
-  .footer
-    = render 'shared/announcement'
-    = render 'shared/main_footer'
+= render 'shared/sub_footer'

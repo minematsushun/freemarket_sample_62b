@@ -42,34 +42,19 @@
             &--checkbox {
               margin: 16px 0 0;
               position: relative;
-              .far {
-                position: absolute;
-                top: 50%;
-                left: 0;
-                z-index: 1;
-                width: 20px;
+              .checkbox {
                 height: 20px;
-                border-radius: 2px;
-                background: #fff;
-                border: 1px solid #ccc;
-                font-size: 10px;
-                line-height: 17px;
-                text-align: center;
-                color: #fff;
-                vertical-align: middle;
-                transition: all ease-out .3s;
-                transform: translate(0, -50%);
               }
-              .display {
-                position: relative;
-                z-index: 2;
-                padding: 0 0 0 28px;
-                font-size: 14px;
-                font-weight: 400;
-                vertical-align: middle;
-                cursor: pointer;
-              }
+            .display {
+              position: relative;
+              z-index: 2;
+              padding: 0 0 0 28px;
+              font-size: 14px;
+              font-weight: 400;
+              vertical-align: middle;
+              cursor: pointer;
             }
+           }
           }
         }
         &--person {
