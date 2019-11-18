@@ -5,7 +5,7 @@
     = render 'shared/btn_exhibit'
     .i-content
       %section.i-chapter-container
-        %h2.i-chapter-head クレジットカード情報入力
+        %h2.i-chapter-heades クレジットカード情報入力
         %form.card-form{action: "https://www.mercari.com/jp/mypage/card/add/", "data-adyen-id" => "card-form", method: "POST", novalidate: "novalidate"}
           %input{name: "__csrf_value", type: "hidden", value: "8a19d41f3929e4d1dc5d71ca33da2ef593f7a6f0f8a5f23e0e2accf8c4c2932eb1dcfd3fe6bf49ebb763a5c1338edc0094aaa100233abcf6885a3f80db34dc2a7"}/
           .i-single-content
