@@ -52,6 +52,7 @@ main {
                             height: 64px;
                             width: 64px;
                         }
+                    }
                         &__item-name{
                         width: calc(100% - 80px);
                         margin: 0 0 0 16px;
@@ -59,6 +60,8 @@ main {
                         font-size: 16px;
                         font-weight: 600;
                         line-height: 1.5;
+                    &__box {
+                        font-weight: 600;
                     }
                 }
                     &__buy-form{
