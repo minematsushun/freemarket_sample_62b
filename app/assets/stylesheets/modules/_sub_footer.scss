@@ -37,3 +37,20 @@
     }
   }
 }
+
+.userlogin {
+  .sub_footer{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    height: 100%;
+    padding: 40px 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 456px;
+    height: 220px;
+    margin: 0 auto;
+  }
+}
