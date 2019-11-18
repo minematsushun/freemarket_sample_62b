@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
   def userLogout  #ログアウト
   end
 
-  def identification  #本人確認
+  def checkYourself  #本人確認
   end
 
   def myPage  #マイページ
