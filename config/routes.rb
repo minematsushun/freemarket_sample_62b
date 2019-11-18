@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "items#index"
   resources :items ,only: :index
+  resources :categories ,only: [:index, :show]
+  resources :brands ,only: [:index, :show]
   get "items/sell" => "items#sell"
   get "items/exhibit" => "items#exhibit"
   get "items/myProfile" => "items#myProfile"
