@@ -26,13 +26,13 @@
             商品名
           .form-require
             必須
-          = f.text_field :goods_name, class:'contents-box__descript-section__name-form', placeholder: '商品名(必須40文字まで)'
+          = f.text_field :product_name, class:'contents-box__descript-section__name-form', placeholder: '商品名(必須40文字まで)'
           .contents-box__descript-section__item-description
           .contents-box__descript-section__item-description__text
             商品の説明
           .form-require
             必須
-          = f.text_area :goods_description, class:'contents-box__descript-section__descript-form',placeholder: '商品の説明(必須1,000文字以内)(色、素材、重さ、定価、注意点等)例)2010年頃に１万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+          = f.text_area :product_text, class:'contents-box__descript-section__descript-form',placeholder: '商品の説明(必須1,000文字以内)(色、素材、重さ、定価、注意点等)例)2010年頃に１万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
 
       -# 商品の詳細、カテゴリ選択部分
       %section.contents-box__category-section
@@ -232,14 +232,14 @@
           .contents-box__price-section__fee-left
             販売手数料(10%)
           .contents-box__price-section__fee-right
-            .contents-box__price-section__fee-right.sales-commission -
+            .contents-box__price-section__fee-right.sales-commission
           .contents-box__price-section__border
 
           .contents-box__price-section__result
             .contents-box__price-section__result-left
               販売利益
             .contents-box__price-section__result-right
-              .contents-box__price-section__result-right.sales-profit -
+              .contents-box__price-section__result-right.sales-profit
       %section.contents-box__sell-decision-container
         %p.contents-box__sell-decision-container__note
           禁止されている出品、行為を必ずご確認ください。
