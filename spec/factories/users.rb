@@ -3,7 +3,7 @@ FactoryBot.define do
 
     # nickname              {"abe"}
     email                 {"kkk@gmail.com"}
-    password              {"0000000"}
+    password              {"000000"}
     
   end
 end
