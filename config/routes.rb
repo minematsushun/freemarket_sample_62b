@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   get "green/checkYourself" => "green#checkYourself"
   get "green/info" => "green#info"
   get "items/new" => "items#new"
+  post "items" => "items#create"
 end

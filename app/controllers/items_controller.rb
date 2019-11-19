@@ -1,10 +1,16 @@
 class ItemsController < ApplicationController
 
   def new
+    @item = Item.new
   end
 
   def create
-    Item.create(product_name: params[:product_name], product_text: params[:product_text], price: params[:price])
+    Item.create(item_params)
   end
+
+  private
+    def item_params
+      params.require(:item).permit(:product_name, :product_text, :price)
+end
 
 end

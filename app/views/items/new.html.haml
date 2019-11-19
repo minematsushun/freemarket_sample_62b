@@ -7,7 +7,7 @@
   .contents-box
     %section.contents-box__sell-container
       商品の情報を入力
-    = form_with model: @good, class: 'contents-box__form-list' do |f|
+    = form_with model: @item, id: :user_id, class: 'contents-box__form-list' do |f|
       -# 画像アップロード部分
       %section.contents-box__form-list__upload-box
         .contents-box__form-list__upload-box__image-text
