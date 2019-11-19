@@ -37,19 +37,27 @@
                 = link_to "ブランド１", ""
       %nav.header__menu__right
         %ul.header__menu__right__lists
-          %li.header__menu__right__lists__list
-            = link_to "" do
-              %i.far.fa-heart
-              %span いいね一覧
-          %li.header__menu__right__lists__list
-            = link_to "" do
-              %i.far.fa-bell
-              %span お知らせ
-          %li.header__menu__right__lists__list
-            = link_to "" do
-              %i.fas.fa-check
-              %span やることリスト
-          %li.header__menu__right__lists__list
-            = link_to "" do
-              = image_tag 'member_photo_noimage_thumb.png'
-              %span マイページ
+          - if user_signed_in?
+            %li.header__menu__right__lists__list
+              = link_to "" do
+                %i.far.fa-heart
+                %span いいね一覧
+            %li.header__menu__right__lists__list
+              = link_to "" do
+                %i.far.fa-bell
+                %span お知らせ
+            %li.header__menu__right__lists__list
+              = link_to "" do
+                %i.fas.fa-check
+                %span やることリスト
+            %li.header__menu__right__lists__list
+              = link_to "" do
+                = image_tag 'member_photo_noimage_thumb.png'
+                %span マイページ
+          - else
+            %li.header__menu__right__lists__list.top_sign_btn.sign_up_btn
+              = link_to new_user_session_path do
+                %span 新規会員登録
+            %li.header__menu__right__lists__list.top_sign_btn.sign_in_btn
+              = link_to new_user_registration_path do
+                %span ログイン
