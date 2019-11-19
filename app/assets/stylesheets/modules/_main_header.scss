@@ -108,6 +108,37 @@
               }
             }
           }
+          .top_sign_btn{
+            border-radius: 4px;
+            text-align: center;
+            padding: 0;
+            a {
+              padding: 8px 12px;
+              text-align: center;
+            }
+          }
+          .sign_up_btn{
+            background: $red1;
+            margin-right: 10px;
+            a {
+              color: $white;
+              span:hover {
+                color: $white;
+              }
+            }
+          }
+          .sign_in_btn{
+            border: 1px solid $blue1;
+            a {
+              color: $blue1;
+              }
+            &:hover {
+              background: $blue1;
+              span {
+                color: $white;
+              }
+            }
+          }
         }
 
       }
