@@ -45,62 +45,7 @@
             カテゴリー
             .form-require
               必須
-            %select.select-default
-              %option{value: ""} ---
-              %option{value: "1"} レディース
-              %option{value: "2"} メンズ
-              %option{value: "3"} ベビー・キッズ
-              %option{value: "4"} インテリア・住まい・小物
-              %option{value: "5"} 本・音楽・ゲーム
-              %option{value: "1328"} おもちゃ・ホビー・グッズ
-              %option{value: "6"} コスメ・香水・美容
-              %option{value: "7"} 家電・スマホ・カメラ
-              %option{value: "8"} スポーツ・レジャー
-              %option{value: "9"} ハンドメイド
-              %option{value: "1027"} チケット
-              %option{value: "1318"} 自動車・オートバイ
-              %option{value: "10"} その他
-            %select.select-default
-              %option{value: ""} ---
-              %option{value: "11"} トップス
-              %option{value: "12"} ジャケット/アウター
-              %option{value: "13"} パンツ
-              %option{value: "14"} スカート
-              %option{value: "15"} ワンピース
-              %option{value: "16"} 靴
-              %option{value: "17"} ルームウェア/パジャマ
-              %option{value: "18"} レッグウェア
-              %option{value: "19"} 帽子
-              %option{value: "20"} バッグ
-              %option{value: "21"} アクセサリー
-              %option{value: "22"} ヘアアクセサリー
-              %option{value: "23"} 小物
-              %option{value: "24"} 時計
-              %option{value: "25"} ウィッグ/エクステ
-              %option{value: "26"} 浴衣/水着
-              %option{value: "27"} スーツ/フォーマル/ドレス
-              %option{value: "28"} マタニティ
-              %option{value: "29"} その他
-            %select.select-default
-              %option{value: ""} ---
-              %option{value: "119"} Tシャツ/カットソー(半袖/袖なし)
-              %option{value: "120"} Tシャツ/カットソー(七分/長袖)
-              %option{value: "121"} シャツ/ブラウス(半袖/袖なし)
-              %option{value: "122"} シャツ/ブラウス(七分/長袖)
-              %option{value: "123"} ポロシャツ
-              %option{value: "124"} キャミソール
-              %option{value: "125"} タンクトップ
-              %option{value: "126"} ホルターネック
-              %option{value: "127"} ニット/セーター
-              %option{value: "128"} チュニック
-              %option{value: "129"} カーディガン/ボレロ
-              %option{value: "130"} アンサンブル
-              %option{value: "131"} ベスト/ジレ
-              %option{value: "132"} パーカー
-              %option{value: "133"} トレーナー/スウェット
-              %option{value: "134"} ベアトップ/チューブトップ
-              %option{value: "135"} ジャージ
-              %option{value: "136"} その他
+            = f.collection_select :category_ids, @parents, :id, :name,{prompt: "---"}, class: "select-default", id: "parent-form", name: 'item[category_ids][]'
 
           .contents-box__category-section__category-box__tag#size
 
