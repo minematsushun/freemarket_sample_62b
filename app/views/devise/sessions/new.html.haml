@@ -1,17 +1,22 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+= render 'shared/sub_header'
+.contents-login
+  .contents-login__new
+    %p アカウントをお持ちでない方はこちら
+    =link_to "", class: "contents-login__new--btn" do
+      新規会員登録
+  .contents-login__sns
+    =link_to "", class: "contents-login__sns--facebook" do
+      = icon 'fab', 'facebook-square'
+      Facebookで登録する
+    =link_to "", class: "contents-login__sns--google" do
+      %img{ src: "https://www.mercari.com/jp/assets/img/common/common/google.svg" }
+      Googleで登録する
+  .contents-login__form
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "contents-login__form--email", placeholder: "メールアドレス", value: ""
+      = f.password_field :password, autocomplete: "current-password", class: "contents-login__form--password", laceholder: "パスワード", value: ""
+      %input.contents-login__form--robot
+      = f.submit "ログイン", class: "contents-login__form--login"
+      =link_to "", class: "contents-login__form--forget" do
+        パスワードをお忘れの方
+= render 'shared/sub_footer'
