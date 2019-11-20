@@ -10,7 +10,7 @@
         =link_to "", class: "signup-contents__btn--email" do
           = icon 'far', 'envelope'
           メールアドレスで登録する
-        =link_to "", class: "signup-contents__btn--facebook" do
+        =link_to user_facebook_omniauth_authorize_path, class: "signup-contents__btn--facebook" do
           = icon 'fab', 'facebook-square'
           Facebookで登録する
         =link_to "", class: "signup-contents__btn--google" do

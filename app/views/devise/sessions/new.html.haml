@@ -5,12 +5,12 @@
     =link_to "", class: "contents-login__new--btn" do
       新規会員登録
   .contents-login__sns
-    =link_to "", class: "contents-login__sns--facebook" do
+    =link_to user_facebook_omniauth_authorize_path, class: "contents-login__sns--facebook" do
       = icon 'fab', 'facebook-square'
-      Facebookで登録する
+      Facebookでログインする
     =link_to "", class: "contents-login__sns--google" do
       %img{ src: "https://www.mercari.com/jp/assets/img/common/common/google.svg" }
-      Googleで登録する
+      Googleでログインする
   .contents-login__form
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       = f.email_field :email, autofocus: true, autocomplete: "email", class: "contents-login__form--email", placeholder: "メールアドレス", value: ""
