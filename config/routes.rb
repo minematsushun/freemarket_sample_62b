@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   root to: "items#index"
   resources :items, only: :index
 
+  #デバイスのデフォルトリンクを変更
   as :user do
     get 'signin', to: 'devise/sessions#new', as: :new_user_session
     post 'signin', to: 'devise/sessions#create', as: :user_session
     delete 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
+  get "signup" => "signup#index"
   get "items/sell" => "items#sell"
   get "items/exhibit" => "items#exhibit"
   get "items/myProfile" => "items#myProfile"
