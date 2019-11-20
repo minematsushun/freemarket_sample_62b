@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "green#index"
-  resources :items ,only: :index
+  resources :items ,only: :index 
   get "green/sell" => "green#sell"
   get "green/exhibit" => "green#exhibit"
   get "green/myProfile" => "green#myProfile"
@@ -20,8 +20,6 @@ Rails.application.routes.draw do
   get "green/myPage" => "green#myPage"
   get "green/checkYourself" => "green#checkYourself"
   get "green/info" => "green#info"
-
-
   get "items/new" => "items#new"
   post "items" => "items#create"
   get "category_children", defaults: {format: "json"}

@@ -45,7 +45,7 @@
             カテゴリー
             .form-require
               必須
-            = f.collection_select :category_ids, @parents, :id, :name,{prompt: "---"}, class: "select-default", id: "parent-form", name: 'item[category_ids][]'
+            = f.select :category, @parent, {}, {class: 'select-default', id: 'parent-form'}
 
           .contents-box__category-section__category-box__tag#size
 
