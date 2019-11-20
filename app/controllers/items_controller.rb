@@ -2,20 +2,22 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @parents = Category.all.order("id ASC").limit(13)
+    @parents = ["---"]
+    Category.where(ancestry: nil).each do |parent|
+      @parents << parent.name
+    end
+  end
+
+  def category_children
+    @children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
+  def category_grandchildren
+    @grandchildren = Category.find("#{params[:child_id]}").children
   end
 
   def create
     Item.create(item_params)
-  end
-
-  def search
-    respond_to do |format|
-      format.html
-      format.json do
-        @children = Category.find(params[:parent_id]).children
-      end
-    end
   end
 
   private
