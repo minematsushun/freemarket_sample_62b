@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: [:sessions] #sessionをスキップしてas :user で定義する。
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}, skip: [:sessions]
+  #sessionをスキップしてas :user で定義する。
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "items#index"
   resources :items, only: :index
