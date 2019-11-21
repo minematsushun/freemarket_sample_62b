@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @category = ["---"]
+    @category = []
       Category.where(ancestry: nil).each do |parent|
     @category << parent.name
       end
