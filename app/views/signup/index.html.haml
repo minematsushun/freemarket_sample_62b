@@ -13,8 +13,9 @@
         =link_to user_facebook_omniauth_authorize_path, class: "signup-contents__btn--facebook" do
           = icon 'fab', 'facebook-square'
           Facebookで登録する
-        =link_to "", class: "signup-contents__btn--google" do
+        =link_to user_google_oauth2_omniauth_authorize_path, class: "signup-contents__btn--google" do
           %img{ src: "https://www.mercari.com/jp/assets/img/common/common/google.svg" }
           Googleで登録する
 
   = render 'shared/sub_footer'
+  -# = render "devise/shared/links"

@@ -8,7 +8,7 @@
     =link_to user_facebook_omniauth_authorize_path, class: "contents-login__sns--facebook" do
       = icon 'fab', 'facebook-square'
       Facebookでログインする
-    =link_to "", class: "contents-login__sns--google" do
+    =link_to user_google_oauth2_omniauth_authorize_path, class: "contents-login__sns--google" do
       %img{ src: "https://www.mercari.com/jp/assets/img/common/common/google.svg" }
       Googleでログインする
   .contents-login__form

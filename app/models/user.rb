@@ -3,21 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   #omniauthableを追加して拡張
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable
+        :recoverable, :rememberable, :validatable,
+        :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
-  # findメソッド実装
+  # findメソッド実装 omniauthのコールバックで呼ばれるメソッド
   def self.find_for_oauth(auth)
-    user = User.where(uid: auth.uid, provider: auth.provider).first
-
-    unless user
-      user = User.create(
-        uid:       auth.uid,
-        provider:  auth.provider,
-        email:     auth.info.email,
-        password:  Devise.friendly_token[0, 20]
-      )
+    where(uid: auth.uid, provider: auth.provider).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
     end
-
-    user
   end
 end
