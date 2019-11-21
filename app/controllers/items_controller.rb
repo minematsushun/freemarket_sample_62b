@@ -2,18 +2,14 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @parents = ["---"]
+    @category_parent_array = ["---"]
     Category.where(ancestry: nil).each do |parent|
-      @parents << parent.name
+      @category_parent_array << parent.name
     end
   end
 
   def category_children
-    @children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
-  end
-
-  def category_grandchildren
-    @grandchildren = Category.find("#{params[:child_id]}").children
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
   end
 
   def create

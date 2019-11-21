@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function () {
 
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
-    childSelectHtml = `<select class='category' name='good[child]' id='child_category'>
+    childSelectHtml = `<select class='category' name='item[child]' id='child_category'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
                       </select>`;
@@ -15,31 +15,26 @@ $(document).on('turbolinks:load', function () {
 
   $('#parent_category').on('change', function () {
     var parentCategory = document.getElementById('parent_category').value;
-    if (parentCategory) != "---"){
-    $.ajax({
-      url: 'category_children',
-      type: 'GET',
-      data: { parent_name: parentCategory },
-      dataType: 'json'
-    })
-      .done(function (children) {
-        $('#children_wrapper').remove();
-        $('#grandchildren_warapper').remove();
-        $('#size_wrapper').remove();
-        $('#brand_wrapper').remove();
-        var insertHTML = '';
-        children.forEach(function (child) {
-          insertHTML += appendOption(child);
-        });
-        appendChildrenBox(insertHTML);
+    if (parentCategory != "---") {
+      $.ajax({
+        url: 'category_children',
+        type: 'GET',
+        data: { parent_name: parentCategory },
+        dataType: 'json'
       })
-      .fail(function () {
-        alert('カテゴリー取得に失敗しました');
-      })
-  }else {
-    $('#children_wrapper').remove();
-    $('#grandchildren_wrapper').remove();
-    $('#size_wrapper').remove();
-    $('#brand_wrapper').remove();
-  }
+        .done(function (children) {
+          $('#child_category').remove();
+          var insertHTML = '';
+          children.forEach(function (child) {
+            insertHTML += appendOption(child);
+          });
+          appendChildrenBox(insertHTML);
+        })
+        .fail(function () {
+          alert('カテゴリー取得に失敗しました');
+        })
+    } else {
+      $('#grandchild_category').remove();
+    }
+  })
 })
