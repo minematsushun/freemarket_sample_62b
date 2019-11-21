@@ -4,6 +4,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Merukari
     %script{src: "https://js.pay.jp/", type: "text/javascript"} 
+    %script{type: "text/javascript"} Payjp.setPublicKey('pk_test_59109b6054e82ad85e4d0c7a');
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'

@@ -8,13 +8,13 @@ class CardController < ApplicationController
   end
 
   def pay
-    Payjp.api_key = ENV["sk_test_eb5405da6b488fec0f6432cd"]
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
       customer = Payjp::Customer.create(
       description: '登録テスト',
-      email: current_user.email, 
+      email: current_user.email,
       card: params['payjp-token'],
       metadata: {user_id: current_user.id}
       )
@@ -27,11 +27,11 @@ class CardController < ApplicationController
     end
   end
 
-  def delete 
+  def delete
     card = Card.where(user_id: current_user.id).first
     if card.blank?
     else
-      Payjp.api_key = ENV["sk_test_eb5405da6b488fec0f6432cd"]
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(card.customer_id)
       customer.delete
       card.delete
@@ -39,12 +39,12 @@ class CardController < ApplicationController
       redirect_to action: "new"
   end
 
-  def show 
+  def show
     card = Card.where(user_id: current_user.id).first
     if card.blank?
       redirect_to action: "new" 
     else
-      Payjp.api_key = ENV["sk_test_eb5405da6b488fec0f6432cd"]
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
