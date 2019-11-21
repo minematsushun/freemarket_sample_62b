@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "green#index"
-  resources :items ,only: :index 
+  
   get "green/sell" => "green#sell"
   get "green/exhibit" => "green#exhibit"
   get "green/myProfile" => "green#myProfile"
@@ -22,6 +22,11 @@ Rails.application.routes.draw do
   get "green/info" => "green#info"
   get "items/new" => "items#new"
   post "items" => "items#create"
-  get "category_children", defaults: {format: "json"}
-  get "category_grandchildren", defaults: {format: "json"}
+
+  resources :items ,only: [:index,:show, :new, :edit, :destroy] do
+  collection do
+  get "category_children", defaults: {format: 'json'}
+  end
+end
+
 end
