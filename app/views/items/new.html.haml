@@ -40,12 +40,12 @@
           商品の詳細
         .contents-box__category-section__category-box
 
-          -# カテゴリ繰り替えし
+          -# カテゴリ-欄
           .contents-box__category-section__category-box__tag#async-select-box
             カテゴリー
             .form-require
               必須
-            = f.collection_select :name, @category, :id, :name, {prompt: "---"}, {class: "select-default", id: "parent_category"}
+            = f.collection_select :name, @category, :id, :name, {class: "select-default", id: "parent_category"}
 
           .contents-box__category-section__category-box__tag#size
 
