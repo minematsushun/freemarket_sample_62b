@@ -20,12 +20,14 @@ Rails.application.routes.draw do
   get "green/myPage" => "green#myPage"
   get "green/checkYourself" => "green#checkYourself"
   get "green/info" => "green#info"
+
   get "items/new" => "items#new"
   post "items" => "items#create"
 
   resources :items do
   collection do
   get "category_children", defaults: { format: 'json' }
+  get "category_grandchildren", defaults: { format: 'json' }
   end
 end
 

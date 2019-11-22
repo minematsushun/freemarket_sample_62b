@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function () {
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
     childSelectHtml = `
-                      <select class='category' name='good[child]' id='child_category'>
+                      <select class='select-default' name='item[name]' id='parent_category'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
                       </select>
@@ -19,14 +19,15 @@ $(document).on('turbolinks:load', function () {
     var parentCategory = document.getElementById('parent_category').value;
     if (parentCategory != "---") {
       $.ajax({
-        url: 'get_category_children',
+        url: 'category_children',
         type: 'GET',
-        data: { parent_name: parentCategory },
+        data: { name: parentCategory },
         dataType: 'json'
       })
         .done(function (children) {
-          $('#child_category').remove();
+          // $('#child_category').remove();
           var insertHTML = '';
+          console.log(children)
           children.forEach(function (child) {
             insertHTML += appendOption(child);
           });
@@ -35,7 +36,6 @@ $(document).on('turbolinks:load', function () {
         .fail(function () {
           alert('カテゴリー取得に失敗しました');
         })
-    } else {
-      $('#grandchild_category').remove();
     }
   });
+});
