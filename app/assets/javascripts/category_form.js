@@ -33,10 +33,9 @@ $(document).on('turbolinks:load', function () {
             $('#grandchild_category').remove();
           })
         })
-      console.log("aaaaaaaaaaaa")
         .fail(function () {
           alert('カテゴリー取得に失敗しました');
         })
     }
   });
-})
+});

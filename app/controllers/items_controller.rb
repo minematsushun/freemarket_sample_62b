@@ -3,9 +3,9 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @category = []
-      Category.where(ancestry: nil).each do |parent|
-    @category << parent.name
-      end
+    Category.where(ancestry: nil).each do |parent|
+    @category << parent
+    end
   end
 
   def category_children
