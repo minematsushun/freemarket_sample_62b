@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function () {
   function appendOption(category) {
-    var html = `<option value="${category.id}">${category.name}</option>`;
+    var html = `<option value="${category.name}" data-category="${category.id}">${category.id}</option>`;
     return html;
   }
 

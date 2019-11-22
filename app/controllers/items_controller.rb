@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
   end
 
   def category_children
-    console.log("ssssssssss")
     @category_children = Category.find_by(name: "#{params[:name]}", ancestry: nil).children
   end
 
