@@ -52,4 +52,6 @@ class ItemsController < ApplicationController
 
   def myPage  #マイページ
   end
+  def miyamoto
+  end
 end

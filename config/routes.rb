@@ -54,4 +54,5 @@ Rails.application.routes.draw do
   get "items/myPage" => "items#myPage"
   get "items/checkYourself" => "items#checkYourself"
   get "items/info" => "items#info"
+  get "items/miyamoto" => "items#miyamoto"
 end
