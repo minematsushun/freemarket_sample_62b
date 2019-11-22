@@ -3,7 +3,7 @@ class PurchaseController < ApplicationController
   require 'payjp'
 
   def index
-    card = Card.where(user_id: current_user.id).first
+    card = Card.find_by(user_id: current_user.id)
 
     if card.blank?
 
