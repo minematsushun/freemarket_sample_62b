@@ -6,10 +6,12 @@ $(document).on('turbolinks:load', function () {
 
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
-    childSelectHtml = `<select class='category' name='item[child]' id='child_category'>
+    childSelectHtml = `
+                      <select class='category' name='good[child]' id='child_category'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
-                      </select>`;
+                      </select>
+                      `;
     $('.contents-box__category-section__category-box__tag#async-select-box').append(childSelectHtml);
   }
 
