@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get "items/new" => "items#new"
   post "items" => "items#create"
 
-  resources :items ,only: [:index,:show, :new, :edit, :destroy] do
+  resources :items do
   collection do
   get "category_children", defaults: { format: 'json' }
   end

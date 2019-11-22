@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   end
 
   def category_children
-    @category_children = Category.find_by(name: "#{params[:name]}", ancestry: nil).children
+    @category_children = Category.find_by(params[:name]).children
   end
 
   def create

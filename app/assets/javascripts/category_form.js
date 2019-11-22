@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function () {
       $.ajax({
         url: 'category_children',
         type: 'GET',
-        data: { parentCategory: parentCategory },
+        data: parentCategory,
         dataType: 'json'
       })
         .done(function (children) {
