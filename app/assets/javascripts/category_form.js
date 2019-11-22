@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function () {
   function appendOption(category) {
-    var html = `<option value="${category.name}" data-category="${category.id}">${category.id}</option>`;
+    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
 
@@ -15,15 +15,16 @@ $(document).on('turbolinks:load', function () {
 
   $('#parent_category').on('change', function () {
     var parentCategory = document.getElementById('parent_category').value;
+
     if (parentCategory != "---") {
       $.ajax({
         url: 'category_children',
         type: 'GET',
-        data: parentCategory,
+        data: { parentCategory: parentCategory },
         dataType: 'json'
       })
+
         .done(function (children) {
-          $('#children_wrapper').remove();
           var insertHTML = '';
           children.forEach(function (child) {
             insertHTML += appendOption(child);
