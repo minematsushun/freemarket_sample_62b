@@ -1,13 +1,23 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}, skip: [:sessions]
+  #sessionをスキップしてas :user で定義する。
 
+  root to: "items#index"
+  resources :items, only: :index
+
+  #デバイスのデフォルトリンクを変更
+  as :user do
+    get 'signin', to: 'devise/sessions#new', as: :new_user_session
+    post 'signin', to: 'devise/sessions#create', as: :user_session
+    delete 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
+  #カード新規登録
   get 'purchase/index'
   get 'purchase/done'
   get 'card/new'
   get 'card/show'
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: "items#index"
-  resources :items ,only: :index
+
   resources :card, only: [:new, :show] do
     collection do
       post 'show', to: 'card#show'
@@ -22,19 +32,7 @@ Rails.application.routes.draw do
       get 'done', to: 'purchase#done'
     end
   end
-  
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}, skip: [:sessions]
-  #sessionをスキップしてas :user で定義する。
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: "items#index"
-  resources :items, only: :index
 
-  #デバイスのデフォルトリンクを変更
-  as :user do
-    get 'signin', to: 'devise/sessions#new', as: :new_user_session
-    post 'signin', to: 'devise/sessions#create', as: :user_session
-    delete 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session
-  end
 
   get "signup" => "signup#index"
   get "items/sell" => "items#sell"
