@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function () {
     var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
-
+  // 子カテゴリー
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
     childSelectHtml = `
@@ -13,6 +13,18 @@ $(document).on('turbolinks:load', function () {
                       </select>
                       `;
     $('.contents-box__category-section__category-box__tag#async-select-box').append(childSelectHtml);
+  }
+
+  // 孫カテゴリー
+  function appendGrandchildBox(insertHTML) {
+    var grandchildSelectHtml = '';
+    grandchildSelectHtml = `
+                      <select class='select-default' name='item[name]' id='parent_category'>
+                        <option value='---' data-category='---'>---</option>
+                          ${insertHTML}
+                      </select>
+                      `;
+    $('.contents-box__category-section__category-box__tag#async-select-box').append(grandchildSelectHtml);
   }
 
   $('#parent_category').on('change', function () {
@@ -25,9 +37,9 @@ $(document).on('turbolinks:load', function () {
         dataType: 'json'
       })
         .done(function (children) {
-          // $('#child_category').remove();
+          $('#child_category').remove();
+          $('#grandchild_category').remove();
           var insertHTML = '';
-          console.log(children)
           children.forEach(function (child) {
             insertHTML += appendOption(child);
           });
@@ -36,6 +48,35 @@ $(document).on('turbolinks:load', function () {
         .fail(function () {
           alert('カテゴリー取得に失敗しました');
         })
+    } else {
+      $('#grandchild_category').remove();
+    }
+  });
+
+  $('.contents-box__category-section__category-box__tag#async-select-box').on('change', '#child_category', function () {
+    var childId = $('#child_category option:selected').data('category');
+    if (childId != "---") {
+      $.ajax({
+        url: 'category_grandchildren',
+        type: 'GET',
+        data: { child_id: childId },
+        dataType: 'json'
+      })
+        .done(function (grandchildren) {
+          if (grandchildren.length != 0) {
+            $('#grandchild_category').remove();
+            var insertHTML = '';
+            grandchildren.forEach(function (grandchild) {
+              insertHTML += appendOption(grandchild);
+            });
+            appendGrandchildBox(insertHTML);
+          }
+        })
+        .fail(function () {
+          alert('カテゴリー取得に失敗しました');
+        })
+    } else {
+      $('#grandchild_category').remove();
     }
   });
 });
