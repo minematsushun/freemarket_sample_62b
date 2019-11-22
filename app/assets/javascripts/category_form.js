@@ -17,16 +17,15 @@ $(document).on('turbolinks:load', function () {
 
   $('#parent_category').on('change', function () {
     var parentCategory = document.getElementById('parent_category').value;
-
     if (parentCategory != "---") {
       $.ajax({
-        url: 'category_children',
+        url: 'get_category_children',
         type: 'GET',
-        data: { parentCategory: parentCategory },
+        data: { parent_name: parentCategory },
         dataType: 'json'
       })
-
         .done(function (children) {
+          $('#child_category').remove();
           var insertHTML = '';
           children.forEach(function (child) {
             insertHTML += appendOption(child);
@@ -36,6 +35,7 @@ $(document).on('turbolinks:load', function () {
         .fail(function () {
           alert('カテゴリー取得に失敗しました');
         })
+    } else {
+      $('#grandchild_category').remove();
     }
   });
-});
