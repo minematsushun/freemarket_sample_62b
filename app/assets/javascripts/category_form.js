@@ -23,15 +23,12 @@ $(document).on('turbolinks:load', function () {
         dataType: 'json'
       })
         .done(function (children) {
+          $('#children_wrapper').remove();
           var insertHTML = '';
           children.forEach(function (child) {
             insertHTML += appendOption(child);
           });
           appendChildrenBox(insertHTML);
-          $('#parent_category').on('change', function () {
-            $('#child_category').remove();
-            $('#grandchild_category').remove();
-          })
         })
         .fail(function () {
           alert('カテゴリー取得に失敗しました');
