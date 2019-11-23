@@ -262,12 +262,6 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, Rails.application.credentials.facebook[:key],
                             Rails.application.credentials.facebook[:secret]
-<<<<<<< Updated upstream
-=======
-
-  config.omniauth :google_oauth2, Rails.application.credentials.google_oauth2[:key],
-                            Rails.application.credentials.google_oauth2[:secret]
->>>>>>> Stashed changes
 
   config.omniauth :google_oauth2, Rails.application.credentials.google_oauth2[:key],
                             Rails.application.credentials.google_oauth2[:secret]
