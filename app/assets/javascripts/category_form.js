@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function () {
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
     childSelectHtml = `
-                      <select class='select-default' name='item[name]' id='parent_category'>
+                      <select class='select-default' name='item[child]' id='child_category'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
                       </select>
@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function () {
   function appendGrandchildBox(insertHTML) {
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `
-                      <select class='select-default' name='item[name]' id='parent_category'>
+                      <select class='select-default' name='item[category_id]' id='grandchild_category'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
                       </select>
@@ -28,7 +28,8 @@ $(document).on('turbolinks:load', function () {
   }
 
   $('#parent_category').on('change', function () {
-    var parentCategory = document.getElementById('parent_category').value;
+    var parentCategory = document.getElementById('parent_category').value
+    console.log(parentCategory)
     if (parentCategory != "---") {
       $.ajax({
         url: 'category_children',
