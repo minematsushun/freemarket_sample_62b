@@ -5,7 +5,7 @@
   .container
     = form_with url: "#", method: :post , class: 'item-box' do
       %h1.item-box__name
-        アイテム名
+        = @items.product_name
       %p.item-box__detail 
       .item-main
         .item-photo
