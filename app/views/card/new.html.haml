@@ -110,24 +110,7 @@
 
 
 
--# .wrapper.clearfix
--#   = render 'shared/main_header'
--#   = render 'shared/breadcrumb'
--#   %main.i-container.clearfix
--#     = render 'shared/btn_exhibit'
--#     .i-content
--#       %section.i-chapter-container
--#         %h2.i-chapter-heades クレジットカード情報入力
--#         %form.card-form{action: "https://www.mercari.com/jp/mypage/card/add/", "data-adyen-id" => "card-form", method: "POST", novalidate: "novalidate"}
--#           %input{name: "__csrf_value", type: "hidden", value: "8a19d41f3929e4d1dc5d71ca33da2ef593f7a6f0f8a5f23e0e2accf8c4c2932eb1dcfd3fe6bf49ebb763a5c1338edc0094aaa100233abcf6885a3f80db34dc2a7"}/
--#           .i-single-content
--#             .form-groups
--#               %label{:for => "payment_card_no"} カード番号
--#               %span.form-want 必須
--#               %input#payment_card_no.input-defaultss{"data-input-type" => "card", :maxlength => "19", :placeholder => "半角数字のみ", :type => "text", :value => ""}/
--#               %ul#card-no-error-wrapper.has-trouble-text
--#               %ul.signup-cards
--#                 %li
+
 -#                   %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3580354878", :width => "49"}/
 -#                 %li
 -#                   %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?3580354878", :width => "34"}/
