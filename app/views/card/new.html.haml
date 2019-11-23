@@ -7,7 +7,7 @@
       %section.i-chapter-container
         %h2.i-chapter-heades クレジットカード情報入力
         .card-form
-          = form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+          = form_with method: :post, html: { name: "inputForm" } do |f|
             .i-single-content
               .form-groups
                 %label{:for => "payment_card_no"} カード番号
@@ -85,8 +85,7 @@
               %p#primary-error.has-disability-text
               %input{name: "after_save_callback", type: "hidden", value: ""}/
               %button#card_token.btn-default.btn-color-red{type: "button"}
-              -# = binding.pry
-              = submit_tag "追加する", id: "token_submit"
+                = submit_tag "追加する", id: "token_submit"
 
     .side_bar
       = render 'shared/side_bar'
