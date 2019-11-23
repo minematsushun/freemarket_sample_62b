@@ -48,12 +48,20 @@
             = f.collection_select :name, @category, :id, :name, { prompt: "---" }, {class: "select-default", id: "parent_category"}
 
           .contents-box__category-section__category-box__tag#size
+            サイズ
+            .form-require
+              必須
+            %select.select-default
+              %option{value: ""} ---
+              %option{value: "1"} S
+              %option{value: "2"} M
+              %option{value: "3"} L
 
-          .contents-box__category-section__category-box__tag
+          .contents-box__category-section__category-box__tag#brand
             ブランド
             .form-any
               任意
-            %input.input-default{placeholder: "例）シャネル", value: ""}/
+            %input.input-default{placeholder: "例）シャネル", value: ""}
 
           -# 商品の状態プルダウン
           .contents-box__category-section__category-box__tag
