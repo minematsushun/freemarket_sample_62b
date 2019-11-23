@@ -33,9 +33,9 @@
                     - exp_month = @default_card_information.exp_month.to_s
                     - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
                     = exp_month + " / " + exp_year
-                  %
-                  %input{ type: "hidden", name: "card_id", value: "" }
-                  %button 削除する
+                    = form_tag(delete_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+                      %button.submit-remove-btn{type: "submit"}
+                        削除する
           .settings-not-save
             =link_to "/jp/help_center/category/6/", class: 'settings-not-save' do
               %span 支払い方法について
