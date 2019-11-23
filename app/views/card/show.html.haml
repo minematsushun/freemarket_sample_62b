@@ -29,7 +29,8 @@
                   %input{name: "card_sequence_no", type: "hidden", value: "LEuRj3Mnw6Hx5C2ftaxfcScc"}/
                   .setting-pay-num
                     = "**** **** **** " + @default_card_information.last4
-                  .setting-pay-num 10 / 24
+                  .setting-pay-num
+                    - exp_month = @default_card_information.exp_month.to_s
                   %input{name: "method", type: "hidden", value: "card"}/
                   %button.submit-remove-btn{type: "submit"}
                     削除する
