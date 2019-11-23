@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
 
+
   def new
     @item = Item.new
     @category = []
@@ -23,6 +24,7 @@ class ItemsController < ApplicationController
   private
     def item_params
       params.require(:item).permit(:product_name, :product_text, :price)
+
 end
 
 end

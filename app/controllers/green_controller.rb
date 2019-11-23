@@ -53,4 +53,8 @@ class GreenController < ApplicationController
 
   def myPage  #マイページ
   end
+
+  def miyamoto
+  end
+
 end
