@@ -7,115 +7,114 @@
         もっと見る
       %i.fas.fa-chevron-right
   %ul
-    %li
-      - @items.each do |item|
+    - @items.each do |item|
+      %li
         .top-contents__items
           .top-contents__items__item
             = link_to "" do
               %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  = item.price
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
                 .top-contents__items__item__image
-                  = image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSRLy0WWdPV4pHAJ2Bsfi_3sys7uIrhc6qaLDt24VVJVOBz1mHY', alt: "" 
+                  = image_tag (item.image), alt: "" 
                 %figcaption
                   %span
                     = item.product_name
-    %li
-      .top-contents__items
-        .top-contents__items__item
-          = link_to "" do
-            %figure
-              %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
-              .top-contents__items__item__image
-                = image_tag 'https://static.mercdn.net/thumb/photos/m86175240190_1.jpg?1573804945', alt: "" 
-              %figcaption
-                %span
-                  dholic ケーブルニット 膝丈スカート
-    %li
-      .top-contents__items
-        .top-contents__items__item
-          = link_to "" do
-            %figure
-              %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
-              .top-contents__items__item__image
-                = image_tag 'https://static.mercdn.net/thumb/photos/m86175240190_1.jpg?1573804945', alt: "" 
-              %figcaption
-                %span
-                  dholic ケーブルニット 膝丈スカート
-    %li
-      .top-contents__items
-        .top-contents__items__item
-          = link_to "" do
-            %figure
-              %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
-              .top-contents__items__item__image
-                = image_tag 'https://static.mercdn.net/thumb/photos/m86175240190_1.jpg?1573804945', alt: "" 
-              %figcaption
-                %span
-                  dholic ケーブルニット 膝丈スカート
-    %li
-      .top-contents__items
-        .top-contents__items__item
-          = link_to "" do
-            %figure
-              %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
-              .top-contents__items__item__image
-                = image_tag 'https://static.mercdn.net/thumb/photos/m86175240190_1.jpg?1573804945', alt: "" 
-              %figcaption
-                %span
-                  dholic ケーブルニット 膝丈スカート
-    %li
-      .top-contents__items
-        .top-contents__items__item
-          = link_to "" do
-            %figure
-              %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
-              .top-contents__items__item__image
-                = image_tag 'https://static.mercdn.net/thumb/photos/m86175240190_1.jpg?1573804945', alt: "" 
-              %figcaption
-                %span
-                  dholic ケーブルニット 膝丈スカート
-    %li
-      .top-contents__items
-        .top-contents__items__item
-          = link_to "" do
-            %figure
-              %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
-              .top-contents__items__item__image
-                = image_tag 'https://static.mercdn.net/thumb/photos/m86175240190_1.jpg?1573804945', alt: "" 
-              %figcaption
-                %span
-                  dholic ケーブルニット 膝丈スカート
-    %li
-      .top-contents__items
-        .top-contents__items__item
-          = link_to "" do
-            %figure
-              %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
-              .top-contents__items__item__image
-                = image_tag 'https://static.mercdn.net/thumb/photos/m86175240190_1.jpg?1573804945', alt: "" 
-              %figcaption
-                %span
-                  dholic ケーブルニット 膝丈スカート
-    %li
-      .top-contents__items
-        .top-contents__items__item
-          = link_to "" do
-            %figure
-              %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
-              .top-contents__items__item__image
-                = image_tag 'https://static.mercdn.net/thumb/photos/m86175240190_1.jpg?1573804945', alt: "" 
-              %figcaption
-                %span
-                  dholic ケーブルニット 膝丈スカート
-    %li
-      .top-contents__items
-        .top-contents__items__item
-          = link_to "" do
-            %figure
-              %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
-              .top-contents__items__item__image
-                = image_tag 'https://static.mercdn.net/thumb/photos/m86175240190_1.jpg?1573804945', alt: "" 
-              %figcaption
-                %span
-                  dholic ケーブルニット 膝丈スカート
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
+                .top-contents__items__item__image
+                  = image_tag (item.image), alt: "" 
+                %figcaption
+                  %span
+                    = item.product_name
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
+                .top-contents__items__item__image
+                  = image_tag (item.image), alt: "" 
+                %figcaption
+                  %span
+                    = item.product_name
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
+                .top-contents__items__item__image
+                  = image_tag (item.image), alt: "" 
+                %figcaption
+                  %span
+                    = item.product_name
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
+                .top-contents__items__item__image
+                  = image_tag (item.image), alt: "" 
+                %figcaption
+                  %span
+                    = item.product_name
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
+                .top-contents__items__item__image
+                  = image_tag (item.image), alt: "" 
+                %figcaption
+                  %span
+                    = item.product_name
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
+                .top-contents__items__item__image
+                  = image_tag (item.image), alt: "" 
+                %figcaption
+                  %span
+                    = item.product_name
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
+                .top-contents__items__item__image
+                  = image_tag (item.image), alt: "" 
+                %figcaption
+                  %span
+                    = item.product_name
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
+                .top-contents__items__item__image
+                  = image_tag (item.image), alt: "" 
+                %figcaption
+                  %span
+                    = item.product_name
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"} ¥1,000
+                .top-contents__items__item__image
+                  = image_tag (item.image), alt: "" 
+                %figcaption
+                  %span
+                    = item.product_name
