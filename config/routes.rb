@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   #sessionをスキップしてas :user で定義する。
 
   root to: "green#index"
-  resources :items, only: :index
+  resources :items, only: [:index, :show]
 
   #デバイスのデフォルトリンクを変更
   as :user do
