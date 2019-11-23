@@ -1,12 +1,9 @@
 class CardController < ApplicationController
-
   require "payjp"
-
   def new
     card = Card.where(user_id: current_user.id)
     redirect_to action: "show" if card.exists?
   end
-
   def pay 
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params['payjp-token'].blank?
@@ -38,7 +35,6 @@ class CardController < ApplicationController
     end
       redirect_to action: "new"
   end
-
   def show 
     card = Card.find_by(user_id: current_user.id)
     if card.blank?
