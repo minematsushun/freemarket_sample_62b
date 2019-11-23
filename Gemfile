@@ -91,5 +91,13 @@ gem 'kaminari'
 gem 'mini_magick'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
-gem 'ancestry'
 gem 'active_hash'
+
+
+gem 'ancestry'
+gem 'payjp'
+
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'

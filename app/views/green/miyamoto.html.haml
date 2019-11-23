@@ -1,0 +1,18 @@
+%main.main-contents
+  .contents-box
+    %section.contents-box__sell-container
+      商品の情報を入力
+    = form_with model: @good, class: 'contents-box__form-list' do |f|
+      -# 画像アップロード部分
+      %section.contents-box__form-list__upload-box
+        .contents-box__form-list__upload-box__image-text
+          出品画像
+        .form-require
+          必須
+        .capture 
+          最大10枚までアップロードできます
+        .drop-box-item
+          %ul 
+            %li
+              = f.file_field :image, multiple: true, name: 'product_images[image][]', id: "upload-image", class: "upload-image", 'data-image': 0
+              %img#preview

@@ -1,8 +1,41 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}, skip: [:sessions]
+  #sessionをスキップしてas :user で定義する。
+
   root to: "green#index"
-  
+  resources :items, only: :index
+
+  #デバイスのデフォルトリンクを変更
+  as :user do
+    get 'signin', to: 'devise/sessions#new', as: :new_user_session
+    post 'signin', to: 'devise/sessions#create', as: :user_session
+    delete 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
+  #カード新規登録
+  get 'purchase/index'
+  get 'purchase/done'
+  get 'card/new'
+  get 'card/show'
+
+  resources :card, only: [:new, :show] do
+    collection do
+      post 'show', to: 'card#show'
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+    end
+  end
+  resources :purchase, only: [:index] do
+    collection do
+      get 'index', to: 'purchase#index'
+      post 'pay', to: 'purchase#pay'
+      get 'done', to: 'purchase#done'
+    end
+  end
+
+  get "signup" =>  "signup#index"
+
   get "green/sell" => "green#sell"
   get "green/exhibit" => "green#exhibit"
   get "green/myProfile" => "green#myProfile"
@@ -29,6 +62,8 @@ Rails.application.routes.draw do
   get "category_children", defaults: { format: 'json' }
   get "category_grandchildren", defaults: { format: 'json' }
   end
+
+  get "/miyamoto" => "items#miyamoto"
 end
 
 end
