@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function () {
   moneyCalc();
   $(function () {
-    (document).on('keyup', '#sell.center', function () {
+    $(document).on('keyup', '#sell.center', function () {
       moneyCalc();
     });
   });
@@ -18,4 +18,4 @@ $(document).on('turbolinks:load', function () {
       $(".sales-profit").text("¥" + (Input - fee).toLocaleString());
     };
   };
-});
+})
