@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-
+  def show
+    @items = Item.find(4)
+  end
 
   def new
     @item = Item.new
@@ -24,6 +26,7 @@ class ItemsController < ApplicationController
   private
     def item_params
       params.require(:item).permit(:product_name, :product_text, :price)
+
 
 end
 
