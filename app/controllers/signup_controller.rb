@@ -7,6 +7,7 @@ class SignupController < ApplicationController
   end
 
   def step2
+    binding.pry
     session[:nickname] = user_params[:nickname]
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
@@ -15,8 +16,6 @@ class SignupController < ApplicationController
     session[:last_name_kana] = user_params[:last_name_kana]
     session[:first_name_kana] = user_params[:first_name_kana]
     session[:birthday_year] = user_params[:birthday_year]
-    session[:birthday_year] = user_params[:birthday_year]
-    session[:birthday_month] = user_params[:birthday_month]
     session[:birthday_month] = user_params[:birthday_month]
     session[:birthday_day] = user_params[:birthday_day]
     @user = User.new
@@ -77,12 +76,11 @@ class SignupController < ApplicationController
 
   def done
     sign_in User.find(session[:id]) unless user_signed_in?
-    end
   end
 
   private
   def user_params
-    params.require(:users).permit(
+    params.require(:user).permit(
       :nickname,
       :email,
       :password,
@@ -105,4 +103,5 @@ class SignupController < ApplicationController
       :address_building,
       :address_phone_number
     )
+  end
 end
