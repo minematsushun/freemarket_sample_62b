@@ -6,8 +6,8 @@
     .i-content
       %section.i-chapter-container
         %h2.i-chapter-heades クレジットカード情報入力
-        .card-form
-          = form_with(url: pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+        = form_with(url: pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+          .card-form
             .i-single-content
               .form-groups
                 %label{:for => "payment_card_no"} カード番号
