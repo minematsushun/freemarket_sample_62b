@@ -10,4 +10,7 @@ function moneyCalc() {
   let Input = parseInt(inputNum);
   $(".sales-commission").text("---");
   $(".sales-profit").text("---");
+}else {
+  let fee = parseInt(Input / 10);
+  $(".sales-commission").text("¥" + fee.toLocaleString());
 }
