@@ -4,7 +4,7 @@ class CardController < ApplicationController
 
   def new
     card = Card.where(user_id: current_user.id)
-    redirect_to action: "show" if card.exists?
+    redirect_to action: "index" if card.present?
   end
   
   def pay 
