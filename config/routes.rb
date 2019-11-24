@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}, skip: [:sessions]
   #sessionをスキップしてas :user で定義する。
 
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
   end
 
   get "signup" =>  "signup#index"
+
   get "green/sell" => "green#sell"
   get "green/exhibit" => "green#exhibit"
   get "green/myProfile" => "green#myProfile"
@@ -51,5 +53,17 @@ Rails.application.routes.draw do
   get "green/myPage" => "green#myPage"
   get "green/checkYourself" => "green#checkYourself"
   get "green/info" => "green#info"
+
+  get "items/new" => "items#new"
+  post "items" => "items#create"
+
+  resources :items do
+  collection do
+  get "category_children", defaults: { format: 'json' }
+  get "category_grandchildren", defaults: { format: 'json' }
+  end
+
   get "/miyamoto" => "items#miyamoto"
+end
+
 end

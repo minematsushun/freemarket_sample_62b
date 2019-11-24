@@ -1,4 +1,5 @@
 class GreenController < ApplicationController
+
   def index #TOP
   end
 
@@ -52,6 +53,8 @@ class GreenController < ApplicationController
 
   def myPage  #マイページ
   end
+
   def miyamoto
   end
+
 end
