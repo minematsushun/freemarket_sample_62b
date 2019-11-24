@@ -7,5 +7,4 @@
         もっと見る
       %i.fas.fa-chevron-right
   %ul
-    - @items.each do |item|
-      = render partial: "shared/itemslist", locals: { item: item }
+    = render partial: "shared/itemslist", collection: @items, as: "item"
