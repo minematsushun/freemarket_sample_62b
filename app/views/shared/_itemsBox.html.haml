@@ -8,143 +8,144 @@
       %i.fas.fa-chevron-right
   %ul
     - @items.each do |item|
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
-      %li
-        .top-contents__items
-          .top-contents__items__item
-            = link_to "" do
-              %figure
-                %span.top-contents__items__item__price{"aria-label" => "Price"}
-                  ¥
-                  #text
-                    = item.price
-                .top-contents__items__item__image
-                  = image_tag (item.image), alt: "" 
-                %figcaption
-                  %span
-                    = item.product_name
+      = render partial: "shared/itemslist", locals: { item: item }
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
+      -# %li
+      -#   .top-contents__items
+      -#     .top-contents__items__item
+      -#       = link_to "" do
+      -#         %figure
+      -#           %span.top-contents__items__item__price{"aria-label" => "Price"}
+      -#             ¥
+      -#             #text
+      -#               = item.price
+      -#           .top-contents__items__item__image
+      -#             = image_tag (item.image), alt: "" 
+      -#           %figcaption
+      -#             %span
+      -#               = item.product_name
