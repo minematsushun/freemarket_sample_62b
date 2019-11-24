@@ -17,8 +17,10 @@
         .capture 
           最大10枚までアップロードできます
         .drop-box-item
-          .drop-box-item-text
-            ドラッグアンドドロップまたはクリックしてファイルをアップロード
+          %ul
+            %li
+              = f.file_field :image, multiple: true, name: 'product_images[image][]', id: "upload-image", class: "upload-image", 'data-image': 0
+              %img#preview
       -# 商品名、商品説明入力部分
       %section.contents-box__descript-section
         .contents-box__descript-section__item-name
