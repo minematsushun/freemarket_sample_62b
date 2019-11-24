@@ -1,39 +1,205 @@
-= form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
-  %label カード番号
-  = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
-  %br
-  %label 有効期限
-  %select#exp_month{name: "exp_month", type: "text"}
-    %option{value: ""} --
-    %option{value: "1"}01
-    %option{value: "2"}02
-    %option{value: "3"}03
-    %option{value: "4"}04
-    %option{value: "5"}05
-    %option{value: "6"}06
-    %option{value: "7"}07
-    %option{value: "8"}08
-    %option{value: "9"}09
-    %option{value: "10"}10
-    %option{value: "11"}11
-    %option{value: "12"}12
-  %span 月/
-  %select#exp_year{name: "exp_year", type: "text"}
-    %option{value: ""} --
-    %option{value: "2019"}19
-    %option{value: "2020"}20
-    %option{value: "2021"}21
-    %option{value: "2022"}22
-    %option{value: "2023"}23
-    %option{value: "2024"}24
-    %option{value: "2025"}25
-    %option{value: "2026"}26
-    %option{value: "2027"}27
-    %option{value: "2028"}28
-    %option{value: "2029"}29
-  %span 年
-  %br
-  %label セキュリティコード
-  = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
-  #card_token
-  = submit_tag "追加する", id: "token_submit"
+.wrapper.clearfix
+  = render 'shared/main_header'
+  = render 'shared/breadcrumb'
+  %main.i-container.clearfix
+    = render 'shared/btn_exhibit'
+    .i-content
+      %section.i-chapter-container
+        %h2.i-chapter-heades クレジットカード情報入力
+        %form.card-form{action: "https://www.mercari.com/jp/mypage/card/add/", "data-adyen-id" => "card-form", method: "POST", novalidate: "novalidate"}
+          .i-single-content
+            = form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+              %label{:for => "payment_card_no"} カード番号
+              %span.form-want 必須
+              = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "19", type: "text", id: "card_number"
+              -# %input#payment_card_no.input-defaultss{"data-input-type" => "card", :maxlength => "19", :placeholder => "半角数字のみ", :type => "text", :value => ""}/
+              %ul#card-no-error-wrapper.has-trouble-text
+              %ul.signup-cards
+                %li
+                  %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3580354878", :width => "49"}/
+                %li
+                  %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?3580354878", :width => "34"}/
+                %li
+                  %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?3580354878", :width => "30"}/
+                %li
+                  %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?3580354878", :width => "32"}/
+                %li
+                  %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?3580354878", :width => "21"}/
+                %li
+                  %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?3580354878", :width => "32"}/
+                %li
+                  %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?3580354878", :width => "32"}/
+            .form-groups.signup-form-deadline
+              %label.payment-card-deadline 有効期限
+              %span.form-want 必須
+              %br/
+              .select-wrap-remainder
+                %select#exp_month{name: "exp_month", type: "text"}
+                  %option{:value => "01"} 01
+                  %option{:value => "02"} 02
+                  %option{:value => "03"} 03
+                  %option{:value => "04"} 04
+                  %option{:value => "05"} 05
+                  %option{:value => "06"} 06
+                  %option{:value => "07"} 07
+                  %option{:value => "08"} 08
+                  %option{:value => "09"} 09
+                  %option{:value => "10"} 10
+                  %option{:value => "11"} 11
+                  %option{:value => "12"} 12
+                %i.fas.fa-chevron-down.arrow         
+                %span 月
+              .select-wrap-remainder
+                %select#exp_year{name: "exp_year", type: "text"}
+                  %option{:value => "19"} 19
+                  %option{:value => "20"} 20
+                  %option{:value => "21"} 21
+                  %option{:value => "22"} 22
+                  %option{:value => "23"} 23
+                  %option{:value => "24"} 24
+                  %option{:value => "25"} 25
+                  %option{:value => "26"} 26
+                  %option{:value => "27"} 27
+                  %option{:value => "28"} 28
+                  %option{:value => "29"} 29
+                %i.fas.fa-chevron-down.arrow
+                %span 年
+              %ul#expire-month-error-wrapper.has-disability-text
+              %ul#expire-year-error-wrapper.has-disability-text
+            .form-groups
+              %label{for: "payment_card_security_code"} セキュリティコード
+              %span.form-want 必須
+              = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+              -# %input#payment_card_security_code.input-defaultss{placeholder: "カード背面4桁もしくは3桁の番号", type: "number", value: ""}/
+              %ul#security-code-error-wrapper.has-disability-text
+              .signup-code
+                .signup-code-text{"data-js" => "show-tips-toggle"}
+                  %span.form-doubt> ?
+                  カード裏面の番号とは？
+                .signup-code-info{"data-js" => "show-tips-content"}
+                  カードの裏面をご参照ください。
+                  %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/signup/seq-card.png?3580354878", width: "240"}/
+            %input#user_id{:name => "user_id", :type => "hidden", :value => "753193393"}/
+            %input#encrypted_card_data{name: "encrypted_card_data", type: "hidden"}/
+            %p#primary-error.has-disability-text
+            %input{name: "after_save_callback", type: "hidden", value: ""}/
+            %button#card_token.btn-default.btn-color-red{type: "button"}
+            -# = binding.pry
+            = submit_tag "追加する", id: "token_submit"
+
+    .side_bar
+      = render 'shared/side_bar'
+  .footer
+    = render 'shared/announcement'
+    = render 'shared/main_footer'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-# .wrapper.clearfix
+-#   = render 'shared/main_header'
+-#   = render 'shared/breadcrumb'
+-#   %main.i-container.clearfix
+-#     = render 'shared/btn_exhibit'
+-#     .i-content
+-#       %section.i-chapter-container
+-#         %h2.i-chapter-heades クレジットカード情報入力
+-#         %form.card-form{action: "https://www.mercari.com/jp/mypage/card/add/", "data-adyen-id" => "card-form", method: "POST", novalidate: "novalidate"}
+-#           %input{name: "__csrf_value", type: "hidden", value: "8a19d41f3929e4d1dc5d71ca33da2ef593f7a6f0f8a5f23e0e2accf8c4c2932eb1dcfd3fe6bf49ebb763a5c1338edc0094aaa100233abcf6885a3f80db34dc2a7"}/
+-#           .i-single-content
+-#             .form-groups
+-#               %label{:for => "payment_card_no"} カード番号
+-#               %span.form-want 必須
+-#               %input#payment_card_no.input-defaultss{"data-input-type" => "card", :maxlength => "19", :placeholder => "半角数字のみ", :type => "text", :value => ""}/
+-#               %ul#card-no-error-wrapper.has-trouble-text
+-#               %ul.signup-cards
+-#                 %li
+-#                   %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3580354878", :width => "49"}/
+-#                 %li
+-#                   %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?3580354878", :width => "34"}/
+-#                 %li
+-#                   %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?3580354878", :width => "30"}/
+-#                 %li
+-#                   %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?3580354878", :width => "32"}/
+-#                 %li
+-#                   %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?3580354878", :width => "21"}/
+-#                 %li
+-#                   %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?3580354878", :width => "32"}/
+-#                 %li
+-#                   %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?3580354878", :width => "32"}/
+-#             .form-groups.signup-form-deadline
+-#               %label.payment-card-deadline 有効期限
+-#               %span.form-want 必須
+-#               %br/
+-#               .select-wrap-remainder
+-#                 %select#payment_card-deadline.select-defaults
+-#                   %option{:value => "01"} 01
+-#                   %option{:value => "02"} 02
+-#                   %option{:value => "03"} 03
+-#                   %option{:value => "04"} 04
+-#                   %option{:value => "05"} 05
+-#                   %option{:value => "06"} 06
+-#                   %option{:value => "07"} 07
+-#                   %option{:value => "08"} 08
+-#                   %option{:value => "09"} 09
+-#                   %option{:value => "10"} 10
+-#                   %option{:value => "11"} 11
+-#                   %option{:value => "12"} 12
+-#                 %i.fas.fa-chevron-down.arrow         
+-#                 %span 月
+-#               .select-wrap-remainder
+-#                 %select#payment_card-deadline.select-defaults
+-#                   %option{:value => "19"} 19
+-#                   %option{:value => "20"} 20
+-#                   %option{:value => "21"} 21
+-#                   %option{:value => "22"} 22
+-#                   %option{:value => "23"} 23
+-#                   %option{:value => "24"} 24
+-#                   %option{:value => "25"} 25
+-#                   %option{:value => "26"} 26
+-#                   %option{:value => "27"} 27
+-#                   %option{:value => "28"} 28
+-#                   %option{:value => "29"} 29
+-#                 %i.fas.fa-chevron-down.arrow
+-#                 %span 年
+-#               %ul#expire-month-error-wrapper.has-disability-text
+-#               %ul#expire-year-error-wrapper.has-disability-text
+-#             .form-groups
+-#               %label{for: "payment_card_security_code"} セキュリティコード
+-#               %span.form-want 必須
+-#               %input#payment_card_security_code.input-defaultss{placeholder: "カード背面4桁もしくは3桁の番号", type: "number", value: ""}/
+-#               %ul#security-code-error-wrapper.has-disability-text
+-#               .signup-code
+-#                 .signup-code-text{"data-js" => "show-tips-toggle"}
+-#                   %span.form-doubt> ?
+-#                   カード裏面の番号とは？
+-#                 .signup-code-info{"data-js" => "show-tips-content"}
+-#                   カードの裏面をご参照ください。
+-#                   %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/signup/seq-card.png?3580354878", width: "240"}/
+-#             %input#user_id{:name => "user_id", :type => "hidden", :value => "753193393"}/
+-#             %input#encrypted_card_data{name: "encrypted_card_data", type: "hidden"}/
+-#             %p#primary-error.has-disability-text
+-#             %input{name: "after_save_callback", type: "hidden", value: ""}/
+-#             %button#card_token.btn-default.btn-color-red{type: "button"}
+-#             = submit_tag "追加する", id: "token_submit"
+
+-#     .side_bar
+-#       = render 'shared/side_bar'
+-#   .footer
+-#     = render 'shared/announcement'
+-#     = render 'shared/main_footer'
+>>>>>>> Stashed changes
