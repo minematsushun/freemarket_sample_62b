@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function () {
   moneyCalc();
   $(function () {
-    $(document).on('keyup', '#sell.center', function () {
+    $('#sell_center').on('keyup', function () {
       moneyCalc();
     });
   });
