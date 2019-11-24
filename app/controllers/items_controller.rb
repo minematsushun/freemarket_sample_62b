@@ -18,7 +18,6 @@ class ItemsController < ApplicationController
 
   def category_children
     @category_children = Category.find_by(params[:name]).children
-    binding.pry
   end
 
   def category_grandchildren
