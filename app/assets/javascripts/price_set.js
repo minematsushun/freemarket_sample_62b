@@ -9,4 +9,5 @@ function moneyCalc() {
   let inputNum = $('#sell_center').val();
   let Input = parseInt(inputNum);
   $(".sales-commission").text("---");
+  $(".sales-profit").text("---");
 }
