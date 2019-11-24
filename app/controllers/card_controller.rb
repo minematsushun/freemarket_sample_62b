@@ -6,6 +6,14 @@ class CardController < ApplicationController
     card = Card.where(user_id: current_user.id)
     redirect_to action: "index" if card.present?
   end
+
+  def create
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+
+    if params['payjp-token'].blank?
+      redirect_to action: "new"
+    else
+      
   
   
   def delete 
