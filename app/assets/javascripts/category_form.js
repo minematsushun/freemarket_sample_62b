@@ -30,6 +30,7 @@ $(document).on('turbolinks:load', function () {
   $('#parent_category').on('change', function () {
     var parentCategory = document.getElementById('parent_category').value
     if (parentCategory != "---") {
+
       $.ajax({
         url: 'category_children',
         type: 'GET',
@@ -40,6 +41,7 @@ $(document).on('turbolinks:load', function () {
           $('#child_category').remove();
           $('#grandchild_category').remove();
           var insertHTML = '';
+          console.log(children)
           children.forEach(function (child) {
             insertHTML += appendOption(child);
           });
