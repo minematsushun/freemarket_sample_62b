@@ -7,4 +7,5 @@ $(document).on('turbolinks:load', function () {
 
 function moneyCalc() {
   let inputNum = $('#sell_center').val();
+  let Input = parseInt(inputNum);
 }
