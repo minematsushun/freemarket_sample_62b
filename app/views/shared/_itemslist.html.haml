@@ -6,7 +6,7 @@
           %span.top-contents__items__item__price{"aria-label" => "Price"}
             ¥
             #text
-              = item.price
+              = item.price.to_s(:delimited)
           .top-contents__items__item__image
             = image_tag (item.image), alt: "" 
           %figcaption
