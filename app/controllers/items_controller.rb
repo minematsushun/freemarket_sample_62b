@@ -1,4 +1,9 @@
 class ItemsController < ApplicationController
+
+  def index
+    @items = Item.all.order("RAND()").limit(10)
+  end
+
   def show
     @items = Item.find(4)
   end
