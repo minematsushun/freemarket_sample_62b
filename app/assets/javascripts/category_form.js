@@ -27,6 +27,12 @@ $(document).on('turbolinks:load', function () {
     $('.contents-box__category-section__category-box__tag#async-select-box').append(grandchildSelectHtml);
   }
 
+  function appendOptionsecond(category) {
+    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
+    return html;
+  }
+
+  // カテゴリー欄
   $('#parent_category').on('change', function () {
     var parentCategory = document.getElementById('parent_category').value
     if (parentCategory != "---") {
