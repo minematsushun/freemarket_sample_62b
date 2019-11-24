@@ -1,0 +1,12 @@
+= form_for @user, url: step4_signup_index_path, method: :get, html: {class: 'third-main__box'} do |f|
+  = f.text_field :address_last_name, placeholder: '例) 峻也'
+  = f.text_field :address_first_name, placeholder: '例) 峰松'
+  = f.text_field :address_last_name_kana, placeholder: '例) シュンヤ'
+  = f.text_field :address_first_name_kana, placeholder: '例) ミネマツ'
+  = f.text_field :post_code, placeholder: '000_0000'
+  = f.text_field :address_prefecture, placeholder: '都道府県'
+  = f.text_field :address_city, placeholder: '市町村'
+  = f.text_field :address_number, placeholder: '番地'
+  = f.text_field :address_building, placeholder: 'マンション名など'
+  = f.phone_field :address_phone_number, placeholder: '例)090aaaaxxxx'
+  = f.submit 'next'
