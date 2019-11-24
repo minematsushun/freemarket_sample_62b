@@ -38,6 +38,7 @@ class CardController < ApplicationController
     end
       redirect_to action: "new"
   end
+  
   def show 
     card = Card.find_by(user_id: current_user.id)
     if card.blank?
