@@ -68,13 +68,14 @@ class SignupController < ApplicationController
       session[:id] = @user.id
       redirect_to done_signup_index_path
     else
-      render '/signup/registrantion'
+      render '/signup/index'
     end
   end
 
 
   def done
     sign_in User.find(session[:id]) unless user_signed_in?
+    redirect_to root_path
   end
 
   private
