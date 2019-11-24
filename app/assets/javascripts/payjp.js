@@ -12,7 +12,8 @@ document.addEventListener(
           exp_year: document.getElementById("exp_year").value
         };
         Payjp.createToken(card, (status, response) => {
-          if (status === 200) { 
+          // status = 200
+          if (status === 200) {
             $("#card_number").removeAttr("name");
             $("#cvc").removeAttr("name");
             $("#exp_month").removeAttr("name");
@@ -31,3 +32,4 @@ document.addEventListener(
   },
   false
 );
+ 
