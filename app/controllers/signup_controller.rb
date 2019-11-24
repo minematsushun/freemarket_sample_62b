@@ -7,7 +7,6 @@ class SignupController < ApplicationController
   end
 
   def step2
-    binding.pry
     session[:nickname] = user_params[:nickname]
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
@@ -46,7 +45,7 @@ class SignupController < ApplicationController
       email: session[:email],
       password: session[:password],
       last_name: session[:last_name],
-      last_name: session[:last_name],
+      first_name: session[:first_name],
       last_name_kana: session[:last_name_kana],
       first_name_kana: session[:first_name_kana],
       birthday_year: session[:birthday_year],
