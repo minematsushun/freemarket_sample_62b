@@ -83,7 +83,7 @@
         %span.price-box__text
           ¥
         %span.price-box__price
-          = @items.price
+          = @items.price.to_s(:delimited)
         %span.price-box__text
           円
         %span.price-box__tax
