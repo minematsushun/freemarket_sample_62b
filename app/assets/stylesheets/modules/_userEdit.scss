@@ -1,6 +1,10 @@
 .main-info-contents {
   margin: 0 auto;
   display: flex;
+  //バリデーションのチェック
+  .field_with_errors{
+    display: inline;
+  }
   .info-contents {
     width: 700px;
     margin: 0 auto;
