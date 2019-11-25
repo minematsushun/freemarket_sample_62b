@@ -2,8 +2,8 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("RAND()").limit(10)
-    @category = Category.where(ancestry: nil).limit(4)
-    
+    ladies = 2690
+    @ladies = Category.find(ladies).children
   end
 
   def show
