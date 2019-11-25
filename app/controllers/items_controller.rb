@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
     @category = []
     Category.where(ancestry: nil).each do |parent|
     @category << parent
+    @delivery = Delivery.all.order("id ASC")
     end
   end
 
@@ -22,6 +23,10 @@ class ItemsController < ApplicationController
 
   def category_grandchildren
     @category_grandchildren = Category.find(params[:child_id]).children
+  end
+
+  def delivery_children
+    @delivery_children = Delivery.find_by(params[:name]).children
   end
 
   def create
