@@ -313,6 +313,9 @@
     display: flex;
     ul {
         display: flex;
+        img {
+            width: 100%;
+        }
     }
 }
 .product-show-items-list {
