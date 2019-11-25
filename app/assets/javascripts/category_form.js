@@ -37,7 +37,7 @@ $(document).on('turbolinks:load', function () {
     var deliverySelectHtml = '';
     deliverySelectHtml = `
                         <div class='contents-box__category-section__category-box__tag#async-select-boxsecond'>
-                        
+                        <div class='contents-box__category-section__category-box__tag' id='delivery-method'>
                       `;
     $('.contents-box__category-section__category-box__tag#async-select-box').append(deliverySelectHtml);
   }
