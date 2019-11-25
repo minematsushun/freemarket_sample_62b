@@ -1,4 +1,6 @@
 class SignupController < ApplicationController
+  before_action :validates_step1, only: :step2 #step1のバリデーション
+
   def index
   end
 
@@ -7,16 +9,6 @@ class SignupController < ApplicationController
   end
 
   def step2
-    session[:nickname] = user_params[:nickname]
-    session[:email] = user_params[:email]
-    session[:password] = user_params[:password]
-    session[:last_name] = user_params[:last_name]
-    session[:first_name] = user_params[:first_name]
-    session[:last_name_kana] = user_params[:last_name_kana]
-    session[:first_name_kana] = user_params[:first_name_kana]
-    session[:birthday_year] = user_params[:birthday_year]
-    session[:birthday_month] = user_params[:birthday_month]
-    session[:birthday_day] = user_params[:birthday_day]
     @user = User.new
   end
 
@@ -62,31 +54,58 @@ class SignupController < ApplicationController
       address_number: session[:address_number],
       address_building: session[:address_building],
       address_phone_number: session[:address_phone_number]
-    )
-    if @user.save
-      #ログインするための情報
-      session[:id] = @user.id
-      redirect_to done_signup_index_path
-    else
-      render '/signup/index'
+      )
+      if @user.save
+        #ログインするための情報
+        session[:id] = @user.id
+        redirect_to done_signup_index_path
+      else
+        render '/signup/index'
+      end
     end
-  end
 
+    def done
+      sign_in User.find(session[:id]) unless user_signed_in?
+      redirect_to root_path
+    end
 
-  def done
-    sign_in User.find(session[:id]) unless user_signed_in?
-    redirect_to root_path
-  end
+    #バリデーションのチェック
+    def validates_step1
+      session[:nickname] = user_params[:nickname]
+      session[:email] = user_params[:email]
+      session[:password] = user_params[:password]
+      session[:last_name] = user_params[:last_name]
+      session[:first_name] = user_params[:first_name]
+      session[:last_name_kana] = user_params[:last_name_kana]
+      session[:first_name_kana] = user_params[:first_name_kana]
+      session[:birthday_year] = user_params[:birthday_year]
+      session[:birthday_month] = user_params[:birthday_month]
+      session[:birthday_day] = user_params[:birthday_day]
+      #バリデーション用に、仮でインスタンスを作成
+      @user = User.new(
+        nickname: session[:nickname], #sessionに保存された値を返す
+        email: session[:email],
+        password: session[:password],
+        last_name: session[:last_name],
+        first_name: session[:first_name],
+        last_name_kana: session[:last_name_kana],
+        first_name_kana: session[:first_name_kana],
+        birthday_year: session[:birthday_year],
+        birthday_month: session[:birthday_month],
+        birthday_day: session[:birthday_day]
+      )
+      render '/signup/step1' unless @user.valid?(:validates_step1)
+    end
 
-  private
-  def user_params
-    params.require(:user).permit(
-      :nickname,
-      :email,
-      :password,
-      :last_name,
-      :first_name,
-      :last_name_kana,
+    private
+    def user_params
+      params.require(:user).permit(
+        :nickname,
+        :email,
+        :password,
+        :last_name,
+        :first_name,
+        :last_name_kana,
       :first_name_kana,
       :birthday_year,
       :birthday_month,
