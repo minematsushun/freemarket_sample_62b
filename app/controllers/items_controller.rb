@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
   end
 
   def delivery_children
-    @delivery_children = Delivery.find(params[:name]).children
+    @delivery_children = Delivery.find_by(params[:name]).children
   end
 
   def create
