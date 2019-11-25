@@ -91,7 +91,7 @@
             配送料の負担
             .form-require
               必須
-            = f.collection_select :name, @category, :id, :name, { prompt: "---" }, {class: "select-default", id: "parent_category"}
+            = f.collection_select :name, @delivery, :id, :name, { prompt: "---" }, {class: "select-default", id: "delivery_category"}
 
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
