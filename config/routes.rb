@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'purchase/done'
   get 'card/new'
   get 'card/show'
-
+  # get 'card/pay'
   resources :card, only: [:new, :show] do
     collection do
       post 'show', to: 'card#show'

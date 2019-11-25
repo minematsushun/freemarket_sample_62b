@@ -1,0 +1,22 @@
+.btn-reds{
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff
+}
+
+.btns-default {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 8px !important;
+}
+
+.icon-cardd:before {
+  content: '\e00d';
+  margin-right: 16px;
+}

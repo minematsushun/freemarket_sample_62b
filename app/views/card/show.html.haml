@@ -1,39 +1,15 @@
-.wrapper.clearfix
-  = render 'shared/main_header'
-  = render 'shared/breadcrumb'
-  %main.i-container.clearfix
-    .i-content
-      %section.i-chapter-container
-        %h2.i-chapter-heads 支払い方法
-        .i-single-insides
-          %section
-            .i-single-contents
-              .i-chapter-vice-head クレジットカード一覧
-            %ul.settings-pay-list
-              %li
-                %form.i-single-contents{:action => "https://www.mercari.com/jp/mypage/card/delete/", :method => "POST"}
-                  %figre
-                    %img{:alt => "jcb", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?2651893653", :width => "26"}/
-                  %input{name:  "__csrf_value", type:  "hidden", value:  "4232f50bdc4135e1eefbf1caf53c8ce4e2c2c924d5ac3b4436f75694b42cdad01b31fc401e83cc62aac52c8ef044cf33354c30cae01ba5f830bff3ec7ec6f3417"}/
-                  %input{name: "card_sequence_no", type: "hidden", value: "LEuRj3Mnw6Hx5C2ftaxfcScc"}/
-                  .setting-pay-num
-                    = "**** **** **** " + @default_card_information.last4
-                  .setting-pay-num
-                    - exp_month = @default_card_information.exp_month.to_s
-                    - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-                    = exp_month + " / " + exp_year
-                    = form_tag(delete_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
-                      %button.submit-remove-btn{type: "submit"}
-                        削除する
-          .settings-not-save
-            =link_to "/jp/help_center/category/6/", class: 'settings-not-save' do
-              %span 支払い方法について
-              %i.fas.fa-chevron-right
-    .side_bar
-      = render 'shared/side_bar'
-  .footer
-    = render 'shared/announcement'
-    = render 'shared/main_footer'
+
+%label 登録クレジットカード情報
+%br
+= "**** **** **** " + @default_card_information.last4
+%br
+- exp_month = @default_card_information.exp_month.to_s
+- exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+= exp_month + " / " + exp_year
+= form_tag(delete_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+  %input{ type: "hidden", name: "card_id", value: "" }
+  %button 削除する
+
 
 
 
