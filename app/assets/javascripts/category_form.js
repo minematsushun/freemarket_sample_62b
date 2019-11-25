@@ -27,9 +27,21 @@ $(document).on('turbolinks:load', function () {
     $('.contents-box__category-section__category-box__tag#async-select-box').append(grandchildSelectHtml);
   }
 
-  function appendOptionsecond(category) {
-    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
+  function appendOptionsecond(derivery) {
+    var html = `<option value="${delivery.id}" data-category="${delivery.id}">${delivery.name}</option>`;
     return html;
+  }
+
+  // 子カテゴリー
+  function appendChildrenBox(insertHTML) {
+    var childSelectHtml = '';
+    childSelectHtml = `
+                      <select class='select-default' name='item[category_id]]' id='child_category'>
+                        <option value='---' data-category='---'>---</option>
+                          ${insertHTML}
+                      </select>
+                      `;
+    $('.contents-box__category-section__category-box__tag#async-select-box').append(childSelectHtml);
   }
 
   // カテゴリー欄
