@@ -1,4 +1,4 @@
-= form_with model: @user, url: step4_signup_index_path, method: :get, html: {class: 'third-main__box'} do |f|
+= form_with(model: @user, local: true, url: step4_signup_index_path, method: :get, class: 'third-main__box') do |f|
   = f.text_field :address_prefecture, placeholder: '都道府県'
 
 .progressbar-address

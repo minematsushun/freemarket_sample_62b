@@ -4,7 +4,7 @@
   .contents-main__authentication
     %h2.contents-main__authentication__text1
       電話番号認証
-    = form_with model: @user, url: step3_signup_index_path, method: :get, html: {class: 'second-wrapper__box'} do |f|
+    = form_with(model: @user, local: true, url: step3_signup_index_path, method: :get, class: 'second-wrapper__box' )do |f|
       .contents-main__authentication__form
         .contents-main__authentication__form__content
           .contents-main__authentication__form__content__group

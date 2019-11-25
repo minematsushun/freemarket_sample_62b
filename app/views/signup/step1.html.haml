@@ -4,7 +4,7 @@
   .info-contents
     %h2.info-contents__input
       会員情報入力
-    = form_with model: @user, url: step2_signup_index_path, method: :get, class: 'first-main__box' do |f|
+    = form_with(model: @user, local: true, url: step2_signup_index_path, method: :get, class: 'first-main__box') do |f|
       .info-contents__forms
         .info-contents__forms__form
           .info-contents__forms__form--group--first
