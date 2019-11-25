@@ -22,11 +22,11 @@ class ItemsController < ApplicationController
   end
 
   def category_children
-    @category_children = Category.find_by(params[:name]).children
+    @category_children = Category.find_by("#{params[:name]}", ancestry: nil).children
   end
 
   def category_grandchildren
-    @category_grandchildren = Category.find(params[:child_id]).children
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
   def delivery_children

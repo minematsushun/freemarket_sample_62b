@@ -42,10 +42,10 @@ $(document).on('turbolinks:load', function () {
                         <div class='form-require'>
                           必須
                         </div>
-                        </div>
-                          <select class='select-default2' name='item[category_id]' id='child_category'>
+                          <select class='select-default' name='item[category_id]' id='child_category'>
                           <option value='---' data-category='---'>---</option>
                             ${insertHTML}
+                          </div>
                         </select>
                         </div>
                       `;
