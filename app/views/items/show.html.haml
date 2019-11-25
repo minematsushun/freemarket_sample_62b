@@ -161,7 +161,8 @@
               バッテリー/充電器 （家電・スマホ・カメラ） その他の商品
           
           .product-show-items
-            
+            %ul
+              = render partial: "shared/photobox", collection: @box, as: "box"
 
 = render 'shared/announcement'
 = render 'shared/main_footer'
