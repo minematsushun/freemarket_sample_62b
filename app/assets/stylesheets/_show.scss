@@ -311,6 +311,9 @@
 .product-show-items {
     width: 700px;
     display: flex;
+    ul {
+        display: flex;
+    }
 }
 .product-show-items-list {
     flex-wrap: wrap;
