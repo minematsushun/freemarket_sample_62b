@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("RAND()").limit(10)
+    @category = Category.order("RAND()").limit(1)
   end
 
   def show
