@@ -5,6 +5,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable,
         :omniauthable, omniauth_providers: %i[facebook google_oauth2]
+        has_many :cards
+
+        has_many :items
 
   # findメソッド実装 omniauthのコールバックで呼ばれるメソッド
   def self.find_for_oauth(auth)
