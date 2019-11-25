@@ -41,9 +41,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_080907) do
     t.bigint "user_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "category_id_id"
     t.text "image", null: false
-    t.index ["category_id_id"], name: "index_items_on_category_id_id"
     t.index ["user_id_id"], name: "index_items_on_user_id_id"
   end
 
