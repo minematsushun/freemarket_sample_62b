@@ -38,6 +38,11 @@ $(document).on('turbolinks:load', function () {
     deliverySelectHtml = `
                         <div class='contents-box__category-section__category-box__tag#async-select-boxsecond'>
                         <div class='contents-box__category-section__category-box__tag' id='delivery-method'>
+                        配送の方法
+                            <div class='form-require'>
+                              必須
+                            </div>
+                          </div>
                       `;
     $('.contents-box__category-section__category-box__tag#async-select-box').append(deliverySelectHtml);
   }
