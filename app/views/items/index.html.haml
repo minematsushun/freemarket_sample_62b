@@ -5,14 +5,10 @@
 = render 'shared/topCategoryTitle'
 .main.clearfix
   .sub.clearfix
-    = render 'shared/itemsBox', collection: @parent, as: "parent"
+    = render partial:"shared/itemsBox", collection: @parent, as: "parent"
 = render 'shared/topCategoryTitle'
 .main.clearfix
   .sub.clearfix
-    = render 'shared/itemsBox'
-    = render 'shared/itemsBox'
-    = render 'shared/itemsBox'
-    = render 'shared/itemsBox'
-
+    = render partial:"shared/itemsBox", collection: @parent, as: "parent"
 = render 'shared/announcement'
 = render 'shared/main_footer'
