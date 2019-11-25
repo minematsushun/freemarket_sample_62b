@@ -5,46 +5,6 @@
 = render 'shared/topCategoryTitle'
 .main.clearfix
   .sub.clearfix
-    .top-contents
-      .top-contents__main
-        %h6
-          = @category
-        = link_to "", class: 'mypage__main--note__right' do
-          %span
-            もっと見る
-          %i.fas.fa-chevron-right
-      %ul
-        = render partial: "shared/itemslist", collection: @items, as: "item"
-    .top-contents
-      .top-contents__main
-        %h6
-          メンズ新着アイテム
-        = link_to "", class: 'mypage__main--note__right' do
-          %span
-            もっと見る
-          %i.fas.fa-chevron-right
-      %ul
-        = render partial: "shared/itemslist", collection: @items, as: "item"
-    .top-contents
-      .top-contents__main
-        %h6
-          家電・スマホ・カメラ新着アイテム
-        = link_to "", class: 'mypage__main--note__right' do
-          %span
-            もっと見る
-          %i.fas.fa-chevron-right
-      %ul
-        = render partial: "shared/itemslist", collection: @items, as: "item"
-    .top-contents
-      .top-contents__main
-        %h6
-          おもちゃ・ホビー・グッズ新着アイテム
-        = link_to "", class: 'mypage__main--note__right' do
-          %span
-            もっと見る
-          %i.fas.fa-chevron-right
-      %ul
-        = render partial: "shared/itemslist", collection: @items, as: "item"
-
+    = render partial: "shared/itemsBox", collection: @category, as: "category"
 = render 'shared/announcement'
 = render 'shared/main_footer'
