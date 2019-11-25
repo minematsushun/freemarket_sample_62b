@@ -152,6 +152,7 @@
             お客Aさんのその他の出品
         .product-show-items
           %ul
+            = render partial: "shared/photobox", collection: @box, as: "box"
 
             .product-show-items-list
               .product-show-items-list__box
