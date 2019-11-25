@@ -6,13 +6,13 @@
     .i-content
       %section.i-chapter-container
         %h2.i-chapter-heades クレジットカード情報入力
-        = form_with url: pay_card_index_path, method: :post, id: 'charge-form',  html: { name: "inputForm" } do |f|
+        = form_with url: pay_card_index_path, method: :post, id: 'charge-form', class: 'card-form' , html: { name: "inputForm" } do |f|
           .card-form
             .i-single-content
               .form-groups
                 %label カード番号
                 %span.form-want 必須
-                = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+                = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number",class: 'input-defaultss'
                 -# %input#payment_card_no.input-defaultss{"data-input-type" => "card", :maxlength => "19", :placeholder => "半角数字のみ", :type => "text", :value => ""}/
                 %ul#card-no-error-wrapper.has-trouble-text
                 %ul.signup-cards
@@ -33,8 +33,9 @@
               .form-groups.signup-form-deadline
                 %label.payment-card-deadline 有効期限
                 %span.form-want 必須
+                %br/
                 .select-wrap-remainder
-                  %select#exp_month{name: "exp_month", type: "text"}
+                  %select#exp_month.select-defaults{name: "exp_month", type: "text"}
                     %option{value: ""} --
                     %option{value: "1"}01
                     %option{value: "2"}02
@@ -48,8 +49,10 @@
                     %option{value: "10"}10
                     %option{value: "11"}11
                     %option{value: "12"}12
-                  %span 月/
-                  %select#exp_year{name: "exp_year", type: "text"}
+                  %i.fas.fa-chevron-down.arrow
+                  %span 月
+                .select-wrap-remainder
+                  %select#exp_year.select-defaults{name: "exp_year", type: "text"}
                     %option{value: ""} --
                     %option{value: "2019"}19
                     %option{value: "2020"}20
@@ -62,13 +65,14 @@
                     %option{value: "2027"}27
                     %option{value: "2028"}28
                     %option{value: "2029"}29
+                  %i.fas.fa-chevron-down.arrow
                   %span 年
                 %ul#expire-month-error-wrapper.has-disability-text
                 %ul#expire-year-error-wrapper.has-disability-text
               .form-groups
-                %label セキュリティコード
+                %label{for: "payment_card_security_code"} セキュリティコード
                 %span.form-want 必須
-                = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+                = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", maxlength: "4", id: "cvc", class: 'input-defaultss'
                 -# %input#payment_card_security_code.input-defaultss{placeholder: "カード背面4桁もしくは3桁の番号", type: "number", value: ""}/
                 %ul#security-code-error-wrapper.has-disability-text
                 .signup-code
