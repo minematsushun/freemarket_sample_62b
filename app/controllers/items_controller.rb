@@ -13,7 +13,10 @@ class ItemsController < ApplicationController
     @category = []
     Category.where(ancestry: nil).each do |parent|
     @category << parent
-    @delivery = Delivery.all.order("id ASC")
+
+    @delivery = []
+    Category.where(ancestry: nil).each do |parent|
+    @delivery << parent
     end
   end
 

@@ -33,15 +33,13 @@ $(document).on('turbolinks:load', function () {
   }
 
   // 子デリバリー
-  function appendChildrenBox(insertHTML) {
-    var childSelectHtml = '';
-    childSelectHtml = `
-                      <select class='select-default' name='item[category_id]]' id='child_category'>
-                        <option value='---' data-category='---'>---</option>
-                          ${insertHTML}
-                      </select>
+  function appendDeliveryChildrenBox(insertHTML) {
+    var deliverySelectHtml = '';
+    deliverySelectHtml = `
+                        <div class='contents-box__category-section__category-box__tag#async-select-boxsecond'>
+                        
                       `;
-    $('.contents-box__category-section__category-box__tag#async-select-box').append(childSelectHtml);
+    $('.contents-box__category-section__category-box__tag#async-select-box').append(deliverySelectHtml);
   }
 
   // カテゴリー欄
