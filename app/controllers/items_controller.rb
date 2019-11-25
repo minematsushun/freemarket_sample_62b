@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("RAND()").limit(10)
-    @parent = Category.order("RAND()").limit(4)
   end
 
   def show
