@@ -120,8 +120,7 @@ $(document).on('turbolinks:load', function () {
         dataType: 'json'
       })
         .done(function (children_second) {
-          $('#delivery-method').remove();
-          $('#child_delivery').remove();
+          console.log(children_second)
           var insertHTML = '';
           children_second.forEach(function (children_second) {
             insertHTML += appendOptionsecond(children_second);
