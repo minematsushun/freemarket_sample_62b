@@ -5,15 +5,7 @@
 = render 'shared/topCategoryTitle'
 .main.clearfix
   .sub.clearfix
-    #ladyies
-      = render 'shared/itemsBox'
-    #mens
-      = render 'shared/itemsBox'
-    #homeAppliance
-      = render 'shared/itemsBox'
-    #hoby
-      = render 'shared/itemsBox'
-
+    = render 'shared/itemsBox', collection: @parent, as: "parent"
 = render 'shared/topCategoryTitle'
 .main.clearfix
   .sub.clearfix
