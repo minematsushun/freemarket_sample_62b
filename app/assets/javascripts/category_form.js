@@ -44,8 +44,10 @@ $(document).on('turbolinks:load', function () {
                         </div>
                         </div>
                         <select class='category' name='item[delivery_id]' id='delivery_category'>
-                        
-
+                          <option value='---' data-category='---'>---</option>
+                            ${insertHTML}
+                        </select>
+                        </div>
                       `;
     $('.contents-box__category-section__category-box__tag#async-select-box').append(deliverySelectHtml);
   }
