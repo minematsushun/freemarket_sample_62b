@@ -2,10 +2,8 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("RAND()").limit(10)
-    @category = []
-    Category.where(ancestry: nil).each do |parent|
-      @category << parent
-    end
+    @category = Category.where(ancestry: nil).limit(4)
+    
   end
 
   def show
