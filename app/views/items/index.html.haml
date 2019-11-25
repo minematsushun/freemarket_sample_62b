@@ -5,6 +5,22 @@
 = render 'shared/topCategoryTitle'
 .main.clearfix
   .sub.clearfix
-    = render partial: "shared/itemsBox", collection: @category, as: "category"
+    #ladyies
+      = render 'shared/ladyies_itemsBox'
+    #mens
+      = render 'shared/mens_itemsBox'
+    -# #homeAppliance
+    -#   = render 'shared/itemsBox'
+    -# #hoby
+    -#   = render 'shared/itemsBox'
+
+-# = render 'shared/topCategoryTitle'
+-# .main.clearfix
+-#   .sub.clearfix
+-#     = render 'shared/itemsBox'
+-#     = render 'shared/itemsBox'
+-#     = render 'shared/itemsBox'
+-#     = render 'shared/itemsBox'
+
 = render 'shared/announcement'
 = render 'shared/main_footer'
