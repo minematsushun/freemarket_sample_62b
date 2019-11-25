@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def category_children
-    @category_children = Category.find_by(params[:name]).children
+    @category_children = Category.find(params[:name]).children
   end
 
   def category_grandchildren
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
   end
 
   def delivery_children
-    @delivery_children = Delivery.find_by(params[:name]).children
+    @delivery_children = Delivery.find(params[:name]).children
   end
 
   def create
