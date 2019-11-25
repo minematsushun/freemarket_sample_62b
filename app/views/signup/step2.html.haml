@@ -1,3 +1,32 @@
-= form_for @user, url: step3_signup_index_path, method: :get, html: {class: 'second-wrapper__box'} do |f|
-  = f.phone_field :phone_number, placeholder: '例)090aaaaxxxx'
-  = f.submit 'next'
+.progressbar-tel
+  = render 'shared/userEditProgressBar'
+.contents-main
+  .contents-main__authentication
+    %h2.contents-main__authentication__text1
+      電話番号認証
+    = form_with model: @user, url: step3_signup_index_path, method: :get, html: {class: 'second-wrapper__box'} do |f|
+      .contents-main__authentication__form
+        .contents-main__authentication__form__content
+          .contents-main__authentication__form__content__group
+            %label 認証番号
+            = f.phone_field :phone_number, placeholder: '認証番号の入力', class: "input-default"
+          %p.text1 SMSで届いた認証番号を入力してください
+          = f.submit '次へ進む',class: "next-btn"
+    .contents-main__authentication__listen
+      .contents-main__authentication__listen__content
+        .contents-main__authentication__listen__content__group
+          .tell-text 30秒たっても認証番号が届かない方へ
+          %p 電話で認証番号を聞くこともできます。
+          %button.next-btn{type: "submit"}
+            電話で認証番号を聞く （無料通話）
+    .contents-main__authentication__resend
+      .tell-text 認証番号を再送することもできます。もう一度電話番号を入力して下さい。
+      %p.text1
+        =link_to "", class: "about" do
+          電話番号を再度入力する
+      %p.text1
+        ※SMSが届かない場合は
+        =link_to "", class: "terms" do
+          SMS受信設定
+        を確認して、もう一度電話番号を入力してください。
+= render 'shared/sub_footer'
