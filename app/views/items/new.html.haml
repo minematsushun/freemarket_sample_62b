@@ -86,15 +86,12 @@
           配送について
           =link_to "?","", class: "question-btn"
             
-        .contents-box__category-section__category-box
+        .contents-box__category-section__category-box#async-select-boxsecond
           .contents-box__category-section__category-box__tag
             配送料の負担
             .form-require
               必須
-            %select.select-default
-              %option{value: ""} ---
-              %option{value: "1"} 送料込み(出品者負担)
-              %option{value: "2"} 着払い(購入者負担)
+            = f.collection_select :name, @category, :id, :name, { prompt: "---" }, {class: "select-default", id: "parent_category"}
 
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
