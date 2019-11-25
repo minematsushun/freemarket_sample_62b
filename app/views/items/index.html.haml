@@ -8,7 +8,7 @@
     .top-contents
       .top-contents__main
         %h6
-          レディース新着アイテム
+          = @category
         = link_to "", class: 'mypage__main--note__right' do
           %span
             もっと見る
@@ -45,13 +45,6 @@
           %i.fas.fa-chevron-right
       %ul
         = render partial: "shared/itemslist", collection: @items, as: "item"
-= render 'shared/topCategoryTitle'
-.main.clearfix
-  .sub.clearfix
-    = render 'shared/itemsBox'
-    = render 'shared/itemsBox'
-    = render 'shared/itemsBox'
-    = render 'shared/itemsBox'
 
 = render 'shared/announcement'
 = render 'shared/main_footer'
