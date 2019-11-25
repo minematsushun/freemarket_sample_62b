@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', function () {
     return html;
   }
 
-  // 子カテゴリー
+  // 子デリバリー
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
     childSelectHtml = `
