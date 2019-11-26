@@ -86,17 +86,12 @@
           配送について
           =link_to "?","", class: "question-btn"
             
-        .contents-box__category-section__category-box
+        .contents-box__category-section__category-box#async-select-boxsecond
           .contents-box__category-section__category-box__tag
             配送料の負担
             .form-require
               必須
-            %select.select-default
-              %option{value: ""} ---
-              %option{value: "1"} 未定
-              %option{value: "3"} クロネコヤマト
-              %option{value: "4"} ゆうパック
-              %option{value: "15"} ゆうメール
+            = f.collection_select :name, @delivery, :id, :name, { prompt: "---" }, {class: "select-default", id: "delivery_category"}
 
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
