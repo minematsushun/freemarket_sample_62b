@@ -7,4 +7,18 @@
         もっと見る
       %i.fas.fa-chevron-right
   %ul
-    = render partial: "shared/itemslist", collection: @items, as: "item"
+    - @mensitem.each do |mens|
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"}
+                  ¥
+                  #text
+                    = mens.price.to_s(:delimited)
+                .top-contents__items__item__image
+                  = image_tag (mens.image), alt: "" 
+                %figcaption
+                  %span
+                    = mens.product_name
