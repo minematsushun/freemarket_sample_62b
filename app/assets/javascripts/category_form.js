@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function () {
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
     childSelectHtml = `
-                      <select class='select-default' name='item[category_id]]' id='child_category'>
+                      <select class='select-default' name='item[category_id]' id='child_category'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
                       </select>
@@ -27,6 +27,32 @@ $(document).on('turbolinks:load', function () {
     $('.contents-box__category-section__category-box__tag#async-select-box').append(grandchildSelectHtml);
   }
 
+  function appendOptionsecond(delivery) {
+    var html = `<option value="${delivery.id}" data-category="${delivery.id}">${delivery.name}</option>`;
+    return html;
+  }
+
+  // 子デリバリー
+  function appendDeliveryChildrenBox(insertHTML) {
+    var deliverySelectHtml = '';
+    deliverySelectHtml = `
+                        <div class='contents-box__category-section__category-box__tag#async-select-boxsecond'>
+                        <div class='contents-box__category-section__category-box__tag' id='delivery-method'>
+                          配送の方法
+                        <div class='form-require'>
+                          必須
+                        </div>
+                          <select class='select-default' name='item[category_id]' id='child_category'>
+                          <option value='---' data-category='---'>---</option>
+                            ${insertHTML}
+                          </div>
+                        </select>
+                        </div>
+                      `;
+    $('.contents-box__category-section__category-box#async-select-boxsecond').append(deliverySelectHtml);
+  }
+
+  // 子カテゴリー欄
   $('#parent_category').on('change', function () {
     var parentCategory = document.getElementById('parent_category').value
     if (parentCategory != "---") {
@@ -41,7 +67,6 @@ $(document).on('turbolinks:load', function () {
           $('#child_category').remove();
           $('#grandchild_category').remove();
           var insertHTML = '';
-          console.log(children)
           children.forEach(function (child) {
             insertHTML += appendOption(child);
           });
@@ -56,6 +81,7 @@ $(document).on('turbolinks:load', function () {
     }
   });
 
+  // 孫カテゴリー欄
   $('.contents-box__category-section__category-box__tag#async-select-box').on('change', '#child_category', function () {
     var childId = $('#child_category option:selected').data('category');
     if (childId != "---") {
@@ -74,6 +100,31 @@ $(document).on('turbolinks:load', function () {
             });
             appendGrandchildBox(insertHTML);
           }
+        })
+        .fail(function () {
+          alert('カテゴリー取得に失敗しました');
+        })
+    } else {
+      $('#grandchild_category').remove();
+    }
+  });
+
+  // デリバリー欄
+  $('#delivery_category').on('change', function () {
+    var parentDelivery = document.getElementById('delivery_category').value
+    if (parentDelivery != "---") {
+      $.ajax({
+        url: 'delivery_children',
+        type: 'GET',
+        data: { name: parentDelivery },
+        dataType: 'json'
+      })
+        .done(function (children_second) {
+          var insertHTML = '';
+          children_second.forEach(function (children_second) {
+            insertHTML += appendOptionsecond(children_second);
+          });
+          appendDeliveryChildrenBox(insertHTML);
         })
         .fail(function () {
           alert('カテゴリー取得に失敗しました');
