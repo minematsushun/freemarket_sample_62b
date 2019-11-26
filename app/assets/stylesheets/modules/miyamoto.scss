@@ -12,6 +12,34 @@
   #upload-image{
     width: 116px;
   }
+  .btn_wrapper{
+    background: white;
+    box-sizing: border-box;
+    width: 50px;
+    color: #0099e8;
+    height: 100%;
+    cursor: pointer;
+    .btn_edit{
+      text-align: center;
+      padding-top: 65%;
+      border: 1px solid black;
+      height: 50%;
+      &:hover{
+        color: red;
+        text-decoration: underline;
+      }
+    }
+    .btn_delete{
+      text-align: center;
+      padding-top: 65%;
+      border: 1px solid black;
+      height: 50%;
+      &:hover{
+        color: red;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 #preview{
   height: 85%;
