@@ -1,7 +1,3 @@
-= form_with(model: @user, local: true, url: signup_index_path, method: :post, class: 'forth-main-wrapper__box') do |f|
-  = f.number_field :birthday_day, placeholder: '例) 5日'
-  = f.submit 'next'
-
 .progressbar-howtopay
   = render 'shared/userEditProgressBar'
 .main-info-contents
@@ -86,4 +82,6 @@
             %p#primary-error.has-disability-text
             %input{name: "after_save_callback", type: "hidden", value: ""}/
             %button#submit-button.btn-default.btn-color-red{type: "button"}  次へ進む
+        = form_with(model: @user, local: true, url: signup_index_path, method: :post, class: 'forth-main-wrapper__box') do |f|
+          = f.submit 'ここでは登録せずに進む'
 = render 'shared/sub_footer'
