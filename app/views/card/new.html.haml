@@ -12,8 +12,7 @@
               .form-groups
                 %label カード番号
                 %span.form-want 必須
-                = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number",class: 'input-defaultss'
-                -# %input#payment_card_no.input-defaultss{"data-input-type" => "card", :maxlength => "19", :placeholder => "半角数字のみ", :type => "text", :value => ""}/
+                = f.text_field :number, class: "number", placeholder: "半角数字のみ" ,maxlength: "16", id: "card_number",class: 'input-defaultss'
                 %ul#card-no-error-wrapper.has-trouble-text
                 %ul.signup-cards
                   %li
@@ -72,7 +71,7 @@
               .form-groups
                 %label{for: "payment_card_security_code"} セキュリティコード
                 %span.form-want 必須
-                = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", maxlength: "4", id: "cvc", class: 'input-defaultss'
+                = f.text_field :cvc, class: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", maxlength: "4", id: "cvc", class: 'input-defaultss'
                 -# %input#payment_card_security_code.input-defaultss{placeholder: "カード背面4桁もしくは3桁の番号", type: "number", value: ""}/
                 %ul#security-code-error-wrapper.has-disability-text
                 .signup-code
