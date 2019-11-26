@@ -85,7 +85,6 @@
 }
   .purchase-completed-wrapper__main-container__address{
     padding: 40px 170px 40px;
-    height: 100px;
     line-height: 16px;
     &__title{
     font-weight: bold;
@@ -97,4 +96,12 @@
     &__city{
     font-size: 14px;
     }
+    &__name{
+      font-size: 14px;
+    }
+  }
+  .purchase-confirmation-footer{
+    height: 250px;
+    padding: 40px 0;
+    text-align: center;
   }
