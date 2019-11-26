@@ -118,7 +118,6 @@ class SignupController < ApplicationController
       address_first_name: session[:address_first_name],
       address_last_name_kana: session[:address_last_name_kana],
       address_first_name_kana: session[:address_first_name_kana],
-      address_first_name_kana: session[:address_first_name_kana],
       post_code: session[:post_code],
       address_prefecture: session[:address_prefecture],
       address_city: session[:address_city],
