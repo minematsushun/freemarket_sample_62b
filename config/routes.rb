@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   #sessionをスキップしてas :user で定義する。
 
   root to: "green#index"
-  resources :items, only: :index
+  # resources :items
+  # 上のコメントアウトは一旦、そのままでお願いします
 
   #デバイスのデフォルトリンクを変更
   as :user do
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :card, only: [:new, :show] do
     collection do
-      post 'show', to: 'card#show'
+      post 'show', to: 'card#show'      
       post 'pay', to: 'card#pay'
       post 'delete', to: 'card#delete'
     end
@@ -62,7 +63,8 @@ Rails.application.routes.draw do
   get "green/myPage" => "green#myPage"
   get "green/checkYourself" => "green#checkYourself"
   get "green/info" => "green#info"
-
+  get "green/pay" => "green#pay"
+ 
   get "items/new" => "items#new"
   post "items" => "items#create"
 
@@ -70,6 +72,7 @@ Rails.application.routes.draw do
   collection do
   get "category_children", defaults: { format: 'json' }
   get "category_grandchildren", defaults: { format: 'json' }
+  get "delivery_children", defaults: { format: 'json' }
   end
 
   get "/miyamoto" => "items#miyamoto"

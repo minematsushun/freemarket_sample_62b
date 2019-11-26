@@ -1,5 +1,13 @@
 class ItemsController < ApplicationController
 
+  def index
+    @ladiesitem = Item.where(category_id:2690).order("created_at DESC").limit(10)
+    @mensitem = Item.where(category_id:2889).order("created_at DESC").limit(10)
+  end
+
+  def show
+    @items = Item.find(1)
+  end
 
   def new
     @item = Item.new
@@ -7,14 +15,25 @@ class ItemsController < ApplicationController
     Category.where(ancestry: nil).each do |parent|
     @category << parent
     end
+
+    @delivery = []
+    Delivery.where(ancestry: nil).each do |parent_delivery|
+    @delivery << parent_delivery
+    end
   end
 
   def category_children
-    @category_children = Category.find_by(params[:name]).children
+    children = Category.find(params[:name]).name
+    @category_children = Category.find_by(name: children, ancestry: nil ).children
   end
 
   def category_grandchildren
     @category_grandchildren = Category.find(params[:child_id]).children
+  end
+
+  def delivery_children
+    delivery = Delivery.find(params[:name]).name
+    @delivery_children = Delivery.find_by(name: delivery).children
   end
 
   def create
@@ -24,6 +43,7 @@ class ItemsController < ApplicationController
   private
     def item_params
       params.require(:item).permit(:product_name, :product_text, :price)
+
 
 end
 

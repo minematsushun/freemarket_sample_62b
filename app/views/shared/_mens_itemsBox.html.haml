@@ -1,0 +1,24 @@
+.top-contents
+  .top-contents__main
+    %h6
+      メンズ新着
+    = link_to "", class: 'mypage__main--note__right' do
+      %span
+        もっと見る
+      %i.fas.fa-chevron-right
+  %ul
+    - @mensitem.each do |mens|
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"}
+                  ¥
+                  #text
+                    = mens.price.to_s(:delimited)
+                .top-contents__items__item__image
+                  = image_tag (mens.image), alt: "" 
+                %figcaption
+                  %span
+                    = mens.product_name
