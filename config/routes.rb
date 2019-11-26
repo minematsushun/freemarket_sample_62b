@@ -35,7 +35,16 @@ Rails.application.routes.draw do
     end
   end
 
-  get "signup" =>  "signup#index"
+  #ユーザー新規登録
+  resources :signup do
+    collection do
+      get "step1"
+      get "step2"
+      get "step3"
+      get "step4"
+      get "done"
+    end
+  end
 
   get "green/sell" => "green#sell"
   get "green/exhibit" => "green#exhibit"
