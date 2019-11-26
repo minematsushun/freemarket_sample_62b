@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.all.order("RAND()").limit(10)
+    @ladiesitem = Item.where(category_id:2690).order("created_at DESC").limit(10)
+    @mensitem = Item.where(category_id:2889).order("created_at DESC").limit(10)
   end
 
   def show
