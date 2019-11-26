@@ -86,9 +86,8 @@
               %input#encrypted_card_data{name: "encrypted_card_data", type: "hidden"}/
               %p#primary-error.has-disability-text
               %input{name: "after_save_callback", type: "hidden", value: ""}/
-              %button#card_token.btn-default.btn-color-red{type: "button"}
-                = submit_tag "追加する", id: "token_submit"
-
+              #card_token
+                = submit_tag "追加する", id: "token_submit", class: "btn-color-red"
 
 
 

@@ -18,10 +18,11 @@ Rails.application.routes.draw do
   get 'purchase/done'
   get 'card/new'
   get 'card/show'
-  # get 'card/pay'
+  
+
   resources :card, only: [:new, :show] do
     collection do
-      post 'show', to: 'card#show'
+      post 'show', to: 'card#show'      
       post 'pay', to: 'card#pay'
       post 'delete', to: 'card#delete'
     end
@@ -53,6 +54,7 @@ Rails.application.routes.draw do
   get "green/myPage" => "green#myPage"
   get "green/checkYourself" => "green#checkYourself"
   get "green/info" => "green#info"
+  get "green/pay" => "green#pay"
 
   get "items/new" => "items#new"
   post "items" => "items#create"

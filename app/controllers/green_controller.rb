@@ -57,4 +57,8 @@ class GreenController < ApplicationController
   def miyamoto
   end
 
+  # def pay
+  # end
+  
+
 end

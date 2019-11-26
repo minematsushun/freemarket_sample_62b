@@ -12,7 +12,8 @@
             %ul.settings-pay-list
               %li
                 %form.i-single-contents{:action => "https://www.mercari.com/jp/mypage/card/delete/", :method => "POST"}
-                  %a.btns-default.btn-reds.submit_button{:href => "https://www.mercari.com/jp/mypage/card/create/"}
+                  .btns-default.btn-reds.submit_button
+                    =link_to "","https://www.mercari.com/jp/mypage/card/create/"
                     %i.icon-cardd
                       クレジットカードを追加する
 
