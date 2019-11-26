@@ -1,11 +1,24 @@
 .top-contents
   .top-contents__main
     %h6
-      =@ladies.name
-      新着
+      レディース新着
     = link_to "", class: 'mypage__main--note__right' do
       %span
         もっと見る
       %i.fas.fa-chevron-right
   %ul
-    = render partial: "shared/itemslist", collection: @items, as: "item"
+    - @ladiesitem.each do |ladies|
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to "" do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"}
+                  ¥
+                  #text
+                    = ladies.price
+                .top-contents__items__item__image
+                  = image_tag (ladies.image), alt: "" 
+                %figcaption
+                  %span
+                    = ladies.product_name
