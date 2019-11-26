@@ -22,7 +22,8 @@ class ItemsController < ApplicationController
   end
 
   def category_children
-    @category_children = Category.find(params[:name]).children
+    children = Category.find(params[:name]).name
+    @category_children = Category.find_by(name: children, ancestry: nil ).children
   end
 
   def category_grandchildren
