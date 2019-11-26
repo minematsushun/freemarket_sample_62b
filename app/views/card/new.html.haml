@@ -81,7 +81,7 @@
                   .signup-code-info{"data-js" => "show-tips-content"}
                     カードの裏面をご参照ください。
                     = image_tag '//www-mercari-jp.akamaized.net/assets/img/signup/seq-card.png?3580354878', alt: '', width: '240'
-              %input#user_id{:name => "user_id", :type => "hidden", :value => "753193393"}/
+              %input#user_id{name: "user_id", type: "hidden", value: "753193393"}/
               %input#encrypted_card_data{name: "encrypted_card_data", type: "hidden"}/
               %p#primary-error.has-disability-text
               %input{name: "after_save_callback", type: "hidden", value: ""}/
