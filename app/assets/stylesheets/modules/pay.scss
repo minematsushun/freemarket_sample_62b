@@ -4,7 +4,6 @@
   color: #fff;
 }
 .icon-cardd::before {
-  content: '\e00d';
   margin-right: 16px;
   text-decoration-color: white;
 }
@@ -21,4 +20,8 @@
   text-align: center;
   margin: 0;
   margin-bottom: 8px !important;
+}
+
+.icon-cardd{
+  color: white;
 }

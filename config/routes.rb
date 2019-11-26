@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get 'purchase/done'
   get 'card/new'
   get 'card/show'
-  
 
   resources :card, only: [:new, :show] do
     collection do
@@ -55,7 +54,7 @@ Rails.application.routes.draw do
   get "green/checkYourself" => "green#checkYourself"
   get "green/info" => "green#info"
   get "green/pay" => "green#pay"
-
+ 
   get "items/new" => "items#new"
   post "items" => "items#create"
 

@@ -11,11 +11,9 @@
               .i-chapter-vice-head クレジットカード一覧
             %ul.settings-pay-list
               %li
-                %form.i-single-contents{:action => "https://www.mercari.com/jp/mypage/card/delete/", :method => "POST"}
+                =form_with url: card_new_path, class: "i-single-contents", method: :post, html: { name: "inputForm" } do
                   .btns-default.btn-reds.submit_button
-                    =link_to "","https://www.mercari.com/jp/mypage/card/create/"
-                    %i.icon-cardd
-                      クレジットカードを追加する
+                    =link_to "クレジットカードを追加する","/card/new",data: {"turbolinks" => false},class: 'icon-cardd'
 
           .settings-not-save
             =link_to "/jp/help_center/category/6/", class: 'settings-not-save' do
