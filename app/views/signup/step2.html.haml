@@ -1,6 +1,12 @@
 .progressbar-tel
   = render 'shared/userEditProgressBar'
 .contents-main
+  - if @user.errors.any?
+    %p
+      入力した内容にエラーが#{@user.errors.count}件あります
+      - @user.errors.full_messages.each do |message|
+        = message
+
   .contents-main__authentication
     %h2.contents-main__authentication__text1
       電話番号認証
@@ -9,7 +15,7 @@
         .contents-main__authentication__form__content
           .contents-main__authentication__form__content__group
             %label 認証番号
-            = f.phone_field :phone_number, placeholder: '認証番号の入力', class: "input-default"
+            = f.telephone_field :phone_number, placeholder: '認証番号の入力', class: "input-default"
           %p.text1 SMSで届いた認証番号を入力してください
           = f.submit '次へ進む',class: "next-btn"
     .contents-main__authentication__listen
