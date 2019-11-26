@@ -1,0 +1,26 @@
+.wrapper.clearfix
+  = render 'shared/main_header'
+  = render 'shared/breadcrumb'
+  %main.i-container.clearfix
+    .i-content
+      %section.i-chapter-container
+        %h2.i-chapter-heads 支払い方法
+        .i-single-insides
+          %section
+            .i-single-contents
+              .i-chapter-vice-head クレジットカード一覧
+            %ul.settings-pay-list
+              %li
+                =form_with url: card_new_path, class: "i-single-contents", method: :post, html: { name: "inputForm" } do
+                  .btns-default.btn-reds.submit_button
+                    =link_to "クレジットカードを追加する", card_new_path, data: {"turbolinks" => false},class: 'icon-cardd'
+
+          .settings-not-save
+            =link_to "/jp/help_center/category/6/", class: 'settings-not-save' do
+              %span 支払い方法について
+              %i.fas.fa-chevron-right
+    .side_bar
+      = render 'shared/side_bar'
+  .footer
+    = render 'shared/announcement'
+    = render 'shared/main_footer'
