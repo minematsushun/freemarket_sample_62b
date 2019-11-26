@@ -16,19 +16,19 @@
                 %ul#card-no-error-wrapper.has-trouble-text
                 %ul.signup-cards
                   %li
-                    %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3580354878", :width => "49"}/
+                    = image_tag '//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?646442760', alt: '', height: '20', width: '49'
                   %li
-                    %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?3580354878", :width => "34"}/
+                    = image_tag '//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?646442760', alt: '', height: '20', width: '34'
                   %li
-                    %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?3580354878", :width => "30"}/
+                    = image_tag '//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?646442760', alt: '', height: '20', width: '30'
                   %li
-                    %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?3580354878", :width => "32"}/
+                    = image_tag '//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?646442760', alt: '', height: '20', width: '32'
                   %li
-                    %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?3580354878", :width => "21"}/
+                    = image_tag '//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?646442760', alt: '', height: '20', width: '21'
                   %li
-                    %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?3580354878", :width => "32"}/
+                    = image_tag '//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?646442760', alt: '', height: '20', width: '32'
                   %li
-                    %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?3580354878", :width => "32"}/
+                    = image_tag '//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?646442760', alt: '', height: '20', width: '32'
               .form-groups.signup-form-deadline
                 %label.payment-card-deadline 有効期限
                 %span.form-want 必須
@@ -80,7 +80,7 @@
                     カード裏面の番号とは？
                   .signup-code-info{"data-js" => "show-tips-content"}
                     カードの裏面をご参照ください。
-                    %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/signup/seq-card.png?3580354878", width: "240"}/
+                    = image_tag '//www-mercari-jp.akamaized.net/assets/img/signup/seq-card.png?3580354878', alt: '', width: '240'
               %input#user_id{:name => "user_id", :type => "hidden", :value => "753193393"}/
               %input#encrypted_card_data{name: "encrypted_card_data", type: "hidden"}/
               %p#primary-error.has-disability-text
