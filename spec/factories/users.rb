@@ -16,7 +16,7 @@ FactoryBot.define do
     address_last_name          {"太朗"}
     address_first_name_kana    {"メルカリ"}
     address_last_name_kana     {"タロウ"}
-    post_code                  {"123-4567"}
+    post_code                  {"1234567"}
     address_prefecture         {"大阪府"}
     address_city               {"大阪市北区"}
     address_number             {"1234"}

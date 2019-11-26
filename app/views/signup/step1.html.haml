@@ -1,6 +1,13 @@
 .progressbar-edit
   = render 'shared/userEditProgressBar'
 .main-info-contents
+  - if @user.errors.any?
+    %p
+      入力した内容にエラーが#{@user.errors.count}件あります
+      - @user.errors.full_messages.each do |message|
+        %p
+          = message
+
   .info-contents
     %h2.info-contents__input
       会員情報入力
