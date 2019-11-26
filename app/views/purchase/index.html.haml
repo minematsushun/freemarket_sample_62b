@@ -34,9 +34,10 @@
                     支払い金額
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__right-text
                     ¥600
-              .confirmation-main__container__buy-content__inner__buy-form__list__buy-btn
-                = form_tag(action: :pay, method: :post) do
-                  %button 購入する
+            %li        
+              = form_with url: done_purchase_index_path, action: :pay, method: :post ,class:"i-single-contents" do
+                .confirmation-main__container__buy-content__inner__buy-form__list__buy-btn
+                  =link_to "購入する", "/purchase/done" ,class: "confirmation-main__container__buy-content__inner__buy-form__list__buy-btn"
 
               -# 配送先とユーザーの住所
     %section.confirmation-main__container__buy-info
