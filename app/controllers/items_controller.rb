@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.order("RAND()").limit(10)
+    @items = Item.order("created_at").limit(10)
     ladies = 2690
-    @ladies = Category.find(ladies).children
+    @ladies = Category.find(ladies)
   end
 
   def show
