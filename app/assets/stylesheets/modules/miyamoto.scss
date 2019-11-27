@@ -13,27 +13,26 @@
     width: 116px;
   }
   .btn_wrapper{
+    display: flex;
     background: white;
     box-sizing: border-box;
-    width: 50px;
+    width: 100%;
     color: #0099e8;
     height: 100%;
     cursor: pointer;
     .btn_edit{
       text-align: center;
-      padding-top: 65%;
       border: 1px solid black;
-      height: 50%;
+      width: 50%;
       &:hover{
         color: red;
         text-decoration: underline;
       }
     }
     .btn_delete{
+      width: 50%;
       text-align: center;
-      padding-top: 65%;
       border: 1px solid black;
-      height: 50%;
       &:hover{
         color: red;
         text-decoration: underline;
