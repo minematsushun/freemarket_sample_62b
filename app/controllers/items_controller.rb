@@ -5,10 +5,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.find(params[:id])
+    @item = Item.find(params[:id])
     @box = Item.order("RAND()").limit(6)
-    grandchildid = @items[:category_id]
-    @grandchild = Category.find(grandchildid)
+    @grandchild = Category.find(@item[:category_id])
     @child = @grandchild.parent
     @parent = @child.parent
   end
