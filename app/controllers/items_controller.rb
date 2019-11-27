@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
     @grandchild = Category.find(@item[:category_id])
     @child = @grandchild.parent
     @parent = @child.parent
+    @bland = Bland.find(@item[:bland_id])
   end
 
   def new
