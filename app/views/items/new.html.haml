@@ -53,7 +53,7 @@
             サイズ
             .form-require
               必須
-            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'select-default'}
+            %select.select-default
               %option{value: ""} ---
               %option{value: "1"} S
               %option{value: "2"} M
@@ -63,11 +63,7 @@
             ブランド
             .form-any
               任意
-            %select.select-default
-              %option{value: ""} ---
-              %option{value: "1"} シャネル
-              %option{value: "2"} ヴィトン
-              %option{value: "3"} apple
+            = f.collection_select :name, @bland, :id, :name, { prompt: "---" }, {class: "select-default", id: "bland_id"}
 
           -# 商品の状態プルダウン
           .contents-box__category-section__category-box__tag
@@ -152,9 +148,9 @@
           またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
         %p.contents-box__sell-decision-container__note
           また、出品をもちまして加盟店規約に同意したことになります。
-        = f.submit nil, class: 'btn btn-primary btn-red' , value: "出品する" do
-          出品する
-        = link_to "もどる", :back,  class:'btn-default btn-gray'
+          = f.submit nil, class: 'btn btn-primary btn-red' , value: "出品する" do
+            出品する
+          = link_to "もどる", :back,  class:'btn-default btn-gray'
 
 -# # merucariロゴフッター
 = render 'shared/sub_footer'

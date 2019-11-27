@@ -20,6 +20,11 @@ class ItemsController < ApplicationController
     Delivery.where(ancestry: nil).each do |parent_delivery|
     @delivery << parent_delivery
     end
+
+    @bland = []
+    Bland.where(params[:name]).each do |bland|
+    @bland << bland
+    end
   end
 
   def category_children
