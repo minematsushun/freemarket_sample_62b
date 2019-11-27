@@ -7,7 +7,6 @@ class PurchaseController < ApplicationController
 
     if card.blank?
 
-      redirect_to controller: "card", action: "new"
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
 
@@ -28,4 +27,12 @@ class PurchaseController < ApplicationController
   redirect_to action: 'done'
   end
 
+  def done
+    card = Card.find_by(user_id: current_user.id)
+    if card.blank?
+    redirect_to controller: "card", action: "new"
+    else
+      
+   end
+ end
 end
