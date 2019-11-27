@@ -1,6 +1,12 @@
 -# ページのヘッダー部分
 %header.header
   = render 'shared/sub_header'
+
+  - if @item.errors.any?
+    %p
+      入力した内容にエラーが#{@user.errors.count}件あります
+      - @item.errors.full_messages.each do |message|
+        = message
   
 -# メインコンテンツ
 %main.main-contents
@@ -53,32 +59,20 @@
             サイズ
             .form-require
               必須
-            %select.select-default
-              %option{value: ""} ---
-              %option{value: "S"} S
-              %option{value: "M"} M
-              %option{value: "L"} L
+            = f.select :size, [['S', 'S'],['M', 'M'],['L', 'L']],{ prompt: "---" }, {class: "select-default"}
 
           .contents-box__category-section__category-box__tag#brand
             ブランド
             .form-any
               任意
-            = f.collection_select :name, @bland, :id, :name, { prompt: "---" }, {class: "select-default", id: "bland_id"}
+            = f.collection_select :bland_id, @bland, :id, :name, { prompt: "---" }, {class: "select-default", id: "bland_id"}
 
           -# 商品の状態プルダウン
           .contents-box__category-section__category-box__tag
             商品の状態
             .form-require
               必須
-            %select.select-default
-              %option{value: ""} ---
-              %option{value: "新品、未使用"} 新品、未使用
-              %option{value: "未使用に近い"} 未使用に近い
-              %option{value: "目立った傷や汚れなし"} 目立った傷や汚れなし
-              %option{value: "やや傷や汚れあり"} やや傷や汚れあり
-              %option{value: "傷や汚れあり"} 傷や汚れあり
-              %option{value: "全体的に状態が悪い"} 全体的に状態が悪い
-
+            = f.select :commodity_condition, [['新品、未使用', '新品、未使用'],['未使用に近い', '未使用に近い']],{ prompt: "---" }, {class: "select-default"}
           
           -# 配送の設定
       %section.contents-box__category-section#delivery
@@ -91,26 +85,21 @@
             配送料の負担
             .form-require
               必須
-            = f.collection_select :name, @delivery, :id, :name, { prompt: "---" }, {class: "select-default", id: "delivery_category"}
+            = f.collection_select :delivery_id, @delivery, :id, :name, { prompt: "---" }, {class: "select-default", id: "delivery_category"}
 
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
             発送元の地域
             .form-require
               必須
-            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'select-default'}
+            = f.collection_select :shipping_region, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'select-default'}
 
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
             発送までの日数
             .form-require
               必須
-            %select.select-default
-              %option{value: ""} ---
-              %option{value: "1~2日で発送"} 1~2日で発送
-              %option{value: "2~3日で発送"} 2~3日で発送
-              %option{value: "4~7日で発送"} 4~7日で発送
-
+            = f.select :shipping_date, [['1~2日で発送', '1~2日で発送'],['2~3日で発送', '2~3日で発送']],{ prompt: "---" }, {class: "select-default"}
 
       -# 販売価格、手数料の表示 
       %section.contents-box__category-section
