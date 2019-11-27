@@ -12,8 +12,6 @@ class GreenController < ApplicationController
   def sell  #商品情報の入力
   end
 
-  def myProfile #マイプロフィール
-  end
 
   def cardRegister  #カード登録
   end
@@ -51,8 +49,7 @@ class GreenController < ApplicationController
   def checkYourself  #本人確認
   end
 
-  def myPage  #マイページ
-  end
+  
 
   def miyamoto
   end
