@@ -53,7 +53,7 @@
             サイズ
             .form-require
               必須
-            %select.select-default
+            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'select-default'}
               %option{value: ""} ---
               %option{value: "1"} S
               %option{value: "2"} M
@@ -63,7 +63,11 @@
             ブランド
             .form-any
               任意
-            %input.input-default{placeholder: "例）シャネル", value: ""}
+            %select.select-default
+              %option{value: ""} ---
+              %option{value: "1"} シャネル
+              %option{value: "2"} ヴィトン
+              %option{value: "3"} apple
 
           -# 商品の状態プルダウン
           .contents-box__category-section__category-box__tag
