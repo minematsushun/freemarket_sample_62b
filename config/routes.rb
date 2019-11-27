@@ -70,16 +70,12 @@ Rails.application.routes.draw do
   get "green/info" => "green#info"
   get "green/pay" => "green#pay"
 
-
-  get "items/new" => "items#new"
-  post "items" => "items#create"
-
   resources :items do
-  collection do
-  get "category_children", defaults: { format: 'json' }
-  get "category_grandchildren", defaults: { format: 'json' }
-  get "delivery_children", defaults: { format: 'json' }
-  end
+    collection do
+      get "category_children", defaults: { format: 'json' }
+      get "category_grandchildren", defaults: { format: 'json' }
+      get "delivery_children", defaults: { format: 'json' }
+    end
 
   get "/miyamoto" => "items#miyamoto"
 end
