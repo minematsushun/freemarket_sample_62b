@@ -1,10 +1,4 @@
-%nav.breadcrumb
-  %ul
-    %li
-      %span
-        メルカリ
-        = link_to ""
-      %i.fas.fa-chevron-right
-      %span
-        マイページ
-        = link_to ""
+.breadcrumbs
+  .breadcrumbs__line
+    - breadcrumb :mypage
+    = breadcrumbs separator: "#{content_tag(:i, '', class: 'fas fa-chevron-right')}", class: "breadcrumbs-list"
