@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
   def show
     @items = Item.find(params[:id])
+    @box = Item.order("RAND()").limit(6)
   end
 
   def new
