@@ -158,7 +158,9 @@
         .product-show-items-box
           .product-show-items-name
             = link_to "", class: "product-show-text-link" do
-              バッテリー/充電器 （家電・スマホ・カメラ） その他の商品
+              = @grandchild.name
+              = @parent.name
+              その他の商品
           
           .product-show-items
             .product-show-items-list
