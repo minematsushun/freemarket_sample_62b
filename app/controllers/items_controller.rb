@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
     @parent = @child.parent
     @bland = Bland.find(@item[:bland_id])
     @delivery = Delivery.find(@item[:delivery_id])
+    @charge = @delivery.parent
   end
 
   def new
