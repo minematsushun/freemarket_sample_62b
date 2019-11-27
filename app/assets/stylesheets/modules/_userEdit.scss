@@ -1,6 +1,10 @@
 .main-info-contents {
   margin: 0 auto;
   display: flex;
+  //バリデーションのチェック
+  .field_with_errors{
+    display: inline;
+  }
   .info-contents {
     width: 700px;
     margin: 0 auto;
@@ -45,16 +49,16 @@
               .checkbox {
                 font-size: 20px;
               }
-            .display {
-              position: relative;
-              z-index: 2;
-              padding: 0 0 0 28px;
-              font-size: 14px;
-              font-weight: 400;
-              vertical-align: middle;
-              cursor: pointer;
+              .display {
+                position: relative;
+                z-index: 2;
+                padding: 0 0 0 28px;
+                font-size: 14px;
+                font-weight: 400;
+                vertical-align: middle;
+                cursor: pointer;
+              }
             }
-           }
           }
         }
         &--person {
