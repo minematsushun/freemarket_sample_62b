@@ -43,11 +43,12 @@ class ItemsController < ApplicationController
 
   def create
     Item.create(item_params)
+    binding.pry
   end
 
   private
     def item_params
-      params.require(:item).permit(:product_name, :product_text, :price)
+      params.require(:item).permit(:product_name, :product_text, :price, :image, :category_id, :bland_id, :size, :delivery_id, :shipping_region, :shipping_date, :commodity_condition, :seller_id, :buyer_id)
     end
 
 end
