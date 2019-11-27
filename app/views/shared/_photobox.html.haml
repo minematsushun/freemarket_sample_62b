@@ -7,3 +7,6 @@
         .product-show-item-box-body
           .product-show-item-box-body-name
             = box.product_name
+            .product-show-item-box-body-price
+            %span ¥
+            = box.price.to_s(:delimited)
