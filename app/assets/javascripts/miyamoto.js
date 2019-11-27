@@ -7,8 +7,11 @@ $(document).on('turbolinks:load', function () {
       var btn_wrapper = $('<div class="btn_wrapper"><div class="btn_edit">編集</div><div class="btn_delete">削除</div></div>');
       $('#btn').append(btn_wrapper);
     }
+    $(document).on('click','.btn_delete', function() {
+      $('#upload-image').val('');
+      $(preview).remove()
+      $('#btn').remove();
+    })
     reader.readAsDataURL(e.target.files[0]);
   });
 });
-  $('btn_delete').on('click', '.delete', function() {
-})
