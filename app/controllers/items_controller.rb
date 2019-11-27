@@ -27,6 +27,11 @@ class ItemsController < ApplicationController
     Delivery.where(ancestry: nil).each do |parent_delivery|
     @delivery << parent_delivery
     end
+
+    @bland = []
+    Bland.where(params[:name]).each do |bland|
+    @bland << bland
+    end
   end
 
   def category_children
@@ -44,12 +49,28 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create(item_params)
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path, notice: '出品完了しました！'
+    else
+      render :new
+    end
   end
 
   private
     def item_params
-      params.require(:item).permit(:product_name, :product_text, :price)
+      params.require(:item).permit(:product_name,
+                                  :product_text,
+                                  :price, :image, 
+                                  :category_id, 
+                                  :bland_id, 
+                                  :size, 
+                                  :delivery_id, 
+                                  :shipping_region, 
+                                  :shipping_date, 
+                                  :commodity_condition, 
+                                  :seller_id, 
+                                  :buyer_id).merge(user_id_id: 1, seller_id: 1, buyer_id: 1 )
     end
 
 end
