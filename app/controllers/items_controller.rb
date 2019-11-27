@@ -42,13 +42,24 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create(item_params)
-    binding.pry
+    @item = Item.new(item_params)
+    @item.save
   end
 
   private
     def item_params
-      params.require(:item).permit(:product_name, :product_text, :price, :image, :category_id, :bland_id, :size, :delivery_id, :shipping_region, :shipping_date, :commodity_condition, :seller_id, :buyer_id)
+      params.require(:item).permit(:product_name,
+                                  :product_text,
+                                  :price, :image, 
+                                  :category_id, 
+                                  :bland_id, 
+                                  :size, 
+                                  :delivery_id, 
+                                  :shipping_region, 
+                                  :shipping_date, 
+                                  :commodity_condition, 
+                                  :seller_id, 
+                                  :buyer_id).merge(user_id_id: 1, seller_id: 1, buyer_id: 1 )
     end
 
 end
