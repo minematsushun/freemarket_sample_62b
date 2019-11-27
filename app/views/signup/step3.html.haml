@@ -1,5 +1,10 @@
 .progressbar-address
   = render 'shared/userEditProgressBar'
+  - if @user.errors.any?
+    %p
+      入力した内容にエラーが#{@user.errors.count}件あります
+      - @user.errors.full_messages.each do |message|
+        = message
 .contents-main
   .contents-main__authentication
     %h2.contents-main__authentication__text1
