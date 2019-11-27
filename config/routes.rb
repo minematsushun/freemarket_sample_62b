@@ -67,6 +67,7 @@ Rails.application.routes.draw do
  
   get "items/new" => "items#new"
   post "items" => "items#create"
+  get "/miyamoto" => "green#miyamoto"
 
   resources :items do
   collection do
@@ -75,7 +76,6 @@ Rails.application.routes.draw do
   get "delivery_children", defaults: { format: 'json' }
   end
 
-  get "/miyamoto" => "items#miyamoto"
 end
 
 end
