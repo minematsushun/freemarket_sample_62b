@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_030601) do
+ActiveRecord::Schema.define(version: 2019_11_27_053007) do
+
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "prefecture_id"
     t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,7 +58,17 @@ ActiveRecord::Schema.define(version: 2019_11_26_030601) do
     t.datetime "updated_at", null: false
     t.text "image", null: false
     t.bigint "category_id"
+    t.bigint "bland_id"
+    t.string "size", null: false
+    t.string "commodity_condition", null: false
+    t.bigint "delivery_id"
+    t.string "shipping_region", null: false
+    t.string "shipping_date", null: false
+    t.integer "seller_id"
+    t.integer "buyer_id"
+    t.index ["bland_id"], name: "index_items_on_bland_id"
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["delivery_id"], name: "index_items_on_delivery_id"
     t.index ["user_id_id"], name: "index_items_on_user_id_id"
   end
 
@@ -89,5 +106,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_030601) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "blands"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "deliveries"
 end

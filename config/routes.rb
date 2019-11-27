@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   get "green/info" => "green#info"
   get "green/pay" => "green#pay"
 
+
   resources :items do
     collection do
       get "category_children", defaults: { format: 'json' }
@@ -77,7 +78,6 @@ Rails.application.routes.draw do
       get "delivery_children", defaults: { format: 'json' }
     end
 
-  get "/miyamoto" => "items#miyamoto"
 end
 
 end
