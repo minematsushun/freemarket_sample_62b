@@ -5,12 +5,12 @@
   .container
     = form_with url: "#", method: :post , class: 'item-box' do
       %h1.item-box__name
-        = @items.product_name
+        = @item.product_name
       %p.item-box__detail 
       .item-main
         .item-photo
           .photo-big
-            = image_tag(@items.image)
+            = image_tag(@item.image)
           .photo-smallbox
         %table.item-detail
           %tr
@@ -33,57 +33,57 @@
               %td
                 .item-detail-table-sub-category
                   = link_to "#",  class:"name" do
-                    カテゴリー名
+                    = @parent.name
                 %i.fa.fa-chevron-right.items-link_to
                   = link_to "#",  class:"name" do
-                    カテゴリー名
+                    = @child.name
                 .item-detail-table-sub-sub-category
                 %i.fa.fa-chevron-right.items-link_to
                   = link_to "#",  class:"name" do
-                    カテゴリー名
+                    = @grandchild.name
             %tr
               %th.category ブランド
               %td
                 = link_to "#",  class:"name" do
-                  ブランド名
+                  = @bland.name
 
             %tr
               %th.category 商品のサイズ
               %td 
-                商品サイズ
+                = @item.size
               
             %tr
               %th.category 商品の状態
               %td
-                商品状態
+                = @item.commodity_condition
               
             %tr
               %th.category 配送料の負担
               %td 
-                配送料の負担
+                = @charge.name
             %tr
               %th.category 配送の方法
               %td 
-                配送方法
+                = @delivery.name
               
             %tr
               %th.category 発送元地域
               %td
                 = link_to "#",  class:"name" do
-                  配送地域
+                  = @item.shipping_region
               
             %tr
               %th.category 発送日の目安
 
 
               %td
-                発送日の目安
+                = @item.shipping_date
 
       .price-box
         %span.price-box__text
           ¥
         %span.price-box__price
-          = @items.price.to_s(:delimited)
+          = @item.price.to_s(:delimited)
         %span.price-box__text
           円
         %span.price-box__tax
@@ -95,7 +95,7 @@
 
       .item-description
         %p.item-description__inner
-          出品者のコメント（商品説明詳細）
+          = @item.product_text
           
       .button-content
         .button-content__left
@@ -150,74 +150,21 @@
         .product-show-items-name
           = link_to "", class: "product-show-text-link" do
             お客Aさんのその他の出品
-
-          .product-show-items
-            .product-show-items-list
-              .product-show-items-list__box
-                = link_to "", class: "show-product-link" do
-                  .product-show-item-box-photo
-                  .product-show-item-box-body
-                    .product-show-item-box-body-name
-                      aaaaaaaaa
-                      .product-show-item-box-body-price
-                        ¥600
-
-            .product-show-items-list
-              .product-show-items-list__box
-                = link_to "", class: "show-product-link" do
-                  .product-show-item-box-photo
-                  .product-show-item-box-body
-                    .product-show-item-box-body-name
-                      aaaaaaaaa
-                      .product-show-item-box-body-price
-                        ¥600
-
-            .product-show-items-list
-              .product-show-items-list__box
-                = link_to "", class: "show-product-link" do
-                  .product-show-item-box-photo
-                  .product-show-item-box-body
-                    .product-show-item-box-body-name
-                      aaaaaaaaa
-                      .product-show-item-box-body-price
-                        ¥600
+        .product-show-items
+          %ul
+            = render partial: "shared/photobox", collection: @box, as: "box"
       
         .product-show-boxposition
         .product-show-items-box
           .product-show-items-name
             = link_to "", class: "product-show-text-link" do
-              バッテリー/充電器 （家電・スマホ・カメラ） その他の商品
+              = @grandchild.name
+              = @parent.name
+              その他の商品
           
           .product-show-items
-            .product-show-items-list
-              .product-show-items-list__box
-                = link_to "", class: "show-product-link" do
-                  .product-show-item-box-photo
-                  .product-show-item-box-body
-                    .product-show-item-box-body-name
-                      aaaaaaaaa
-                      .product-show-item-box-body-price
-                        ¥600
-
-            .product-show-items-list
-              .product-show-items-list__box
-                = link_to "", class: "show-product-link" do
-                  .product-show-item-box-photo
-                  .product-show-item-box-body
-                    .product-show-item-box-body-name
-                      aaaaaaaaa
-                      .product-show-item-box-body-price
-                        ¥600
-
-            .product-show-items-list
-              .product-show-items-list__box
-                = link_to "", class: "show-product-link" do
-                  .product-show-item-box-photo
-                  .product-show-item-box-body
-                    .product-show-item-box-body-name
-                      aaaaaaaaa
-                      .product-show-item-box-body-price
-                        ¥600
+            %ul
+              = render partial: "shared/photobox", collection: @box, as: "box"
 
 = render 'shared/announcement'
 = render 'shared/main_footer'
