@@ -16,6 +16,7 @@ class PurchaseController < ApplicationController
     end
   end
 
+  
   def pay
     card = Card.find_by(user_id: current_user.id)
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
