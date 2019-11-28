@@ -1,6 +1,9 @@
 .wrapper.clearfix
   = render 'shared/main_header'
-  = render 'shared/breadcrumb'
+  .breadcrumbs
+    .breadcrumbs__line
+      - breadcrumb :profile
+      = breadcrumbs separator: "#{content_tag(:i, '', class: 'fas fa-chevron-right')}", class: "breadcrumbs-list"
   %main.i-container.clearfix
     .i-content
       %section.i-chapter-container
