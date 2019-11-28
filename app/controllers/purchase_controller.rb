@@ -23,6 +23,8 @@ class PurchaseController < ApplicationController
   end
 
   
+  
+  
   def pay
     card = Card.find_by(user_id: current_user.id)
 
@@ -37,13 +39,11 @@ class PurchaseController < ApplicationController
     :currency => 'jpy', 
   )
   redirect_to action: 'done'
-  
-  end
-end
-
+   end
+ end
 
   def done
     @card = current_user.cards.first
     redirect_to controller: "card", action: "new" if @card.blank?
-  end
+   end
  end
