@@ -91,7 +91,7 @@ gem 'mini_magick'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'active_hash'
-
+gem 'dotenv-rails'
 
 gem 'ancestry'
 gem 'payjp'

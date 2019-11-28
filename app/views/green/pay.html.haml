@@ -12,8 +12,7 @@
             %ul.settings-pay-list
               %li
                 =form_with url: card_new_path, class: "i-single-contents", method: :post, html: { name: "inputForm" } do
-                  .btns-default.btn-reds.submit_button
-                    =link_to "クレジットカードを追加する", card_new_path, data: {"turbolinks" => false},class: 'icon-cardd'
+                  =link_to "クレジットカードを追加する", card_new_path, data: {"turbolinks" => false},class: 'icon-cardd'
 
           .settings-not-save
             =link_to "/jp/help_center/category/6/", class: 'settings-not-save' do
