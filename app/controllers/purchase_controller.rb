@@ -29,10 +29,8 @@ class PurchaseController < ApplicationController
   end
 
   def done
-    card = Card.find_by(user_id: current_user.id)
-    # if card.blank?
-    redirect_to controller: "card", action: "new" 
-    if card.blank?
+    card = current_user.cards.first
+    redirect_to controller: "card", action: "new" if card.blank?
       
    end
  end
