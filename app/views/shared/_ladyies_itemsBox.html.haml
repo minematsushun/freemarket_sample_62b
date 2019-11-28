@@ -11,14 +11,14 @@
       %li
         .top-contents__items
           .top-contents__items__item
-            = link_to "" do
+            = link_to item_path(ladies) do
               %figure
                 %span.top-contents__items__item__price{"aria-label" => "Price"}
                   ¥
                   #text
                     = ladies.price
                 .top-contents__items__item__image
-                  = image_tag (ladies.image), alt: "" 
+                  = image_tag ("#{ladies.image}"), alt: "" 
                 %figcaption
                   %span
                     = ladies.product_name
