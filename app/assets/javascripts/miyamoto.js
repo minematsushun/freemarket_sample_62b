@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function () {
     }
     $(document).on('click','.btn_delete', function() {
       $('#upload-image').val('');
-      $(preview).remove()
+      $('.preview_edit').remove()
       $('#btn').remove();
     })
     reader.readAsDataURL(e.target.files[0]);
