@@ -70,7 +70,7 @@
             ブランド
             .form-any
               任意
-            = f.collection_select :bland_id, @bland, :id, :name, { prompt: "---" }, {class: "select-default", id: "bland_id"}
+            = f.select :bland_id, @bland, { prompt: "---" }, {class: "select-default", id: "bland_id"}
 
           -# 商品の状態プルダウン
           .contents-box__category-section__category-box__tag
