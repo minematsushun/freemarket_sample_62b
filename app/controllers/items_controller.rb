@@ -59,10 +59,7 @@ class ItemsController < ApplicationController
       @delivery_parents_array << parent_hash
     end
 
-    @bland = []
-    Bland.where(params[:name]).each do |bland|
-    @bland << bland
-    end
+    @bland = Bland.pluck(:name)
   end
 
   def update
