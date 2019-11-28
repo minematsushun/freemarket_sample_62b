@@ -33,5 +33,5 @@ class PurchaseController < ApplicationController
   def done
     @card = current_user.cards.first
     redirect_to controller: "card", action: "new" if @card.blank?
-   end
+  end
  end
