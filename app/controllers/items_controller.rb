@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
 
   def index
-    @ladiesitem = Item.where(category_id:3).order("created_at DESC").limit(10)
-    @mensitem = Item.where(category_id:2889).order("created_at DESC").limit(10)
+    
+    @ladies = Item.where(category_id:3).order("created_at DESC").limit(10)
+    @mens = Item.where(category_id:202).order("created_at DESC").limit(10)
   end
 
   def show

@@ -7,7 +7,7 @@
         もっと見る
       %i.fas.fa-chevron-right
   %ul
-    - @ladiesitem.each do |ladies|
+    - @ladies.each do |ladies|
       %li
         .top-contents__items
           .top-contents__items__item
@@ -16,7 +16,7 @@
                 %span.top-contents__items__item__price{"aria-label" => "Price"}
                   ¥
                   #text
-                    = ladies.price
+                    = ladies.price.to_s(:delimited)
                 .top-contents__items__item__image
                   = image_tag ("#{ladies.image}"), alt: "" 
                 %figcaption
