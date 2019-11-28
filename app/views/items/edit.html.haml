@@ -91,13 +91,17 @@
             .form-require
               必須
             = f.select :delivery_id, options_for_select(@delivery_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_delivery.name), {}, {class: 'select-default'}
-
+          .contents-box__category-section__category-box__tag
+            配送の方法
+            .form-require
+              必須
+            = f.select :delivery_id, options_for_select(@delivery_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_delivery.name), {}, {class: 'select-default', id: 'child_category1'}
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
             発送元の地域
             .form-require
               必須
-            = f.select :delivery_id, options_for_select(@delivery_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_delivery.name), {}, {class: 'select-default', id: 'child_category1'}
+            = f.collection_select :shipping_region, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'select-default'}
 
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
