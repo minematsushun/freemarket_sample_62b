@@ -3,7 +3,7 @@
     .product-show-items-list__box
       = link_to item_path(box.id), class: "show-product-link" do
         .product-show-item-box-photo
-          = image_tag (box.image), alt: ""
+          = image_tag ("#{@item.image}"), alt: ""
         .product-show-item-box-body
           .product-show-item-box-body-name
             = box.product_name
