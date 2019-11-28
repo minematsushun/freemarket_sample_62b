@@ -22,7 +22,7 @@
         .confirmation-main__container__buy-content__inner__buy-form
           .confirmation-main__container__buy-content__inner__buy-form__list
             %p.confirmation-main__container__buy-content__inner__buy-form__list__price
-              ¥2800
+              ¥2,800
               %span.confirmation-main__container__buy-content__inner__buy-form__list__price__text
                 送料込み
             %ul.confirmation-main__container__buy-content__inner__buy-form__list__point
@@ -33,7 +33,7 @@
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__left-text
                     支払い金額
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__right-text
-                    ¥2800         
+                    ¥2,800         
               = form_with url: pay_purchase_index_path, method: :post, local: true  do |f|
                 =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn" 
               -# 配送先とユーザーの住所
