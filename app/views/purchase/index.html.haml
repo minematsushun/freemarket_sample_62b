@@ -36,7 +36,7 @@
                     ¥600      
               = form_with url: done_purchase_index_path, action: :pay, method: :post ,class:"i-single-contents" do
                 .confirmation-main__container__buy-content__inner__buy-form__list__buy-btn
-                  =link_to "購入する", "/purchase/done",class: "confirmation-main__container__buy-content__inner__buy-form__list__buy-btn"
+                  =link_to "購入する", "/purchase/done",class: "confirmation-main__container__buy-content__inner__buy-form__list__buy-btn",data: {"turbolinks" => false}
               -# 配送先とユーザーの住所
     %section.confirmation-main__container__buy-info
       .confirmation-main__container__buy-info__container
