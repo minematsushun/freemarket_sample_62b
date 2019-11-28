@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:edit, :update] 
 
   def index
     @ladiesitem = Item.where(category_id:2690).order("created_at DESC").limit(10)
@@ -18,7 +19,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
     
     @grandchild = Category.find(@item[:category_id])
     @child = @grandchild.parent
@@ -66,9 +66,12 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     @item.update(item_params)
     redirect_to("/")
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
   def new
