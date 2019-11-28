@@ -9,18 +9,11 @@
       = render 'shared/ladyies_itemsBox', collection: @ladies
     #mens
       = render 'shared/mens_itemsBox', collection: @mens
-    -# #homeAppliance
-    -#   = render 'shared/itemsBox'
-    -# #hoby
-    -#   = render 'shared/itemsBox'
+    #book
+      = render 'shared/book_itemsBox', collection: @book
+    #homeAppliance
+      = render 'shared/homeappliance_itemsBox', collection: @homeappliance
 
--# = render 'shared/topCategoryTitle'
--# .main.clearfix
--#   .sub.clearfix
--#     = render 'shared/itemsBox'
--#     = render 'shared/itemsBox'
--#     = render 'shared/itemsBox'
--#     = render 'shared/itemsBox'
 
 = render 'shared/announcement'
 = render 'shared/main_footer'
