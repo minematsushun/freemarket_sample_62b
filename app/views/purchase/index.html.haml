@@ -34,9 +34,9 @@
                     支払い金額
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__right-text
                     ¥600      
-              = form_with url: pay_purchase_index_path, method: :post  do
+              = form_with url: pay_purchase_index_path, method: :post, local: true  do |f|
                 .confirmation-main__container__buy-content__inner__buy-form__list__buy-btn
-                  = link_to "購入する", "/purchase/done",class: "confirmation-main__container__buy-content__inner__buy-form__list__buy-btn",data: {"turbolinks" => false}
+                  =f.submit "購入する",class: "confirmation-main__container__buy-content__inner__buy-form__list__buy-btn"
               -# 配送先とユーザーの住所
     %section.confirmation-main__container__buy-info
       .confirmation-main__container__buy-info__container
@@ -96,3 +96,4 @@
               -# = form_with url: purchase_done_path, action: :pay, method: :post ,class:"i-single-contents" do
               -#   .confirmation-main__container__buy-content__inner__buy-form__list__buy-btn
               -#     =link_to "購入する", "/purchase/done",class: "confirmation-main__container__buy-content__inner__buy-form__list__buy-btn",data: {"turbolinks" => false}
+                  -# = link_to "購入する", "/purchase/done",class: "confirmation-main__container__buy-content__inner__buy-form__list__buy-btn",data: {"turbolinks" => false}
