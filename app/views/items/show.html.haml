@@ -10,7 +10,7 @@
       .item-main
         .item-photo
           .photo-big
-            = image_tag @item.image
+            = image_tag("#{@item.image}")
           .photo-smallbox
         %table.item-detail
           %tr

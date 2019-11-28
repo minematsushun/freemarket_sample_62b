@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
 
   def index
-    @ladiesitem = Item.where(category_id:2690).order("created_at DESC").limit(10)
-    @mensitem = Item.where(category_id:2889).order("created_at DESC").limit(10)
+    
+    @ladies = Item.where(category_id:3).order("created_at DESC").limit(10)
+    @mens = Item.where(category_id:202).order("created_at DESC").limit(10)
   end
 
   def show
@@ -100,7 +101,7 @@ class ItemsController < ApplicationController
 
   def delivery_children
     delivery = Delivery.find(params[:name]).name
-    @delivery_children = Delivery.find_by(name: delivery).children
+    @delivery_children = Delivery.find_by(name: delivery, ancestry: nil).children
   end
 
   def create
@@ -117,7 +118,7 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:product_name,
                                   :product_text,
                                   :price, :image, 
-                                  :category_id, 
+                                  :category_id,
                                   :bland_id, 
                                   :size, 
                                   :delivery_id, 
