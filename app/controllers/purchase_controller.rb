@@ -30,9 +30,9 @@ class PurchaseController < ApplicationController
 
   def done
     card = Card.find_by(user_id: current_user.id)
+    # if card.blank?
+    redirect_to controller: "card", action: "new" 
     if card.blank?
-    redirect_to controller: "card", action: "new"
-    else
       
    end
  end
