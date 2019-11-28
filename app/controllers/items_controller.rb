@@ -17,6 +17,10 @@ class ItemsController < ApplicationController
     @charge = @delivery.parent
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
   def new
     @item = Item.new
     @category = []
