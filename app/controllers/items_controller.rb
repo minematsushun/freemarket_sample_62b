@@ -66,8 +66,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.update(item_params)
-    redirect_to("/")
+    if @item.update(item_params)
+      redirect_to("/")
+    else
+      redirect_to action: :edit, notice: "全項目入力できていません"
+    end
   end
 
   def set_item
