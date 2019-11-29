@@ -70,7 +70,7 @@
               %th.category 発送元地域
               %td
                 = link_to "#",  class:"name" do
-                  = @item.shipping_region
+                  青森県
               
             %tr
               %th.category 発送日の目安
@@ -92,8 +92,9 @@
           送料込み
           = link_to "", class: "item-buy-btn" do
             購入画面に進む
-          = link_to edit_item_path, class: "item-edit-btn" do
-            編集画面に進む
+          - if user_signed_in? && current_user.id == @item.user_id_id
+            = link_to edit_item_path(@item), class: "item-edit-btn" do
+              編集画面に進む
 
       .item-description
         %p.item-description__inner

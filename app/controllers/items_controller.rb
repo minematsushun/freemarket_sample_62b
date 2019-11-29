@@ -77,6 +77,15 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    if @item.destroy
+      redirect_to(root_path)
+    else
+      redirect_to action: :edit, notice: "削除できません"
+    end
+  end
+
   def new
     @item = Item.new
     @category = []
@@ -131,7 +140,7 @@ class ItemsController < ApplicationController
                                   :shipping_date, 
                                   :commodity_condition, 
                                   :seller_id, 
-                                  :buyer_id).merge(user_id_id: 1, seller_id: 1, buyer_id: 1 )
+                                  :buyer_id).merge(user_id_id: current_user.id, seller_id: 1, buyer_id: 1 )
     end
 
 end
