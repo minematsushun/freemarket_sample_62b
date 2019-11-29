@@ -72,7 +72,8 @@ class ItemsController < ApplicationController
                                   :shipping_date, 
                                   :commodity_condition, 
                                   :seller_id, 
-                                  :buyer_id).merge(user_id_id: 1, seller_id: 1, buyer_id: 1 )
+                                  :buyer_id).merge(user_id_id: )
+                                  # seller_id: 1, buyer_id: 1 
     end
 
 end
