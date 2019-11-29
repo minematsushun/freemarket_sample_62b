@@ -25,7 +25,7 @@ class PurchaseController < ApplicationController
 
   def pay
     @card = Card.find_by(user_id: current_user.id)
-    @item = Item.find_by(params[:id])
+    @item = Item.find(params[:format])
     @user = User.find(id= current_user.id)
 
     if @card.blank?
@@ -45,7 +45,7 @@ class PurchaseController < ApplicationController
 
   def done
     @card = current_user.cards.first
-    @item = Item.find_by(params[:id])
+    @item = Item.find(params[:id])
     @user = User.find(id= current_user.id)
     redirect_to controller: "card", action: "new" if @card.blank?
    end  
