@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update] 
+  before_action :set_item, only: [:edit, :update]
 
   def index
     
@@ -132,7 +132,8 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:product_name,
                                   :product_text,
-                                  :price, :image, 
+                                  :price,
+                                  :image, 
                                   :category_id,
                                   :bland_id, 
                                   :size, 
@@ -141,7 +142,7 @@ class ItemsController < ApplicationController
                                   :shipping_date, 
                                   :commodity_condition, 
                                   :seller_id, 
-                                  :buyer_id).merge(user_id_id: current_user.id, seller_id: 1, buyer_id: 1 )
+                                  :buyer_id).merge(user_id_id: current_user.id, seller_id: current_user.id)
     end
 
 end
