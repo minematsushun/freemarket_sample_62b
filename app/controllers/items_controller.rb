@@ -79,8 +79,11 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-    @item.destroy
-    redirect_to(root_path)
+    if @item.destroy
+      redirect_to(root_path)
+    else
+      redirect_to action: :edit, notice: "削除できません"
+    end
   end
 
   def new
