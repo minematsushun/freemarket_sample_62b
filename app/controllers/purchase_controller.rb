@@ -13,6 +13,7 @@ class PurchaseController < ApplicationController
     @user = User.find(id= current_user.id)
     @address = @user.address_city
     @addresss = @user.address_number
+    @address2 = @user.address_building
     
       
     if @card.blank?
@@ -31,8 +32,9 @@ class PurchaseController < ApplicationController
   
   
   def pay
-    card = Card.find_by(user_id: current_user.id)
-    
+    @card = Card.find_by(user_id: current_user.id)
+    @item=Item.find_by(params[:id])
+    @user = User.find(id= current_user.id)
 
     if @card.blank?
     redirect_to controller: "card", action: "new"
@@ -40,8 +42,8 @@ class PurchaseController < ApplicationController
     else
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
-    :amount => 2800, 
-    :customer => card.customer_id, 
+    :amount   => @item.price, 
+    :customer => @card.customer_id, 
     :currency => 'jpy', 
   )
   redirect_to action: 'done'
@@ -54,6 +56,11 @@ class PurchaseController < ApplicationController
     @user = User.find(id= current_user.id)
     @address = @user.address_city
     @addresss = @user.address_number
+    @address2 = @user.address_building
     redirect_to controller: "card", action: "new" if @card.blank?
    end
+
+   def show
+   end
+
  end
