@@ -87,20 +87,24 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
-    @category = []
-    Category.where(ancestry: nil).each do |parent|
-    @category << parent
-    end
+    if user_signed_in?
+      @item = Item.new
+      @category = []
+      Category.where(ancestry: nil).each do |parent|
+      @category << parent
+      end
 
-    @delivery = []
-    Delivery.where(ancestry: nil).each do |parent_delivery|
-    @delivery << parent_delivery
-    end
+      @delivery = []
+      Delivery.where(ancestry: nil).each do |parent_delivery|
+      @delivery << parent_delivery
+      end
 
-    @bland = []
-    Bland.where(params[:name]).each do |bland|
-    @bland << bland
+      @bland = []
+      Bland.where(params[:name]).each do |bland|
+      @bland << bland
+      end
+    else
+      redirect_to(user_session_path)
     end
   end
 
