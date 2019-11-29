@@ -4,11 +4,8 @@ $(document).on('turbolinks:load', function () {
     var reader = new FileReader();
     reader.onload = function (e) {
       $(preview).attr('src', e.target.result);
+      $('.preview_edit').remove()
     }
     reader.readAsDataURL(e.target.files[0]);
   });
-  $(document).on('click','.btn_delete', function() {
-    $('.preview_edit').remove()
-    $('#btn').remove();
-  })
 });
