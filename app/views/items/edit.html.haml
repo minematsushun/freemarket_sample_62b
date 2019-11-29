@@ -27,6 +27,10 @@
             %li
               = image_tag ("#{@item.image}"), class: "preview_edit"
               #btn
+                .btn_wrapper
+                  .btn_edit 編集
+                  .btn_delete 削除
+
             %li
               = f.file_field :image, id: "upload-image", class: "upload-image", 'data-image': 0, placeholder: "#{@item.image}"
               %img#preview
