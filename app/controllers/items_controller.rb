@@ -79,7 +79,8 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-      @item.destroy if @item.user_id == current_user.id
+    @item.destroy
+    redirect_to(root_path)
   end
 
   def new
@@ -136,7 +137,7 @@ class ItemsController < ApplicationController
                                   :shipping_date, 
                                   :commodity_condition, 
                                   :seller_id, 
-                                  :buyer_id).merge(user_id_id: 1, seller_id: 1, buyer_id: 1 )
+                                  :buyer_id).merge(user_id_id: current_user.id, seller_id: 1, buyer_id: 1 )
     end
 
 end
