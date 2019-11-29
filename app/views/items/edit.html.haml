@@ -1,0 +1,154 @@
+-# ページのヘッダー部分
+%header.header
+  = render 'shared/sub_header'
+
+  - if @item.errors.any?
+    %p
+      入力した内容にエラーが#{@user.errors.count}件あります
+      - @item.errors.full_messages.each do |message|
+        = message
+  
+-# メインコンテンツ
+%main.main-contents
+  .contents-box
+    %section.contents-box__sell-container
+      商品の情報を入力
+    = form_with model: @item, class: 'contents-box__form-list' do |f|
+      -# 画像アップロード部分
+      %section.contents-box__form-list__upload-box
+        .contents-box__form-list__upload-box__image-text
+          出品画像
+        .form-require
+          必須
+        .capture 
+          最大10枚までアップロードできます
+        .drop-box-item
+          %ul
+            %li
+              = image_tag ("#{@item.image}"), class: "preview_edit"
+              #btn
+            %li
+              = f.file_field :image, id: "upload-image", class: "upload-image", 'data-image': 0, placeholder: "#{@item.image}"
+              %img#preview
+      -# 商品名、商品説明入力部分
+      %section.contents-box__descript-section
+        .contents-box__descript-section__item-name
+          .contents-box__descript-section__item-name__text
+            商品名
+          .form-require
+            必須
+          = f.text_field :product_name, class:'contents-box__descript-section__name-form', placeholder: ""
+          .contents-box__descript-section__item-description
+          .contents-box__descript-section__item-description__text
+            商品の説明
+          .form-require
+            必須
+          = f.text_area :product_text, class:'contents-box__descript-section__descript-form',placeholder: '商品の説明(必須1,000文字以内)(色、素材、重さ、定価、注意点等)例)2010年頃に１万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+
+      -# 商品の詳細、カテゴリ選択部分
+      %section.contents-box__category-section
+        %h3.contents-box__category-section__sub-head
+          商品の詳細
+        .contents-box__category-section__category-box
+
+          -# カテゴリ-欄
+          .contents-box__category-section__category-box__tag#async-select-box
+            カテゴリー
+            .form-require
+              必須
+            = f.select :category_id, options_for_select(@category_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_category.name), {}, {class: 'select-default', id: 'parent_category1'}
+            = f.select :category_id, options_for_select(@category_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_category.id), {}, {class: 'select-default', id: 'child_category1'}
+            = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'select-default', id: 'grandchild_category1'}
+
+          .contents-box__category-section__category-box__tag#size
+            サイズ
+            .form-require
+              必須
+            = f.select :size, [['S', 'S'],['M', 'M'],['L', 'L']],{ prompt: "---" }, {class: "select-default"}
+
+          .contents-box__category-section__category-box__tag#brand
+            ブランド
+            .form-any
+              任意
+            = f.select :bland_id, @bland, { prompt: "---" }, {class: "select-default", id: "bland_id"}
+
+          -# 商品の状態プルダウン
+          .contents-box__category-section__category-box__tag
+            商品の状態
+            .form-require
+              必須
+            = f.select :commodity_condition, [['新品、未使用', '新品、未使用'],['未使用に近い', '未使用に近い']],{ prompt: "---" }, {class: "select-default"}
+          
+          -# 配送の設定
+      %section.contents-box__category-section#delivery
+        .contents-box__category-section__sub-head
+          配送について
+          =link_to "?","", class: "question-btn"
+            
+        .contents-box__category-section__category-box#async-select-boxsecond
+          .contents-box__category-section__category-box__tag
+            配送料の負担
+            .form-require
+              必須
+            = f.select :delivery_id, options_for_select(@delivery_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_delivery.name), {}, {class: 'select-default'}
+          .contents-box__category-section__category-box__tag
+            配送の方法
+            .form-require
+              必須
+            = f.select :delivery_id, options_for_select(@delivery_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_delivery.name), {}, {class: 'select-default', id: 'child_category1'}
+        .contents-box__category-section__category-box
+          .contents-box__category-section__category-box__tag
+            発送元の地域
+            .form-require
+              必須
+            = f.collection_select :shipping_region, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'select-default'}
+
+        .contents-box__category-section__category-box
+          .contents-box__category-section__category-box__tag
+            発送までの日数
+            .form-require
+              必須
+            = f.select :shipping_date, [['1~2日で発送', '1~2日で発送'],['2~3日で発送', '2~3日で発送']],{ prompt: "---" }, {class: "select-default"}
+
+      -# 販売価格、手数料の表示 
+      %section.contents-box__category-section
+        %h3.contents-box__category-section__sub-head
+          販売価格(300~9,999,999)
+          =link_to "?","", class: "question-btn"
+            
+        .contents-box__price-section
+          .contents-box__price-section__price-box-left
+            .contents-box__price-section__price-box-left__text
+              価格
+            .form-require
+              必須
+          .contents-box__price-section__price-box-right
+            .contents-box__price-section__price-box-right__text
+              ¥
+            = f.text_field :price, id: 'sell_center', class:'contents-box__price-section__price-box-right__price-form', placeholder: '例)300'
+          .contents-box__price-section__border
+
+          .contents-box__price-section__fee-left
+            販売手数料(10%)
+          .contents-box__price-section__fee-right
+            .contents-box__price-section__fee-right.sales-commission
+          .contents-box__price-section__border
+
+          .contents-box__price-section__result
+            .contents-box__price-section__result-left
+              販売利益
+            .contents-box__price-section__result-right
+              .contents-box__price-section__result-right.sales-profit
+      %section.contents-box__sell-decision-container
+        %p.contents-box__sell-decision-container__note
+          禁止されている出品、行為を必ずご確認ください。
+        %p.contents-box__sell-decision-container__note
+          またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
+        %p.contents-box__sell-decision-container__note
+          また、出品をもちまして加盟店規約に同意したことになります。
+          = f.submit nil, class: 'btn btn-primary btn-red' , value: "出品する" do
+            出品する
+          = link_to "もどる", :back,  class:'btn-default btn-gray'
+
+-# # merucariロゴフッター
+= render 'shared/sub_footer'

@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:edit, :update] 
 
   def index
     
@@ -18,6 +19,62 @@ class ItemsController < ApplicationController
     @bland = Bland.find(@item[:bland_id])
     @delivery = Delivery.find(@item[:delivery_id])
     @charge = @delivery.parent
+  end
+
+  def edit
+    
+    @grandchild = Category.find(@item[:category_id])
+    @child = @grandchild.parent
+    @parent = @child.parent
+    @bland = Bland.find(@item[:bland_id])
+    @delivery = Delivery.find(@item[:delivery_id])
+    @charge = @delivery.parent
+    
+    @selected_grandchild_category = @item.category
+    @category_grandchildren_array = [{id: "---", name: "---"}]
+    Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild|
+      grandchildren_hash = {id: "#{grandchild.id}", name: "#{grandchild.name}"}
+      @category_grandchildren_array << grandchildren_hash
+    end
+    @selected_child_category = @selected_grandchild_category.parent
+    @category_children_array = [{id: "---", name: "---"}]
+    Category.find("#{@selected_child_category.id}").siblings.each do |child|
+      children_hash = {id: "#{child.id}", name: "#{child.name}"}
+      @category_children_array << children_hash
+    end
+    @selected_parent_category = @selected_child_category.parent
+    @category_parents_array = [{id: "---", name: "---"}]
+    Category.find("#{@selected_parent_category.id}").siblings.each do |parent|
+      parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
+      @category_parents_array << parent_hash
+    end
+
+    @selected_child_delivery = @item.delivery
+    @delivery_children_array = [{id: "---", name: "---"}]
+    Delivery.find("#{@selected_child_delivery.id}").siblings.each do |child|
+      children_hash = {id: "#{child.id}", name: "#{child.name}"}
+      @delivery_children_array << children_hash
+    end
+    @selected_parent_delivery = @selected_child_delivery.parent
+    @delivery_parents_array = [{id: "---", name: "---"}]
+    Delivery.find("#{@selected_parent_delivery.id}").siblings.each do |parent|
+      parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
+      @delivery_parents_array << parent_hash
+    end
+
+    @bland = Bland.pluck(:name)
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to(items_path)
+    else
+      redirect_to action: :edit, notice: "全項目入力できていません"
+    end
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
   def new
