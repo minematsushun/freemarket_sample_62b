@@ -77,6 +77,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+      @item.destroy if @item.user_id == current_user.id
+  end
+
   def new
     @item = Item.new
     @category = []
