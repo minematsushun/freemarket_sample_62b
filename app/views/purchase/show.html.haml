@@ -1,6 +1,6 @@
-  .progressbar-address
-  = render 'shared/userEditProgressBar'
-  - if @user.errors.any?
+.progressbar-address
+  = render 'shared/sub_header'
+    - if @user.errors.any?
     %p
       入力した内容にエラーが#{@user.errors.count}件あります
       - @user.errors.full_messages.each do |message|
@@ -9,7 +9,7 @@
   .contents-main__authentication
     %h2.contents-main__authentication__text1
       住所入力
-    = form_for @user, url: step4_signup_index_path, method: :get, html: {class: 'third-main__box'} do |f|
+    = form_for @user, url: purchase_index_path, method: :get, html: {class: 'third-main__box'} do |f|
       .contents-main__authentication__form
         .contents-main__authentication__form__content
           .contents-main__authentication__form__content__group
@@ -57,6 +57,6 @@
                 %span.require__any 任意
               = f.phone_field :address_phone_number, placeholder: '例)09012345678', class: "full-name first"
           .form-group
-            = f.submit '次へ進む', class: "next-btn"
+            = f.submit '変更する', class: "next-btn"
 
 = render 'shared/sub_footer'

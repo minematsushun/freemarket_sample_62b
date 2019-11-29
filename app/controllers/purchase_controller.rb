@@ -11,11 +11,7 @@ class PurchaseController < ApplicationController
     @item=Item.find_by(params[:id])
     @card = Card.find_by(user_id: current_user.id)
     @user = User.find(id= current_user.id)
-    @address = @user.address_city
-    @addresss = @user.address_number
-    @address2 = @user.address_building
     
-      
     if @card.blank?
 
     else
@@ -28,9 +24,6 @@ class PurchaseController < ApplicationController
     end
   end
 
-  
-  
-  
   def pay
     @card = Card.find_by(user_id: current_user.id)
     @item=Item.find_by(params[:id])
@@ -54,9 +47,6 @@ class PurchaseController < ApplicationController
     @card = current_user.cards.first
     @item=Item.find_by(params[:id])
     @user = User.find(id= current_user.id)
-    @address = @user.address_city
-    @addresss = @user.address_number
-    @address2 = @user.address_building
     redirect_to controller: "card", action: "new" if @card.blank?
    end
 
