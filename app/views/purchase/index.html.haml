@@ -13,7 +13,7 @@
     %section.confirmation-main__container__buy-content
       .confirmation-main__container__buy-content__inner
         %h3.confirmation-main__container__buy-content__inner__item
-          image
+          =image_tag "https://s3-ap-northeast-1.amazonaws.com/freemarket-sample-58c/uploads/image/goods_picture/138/%E3%82%B7%E3%83%A5%E3%83%95%E3%82%9A8.jpg",class: "huku_1"
         .confirmation-main__container__buy-content__inner__item-name
           .confirmation-main__container__buy-content__inner__item-name__box
           服
@@ -42,11 +42,11 @@
         %h3 配送先
         %address.confirmation-main__container__buy-info__container__address
           .confirmation-main__container__buy-info__container__address__postal-code 
-            〒aaaa-bbbb
+            〒689-3541
           .confirmation-main__container__buy-info__container__address__address-name 
-            東京都目黒区八雲4-10-13
+            鳥取県米子市
           .confirmation-main__container__buy-info__container__address__user-name  
-            タモリ
+            加藤
           =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
             %span 変更する >
   
@@ -71,6 +71,7 @@
 
 -# merucariロゴフッター
 = render 'shared/sub_footer'
+
 
 
 
