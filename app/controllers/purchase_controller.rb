@@ -9,6 +9,10 @@ class PurchaseController < ApplicationController
 
   def index
     @card = Card.find_by(user_id: current_user.id)
+    @user = User.find(id= current_user.id)
+    @address = @user.address_city
+    @addresss = @user.address_number
+    
       
     if @card.blank?
 
@@ -27,6 +31,7 @@ class PurchaseController < ApplicationController
   
   def pay
     card = Card.find_by(user_id: current_user.id)
+    
 
     if @card.blank?
     redirect_to controller: "card", action: "new"
