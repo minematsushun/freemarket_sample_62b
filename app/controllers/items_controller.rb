@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update]
+
+  before_action :set_item, only: [:edit, :update] 
+  before_action :confirmation, only: [:new]
+
 
   def index
     
@@ -22,7 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    
+
     @grandchild = Category.find(@item[:category_id])
     @child = @grandchild.parent
     @parent = @child.parent
@@ -125,6 +128,12 @@ class ItemsController < ApplicationController
     else
       flash.now[:alert] = "必須項目を埋めてください。"
       render :new
+    end
+  end
+
+  def confirmation  #ログインしていない場合ははユーザー登録に移動
+    unless user_signed_in?
+      redirect_to(user_session_path)
     end
   end
 
