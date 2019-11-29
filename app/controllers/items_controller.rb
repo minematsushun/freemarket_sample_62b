@@ -123,6 +123,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: '出品完了しました！'
     else
+      flash.now[:alert] = "必須項目を埋めてください。"
       render :new
     end
   end
