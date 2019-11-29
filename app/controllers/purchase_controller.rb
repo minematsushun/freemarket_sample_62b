@@ -8,10 +8,9 @@ class PurchaseController < ApplicationController
   end
 
   def index
-    @item=Item.find_by(params[:id])
+    @item = Item.find(params[:format])
     @card = Card.find_by(user_id: current_user.id)
     @user = User.find(id= current_user.id)
-    
     if @card.blank?
 
     else
@@ -26,13 +25,14 @@ class PurchaseController < ApplicationController
 
   def pay
     @card = Card.find_by(user_id: current_user.id)
-    @item=Item.find_by(params[:id])
+    @item = Item.find_by(params[:id])
     @user = User.find(id= current_user.id)
 
     if @card.blank?
     redirect_to controller: "card", action: "new"
 
     else
+
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
     :amount   => @item.price, 
@@ -45,10 +45,10 @@ class PurchaseController < ApplicationController
 
   def done
     @card = current_user.cards.first
-    @item=Item.find_by(params[:id])
+    @item = Item.find_by(params[:id])
     @user = User.find(id= current_user.id)
     redirect_to controller: "card", action: "new" if @card.blank?
-   end
+   end  
 
    def show
    end
