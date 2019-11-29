@@ -22,15 +22,13 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
     if user_signed_in? && current_user.id == @item.user_id_id
       @grandchild = Category.find(@item[:category_id])
       @child = @grandchild.parent
       @parent = @child.parent
-      @bland = Bland.find(@item[:bland_id])
       @delivery = Delivery.find(@item[:delivery_id])
       @charge = @delivery.parent
-      
+
       @selected_grandchild_category = @item.category
       @category_grandchildren_array = [{id: "---", name: "---"}]
       Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild|
@@ -63,7 +61,8 @@ class ItemsController < ApplicationController
         @delivery_parents_array << parent_hash
       end
 
-      @bland = Bland.pluck(:name)
+      @bland = Bland.pluck(:name, :id)
+    
     elsif user_signed_in?
       redirect_to(root_path)
     else
@@ -72,8 +71,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.update(item_params)
-    if @item.user_id_id == current_user.id
+    if @item.update!(item_params)
       redirect_to(items_path)
     else
       redirect_to action: :edit, notice: "全項目入力できていません"
@@ -86,11 +84,11 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-    @item.destroy if @item.user_id_id == current_user.id
+    if @item.destroy
       redirect_to(root_path)
     else
       redirect_to action: :edit, notice: "削除できません"
-    # end
+    end
   end
 
   def new

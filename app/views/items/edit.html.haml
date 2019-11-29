@@ -90,12 +90,12 @@
             配送料の負担
             .form-require
               必須
-            = f.select :delivery_id, options_for_select(@delivery_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_delivery.name), {}, {class: 'select-default'}
+            = f.select :delivery_id, options_for_select(@delivery_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_delivery.name), {}, {class: 'select-default', id: 'parent_category1'}
           .contents-box__category-section__category-box__tag
             配送の方法
             .form-require
               必須
-            = f.select :delivery_id, options_for_select(@delivery_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_delivery.name), {}, {class: 'select-default', id: 'child_category1'}
+            = f.select :delivery_id, options_for_select(@delivery_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_delivery.id), {}, {class: 'select-default', id: 'child_category1'}
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
             発送元の地域
@@ -148,8 +148,6 @@
           また、出品をもちまして加盟店規約に同意したことになります。
           = f.submit nil, class: 'btn btn-primary btn-red' , value: "出品する" do
             出品する
-          - if user_signed_in? && current_user.id == @item.user_id_id
-            = link_to '削除', item_path(@item), class: 'btn-default btn-gray' ,method: :delete
           = link_to "もどる", :back,  class:'btn-default btn-gray'
 
 -# # merucariロゴフッター
