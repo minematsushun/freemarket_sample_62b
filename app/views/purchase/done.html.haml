@@ -12,24 +12,24 @@
         .btn-default.btn-gray
           =link_to "トップページへ",root_path,method: :get
     .purchase-completed-wrapper__main-container__info
-      =image_tag "https://s3-ap-northeast-1.amazonaws.com/freemarket-sample-58c/uploads/image/goods_picture/138/%E3%82%B7%E3%83%A5%E3%83%95%E3%82%9A8.jpg",class: "huku"
+      =image_tag ("#{@item.image}"),class: "huku"
       .purchase-completed-wrapper__main-container__info__name
-        服
+        = @item.product_name
     .purchase-completed-wrapper__main-container__price
       .purchase-completed-wrapper__main-container__price__value
-        ¥2,800
+        ¥
+        = @item.price
       .purchase-completed-wrapper__main-container__price__note
         送料込み
     .purchase-completed-wrapper__main-container__address
-      .purchase-completed-wrapper__main-container__address__title
-        配送先
       .purchase-completed-wrapper__main-container__address__post-code
+        配送先
+      .purchase-completed-wrapper__main-container__address__title
         〒
+        = @user.post_code
+      .purchase-completed-wrapper__main-container__address__city
         = @address
         = @addresss
-      .purchase-completed-wrapper__main-container__address__city
-        鳥取県米子市
       .purchase-completed-wrapper__main-container__address__name
-        加藤
 .purchase-confirmation-footer
   = render 'shared/sub_footer'
