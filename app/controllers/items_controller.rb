@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update] 
+  before_action :confirmation, only: [:new]
 
   def index
     
@@ -22,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    
+
     @grandchild = Category.find(@item[:category_id])
     @child = @grandchild.parent
     @parent = @child.parent
@@ -87,24 +88,20 @@ class ItemsController < ApplicationController
   end
 
   def new
-    if user_signed_in?
-      @item = Item.new
-      @category = []
-      Category.where(ancestry: nil).each do |parent|
-      @category << parent
-      end
+    @item = Item.new
+    @category = []
+    Category.where(ancestry: nil).each do |parent|
+    @category << parent
+    end
 
-      @delivery = []
-      Delivery.where(ancestry: nil).each do |parent_delivery|
-      @delivery << parent_delivery
-      end
+    @delivery = []
+    Delivery.where(ancestry: nil).each do |parent_delivery|
+    @delivery << parent_delivery
+    end
 
-      @bland = []
-      Bland.where(params[:name]).each do |bland|
-      @bland << bland
-      end
-    else
-      redirect_to(user_session_path)
+    @bland = []
+    Bland.where(params[:name]).each do |bland|
+    @bland << bland
     end
   end
 
@@ -128,6 +125,12 @@ class ItemsController < ApplicationController
       redirect_to root_path, notice: '出品完了しました！'
     else
       render :new
+    end
+  end
+
+  def confirmation  #ログインしていない場合ははユーザー登録に移動
+    unless user_signed_in?
+      redirect_to(user_session_path)
     end
   end
 
