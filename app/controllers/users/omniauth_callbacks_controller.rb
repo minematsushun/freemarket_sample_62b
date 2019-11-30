@@ -37,7 +37,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #登録フォームにリダイレクト
       redirect_to step1_signup_index_path
     end
-    # binding.pry
   end
 
   def failure
