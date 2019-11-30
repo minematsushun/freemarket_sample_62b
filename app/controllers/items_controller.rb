@@ -149,14 +149,26 @@ class ItemsController < ApplicationController
   require 'payjp'
   def buy
     @item = Item.find(params[:format])
-    @card = Card.find_by(user_id: current_user.id)
-    @user = User.find(id= current_user.id)
-    if @card.blank?
+    if user_signed_in? 
+      if current_user.id != @item.seller_id 
+        @user = User.find(id= current_user.id)
+        if @item.buyer_id
+          redirect_to root_path
+        else
+          @card = Card.find_by(user_id: current_user.id)
+          if @card.blank?
+          else
+          Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] 
+          customer = Payjp::Customer.retrieve(@card.customer_id)
+          @default_card_information = customer.cards.retrieve(@card.card_id)
+          @item.update(buyer_id: current_user.id)
+          end
+        end
+      else
+        redirect_to root_path
+      end
     else
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] 
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    @default_card_information = customer.cards.retrieve(@card.card_id)
-    @item.update(buyer_id: current_user.id)
+      redirect_to user_session_path
     end
   end
 
