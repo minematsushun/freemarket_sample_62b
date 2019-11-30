@@ -90,12 +90,12 @@
             配送料の負担
             .form-require
               必須
-            = f.select :delivery, options_for_select(@delivery_parent_array.map{|c|[c, {}]}, @item.delivery.parent.delivery_method), {}, {class: 'select-default', id: 'parent_delivery__edit'}
+            = f.select :delivery, options_for_select(@delivery_parent_array.map{|c|[c, {}]}, @item.delivery.parent.delivery_method), {}, {class: 'select-default', id: 'parent_delivery_edit'}
           .contents-box__category-section__category-box__tag
             配送の方法
             .form-require
               必須
-            = f.select :delivery_id, options_for_select(@delivery_child_array.map{|c|[c[:delivery_method], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.delivery.id), {}, {class: 'select-default', id: 'child_delivery__edit'}
+            = f.select :delivery_id, options_for_select(@delivery_child_array.map{|c|[c[:delivery_method], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.delivery.id), {}, {class: 'select-default', id: 'child_delivery_edit'}
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
             発送元の地域

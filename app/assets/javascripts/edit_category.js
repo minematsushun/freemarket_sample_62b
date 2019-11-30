@@ -42,7 +42,7 @@ $(document).on('turbolinks:load', function () {
                         <div class='form-require'>
                           必須
                         </div>
-                          <select class='select-default' name='item[delivery_id]' id='child_category'>
+                          <select class='select-default' name='item[delivery_id]' id='child_delivery_edit'>
                           <option value='---' data-category='---'>---</option>
                             ${insertHTML}
                           </div>
@@ -52,9 +52,9 @@ $(document).on('turbolinks:load', function () {
     $('.contents-box__category-section__category-box#async-select-boxsecond').append(deliverySelectHtml);
   }
 
-  // 子カテゴリー欄
-  $('#parent_category').on('change', function () {
-    var parentCategory = document.getElementById('parent_category').value
+  // 親カテゴリー欄
+  $('#parent_categoryedit').on('change', function () {
+    var parentCategory = document.getElementById('parent_categoryedit').value
     if (parentCategory != "---") {
 
       $.ajax({
@@ -64,8 +64,8 @@ $(document).on('turbolinks:load', function () {
         dataType: 'json'
       })
         .done(function (children) {
-          $('#child_category').remove();
-          $('#grandchild_category').remove();
+          $('#child_category_edit').remove();
+          $('#grandchild_category_edit').remove();
           var insertHTML = '';
           children.forEach(function (child) {
             insertHTML += appendOption(child);
