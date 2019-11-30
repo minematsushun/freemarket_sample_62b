@@ -10,7 +10,7 @@
       .item-main
         .item-photo
           .photo-big
-            = image_tag(@item.image)
+            = image_tag("#{@item.image}")
           .photo-smallbox
         %table.item-detail
           %tr
@@ -90,8 +90,11 @@
           (税込)
         %span.price-box__fee
           送料込み
-          = link_to "", class: "item-buy-btn" do
+          = link_to purchase_index_path(@item.id), class: "item-buy-btn",method: :get do
             購入画面に進む
+          - if user_signed_in? && current_user.id == @item.user_id_id
+            = link_to '編集画面に進む', edit_item_path(@item), class: "item-edit-btn", method: :get
+            = link_to '削除する', item_path(@item), class: 'item-delete-btn' ,method: :delete
 
       .item-description
         %p.item-description__inner
