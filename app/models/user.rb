@@ -5,22 +5,70 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable,
         :omniauthable, omniauth_providers: %i[facebook google_oauth2]
-        has_many :cards
-        has_many :items
-        has_many :seller_items, class_name: 'Item', foreign_key: 'seller_id'
-        has_many :buyer_items, class_name: 'Item', foreign_key: 'buyer_id'
-        
-        # has_many :buyed_items, foreign_key: "buyer_id", class_name: "Item"
-        # has_many :saling_items, -> { where("buyer_id is NULL") }, foreign_key: "saler_id", class_name: "Item"
-        # has_many :sold_items, -> { where("buyer_id is not NULL") }, foreign_key: "saler_id", class_name: "Item"
+
+  has_many :cards
+  has_many :items
+  has_many :sns_credentials, dependent: :destroy
+  # has_many :buyed_items, foreign_key: "buyer_id", class_name: "Item"
+  # has_many :saling_items, -> { where("buyer_id is NULL") }, foreign_key: "saler_id", class_name: "Item"
+  # has_many :sold_items, -> { where("buyer_id is not NULL") }, foreign_key: "saler_id", class_name: "Item"
+  has_many :seller_items, class_name: 'Item', foreign_key: 'seller_id'
+  has_many :buyer_items, class_name: 'Item', foreign_key: 'buyer_id'
+
 
   # findメソッド実装 omniauthのコールバックで呼ばれるメソッド
   def self.find_for_oauth(auth)
-    where(uid: auth.uid, provider: auth.provider).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+    uid = auth.uid
+    provider = auth.provider
+    snscredential = SnsCredential.where(uid: uid, provider: provider).first #firstをつけないとデータが配列で返されて使いたいメソッドが使えなくて困る
+
+    #sns_credentialsが登録されている
+    if snscredential.present?
+      user = User.where(email: auth.info.email).first
+
+      # userが登録されていない
+      unless user.present?
+        user = User.new(
+          email: auth.info.email,
+          nickname: auth.info.name
+          )
+      end
+        sns = snscredential
+        #返り値をハッシュにして扱いやすくする
+        #活用例 info = User.find_oauth(auth)
+        #session[:nickname] = info[:user][:nickname]
+        { user: user, sns: sns }
+
+        #sns_credentialsが登録されていない
+    else
+      user = User.where(email: auth.info.email).first
+
+      #userが登録されている場合
+      if user.present?
+        sns = SnsCredential.create(
+          uid: uid,
+          provider: provider,
+          user_id: user.id
+        )
+
+        { user: user, sns: sns}
+
+      #userが登録されていない場合
+      else
+        user = User.new(
+          email: auth.info.email,
+          nickname: auth.info.name
+        )
+        sns = SnsCredential.new(
+          provider: auth.provider,
+          uid: auth.uid
+        )
+
+        {user: user, sns: sns}
+      end
     end
   end
+
 
   # バリデーション
   VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

@@ -9,6 +9,7 @@ class PurchaseController < ApplicationController
     @item = Item.find(params[:format])
     @card = Card.find_by(user_id: current_user.id)
     @user = User.find(id= current_user.id)
+    @address = Prefecture.find(@user[:address_prefecture])
     if @card.blank?
 
     else
@@ -44,7 +45,7 @@ def done
   @card = Card.find_by(user_id: current_user.id)
   @item = Item.find(params[:format])
   @user = User.find(id= current_user.id)
-
+  @address = Prefecture.find(@user[:address_prefecture])
   if @card.blank?
   redirect_to controller: "card", action: "new"
 
