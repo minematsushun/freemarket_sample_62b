@@ -48,7 +48,7 @@
             〒
             = @user.post_code
           .confirmation-main__container__buy-info__container__address__address-name 
-            = @user.address_prefecture
+            = @address.name
             = @user.address_city
             = @user.address_number
 
@@ -56,7 +56,7 @@
             = @user.address_last_name
             = @user.address_first_name  
             
-          =link_to "/purchase/show", class: 'confirmation-main__container__buy-info__container__user-info-fix',method: :get do
+          =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
             %span 変更する >
           
   

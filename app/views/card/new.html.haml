@@ -33,7 +33,7 @@
                 %label.payment-card-deadline 有効期限
                 %span.form-want 必須
                 %br/
-                .select-wrap-remainder
+                .select-wrap-remainderr
                   %select#exp_month.select-defaults{name: "exp_month", type: "text"}
                     %option{value: ""} --
                     %option{value: "1"}01
@@ -50,7 +50,7 @@
                     %option{value: "12"}12
                   %i.fas.fa-chevron-down.arrow
                   %span 月
-                .select-wrap-remainder
+                .select-wrap-remainderr
                   %select#exp_year.select-defaults{name: "exp_year", type: "text"}
                     %option{value: ""} --
                     %option{value: "2019"}19
@@ -86,6 +86,11 @@
               %input{name: "after_save_callback", type: "hidden", value: ""}/
               #card_token
                 = submit_tag "追加する", id: "token_submit", class: "btn-color-red"
+    .side_bar
+      = render 'shared/side_bar'
+  .footer
+    = render 'shared/announcement'
+    = render 'shared/main_footer'
 
 
 
