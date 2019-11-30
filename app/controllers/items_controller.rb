@@ -14,8 +14,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @user = User.find(@item[:seller_id])
     @box = Item.order("RAND()").limit(6)
-    @user = User.find_by(params[:nickname])
     @grandchild = Category.find(@item[:category_id])
     @child = @grandchild.parent
     @parent = @child.parent
@@ -27,12 +27,7 @@ class ItemsController < ApplicationController
 
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
-      @grandchild = Category.find(@item[:category_id])
-      @child = @grandchild.parent
-      @parent = @child.parent
-      @delivery = Delivery.find(@item[:delivery_id])
-      @charge = @delivery.parent
-      
+    
       @selected_grandchild_category = @item.category
       @category_grandchildren_array = [{id: "---", name: "---"}]
       Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild|
@@ -76,7 +71,6 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      # binding.pry
       redirect_to(items_path)
     else
       redirect_to action: :edit, notice: "全項目入力できていません"
