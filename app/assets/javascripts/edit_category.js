@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function () {
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
     childSelectHtml = `
-                      <select class='select-default' name='item[child]' id='child_category_edit'>
+                      <select class='select-default' name='item[category_id]' id='child_category_edit'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
                       </select>

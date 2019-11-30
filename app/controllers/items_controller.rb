@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
 
-      @category_parent_array = ['---']
+      @category_parent_array = []
       Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent
     end
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     @category_child_array = @item.category.parent.parent.children
     @category_grandchild_array = @item.category.parent.children
 
-    @delivery_parent_array = ['---']
+    @delivery_parent_array = []
     Delivery.where(ancestry: nil).each do |parent|
       @delivery_parent_array << parent
     end
