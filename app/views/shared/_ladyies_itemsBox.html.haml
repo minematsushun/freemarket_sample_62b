@@ -19,7 +19,7 @@
                     = ladies.price.to_s(:delimited)
                 .top-contents__items__item__image
                   = image_tag ("#{ladies.image}"), alt: ""
-                  - unless @soldout
+                  - if ladies.buyer_id
                     .top-soldout
                     .top-soldout__text
                       SOLD
