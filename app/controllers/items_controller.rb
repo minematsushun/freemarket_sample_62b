@@ -3,15 +3,15 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update] 
   before_action :confirmation, only: [:new]
 
-
+  # 商品一覧表示
   def index
-    
     @ladies = Item.where(category_id:1..199).order("created_at DESC").limit(10)
     @mens = Item.where(category_id:200..345).order("created_at DESC").limit(10)
     # @book = Item.where(category_id:625..684).order("created_at DESC").limit(10)
     # @homeappliance = Item.where(category_id:685..797).order("created_at DESC").limit(10)
   end
 
+  # 商品詳細表示
   def show
     @item = Item.find(params[:id])
     @box = Item.order("RAND()").limit(6)
@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
     @charge = @delivery.parent
   end
 
+  # 商品詳細の編集
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
       @grandchild = Category.find(@item[:category_id])
@@ -73,12 +74,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  # 商品詳細の編集アップデート
   def update
     if @item.update!(item_params)
       redirect_to(items_path)
     else
       redirect_to action: :edit, notice: "全項目入力できていません"
     end
+    
   end
 
   def set_item
@@ -92,8 +95,10 @@ class ItemsController < ApplicationController
     else
       redirect_to action: :edit, notice: "削除できません"
     end
+
   end
 
+  # 商品出品
   def new
     @item = Item.new
     @category = []
@@ -112,20 +117,24 @@ class ItemsController < ApplicationController
     end
   end
 
+  # 子カテゴリー
   def category_children
     children = Category.find(params[:name]).name
     @category_children = Category.find_by(name: children, ancestry: nil ).children
   end
 
+  # 孫カテゴリー
   def category_grandchildren
     @category_grandchildren = Category.find(params[:child_id]).children
   end
 
+  # デリバリーカテゴリー
   def delivery_children
     delivery = Delivery.find(params[:name]).name
     @delivery_children = Delivery.find_by(name: delivery, ancestry: nil).children
   end
 
+  # 商品の出品
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -136,12 +145,47 @@ class ItemsController < ApplicationController
     end
   end
 
+  # 商品の購入
+  require 'payjp'
+  def buy
+    @item = Item.find(params[:format])
+    @card = Card.find_by(user_id: current_user.id)
+    @user = User.find(id= current_user.id)
+    if @card.blank?
+    else
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] 
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    @default_card_information = customer.cards.retrieve(@card.card_id)
+    @item.update(buyer_id: current_user.id)
+    end
+  end
+
+  def done
+  @card = Card.find_by(user_id: current_user.id)
+  @item = Item.find(params[:format])
+  @user = User.find(id= current_user.id)
+
+  if @card.blank?
+  redirect_to controller: "card", action: "new"
+
+  else
+  Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+  Payjp::Charge.create(
+  :amount   => @item.price, 
+  :customer => @card.customer_id, 
+  :currency => 'jpy', 
+)
+    end
+  end
+
+  # ログイン状態の確認
   def confirmation  #ログインしていない場合ははユーザー登録に移動
     unless user_signed_in?
       redirect_to(user_session_path)
     end
   end
 
+  # データベースへの保存
   private
     def item_params
       params.require(:item).permit(:product_name,
@@ -158,5 +202,6 @@ class ItemsController < ApplicationController
                                   :seller_id, 
                                   :buyer_id).merge(user_id_id: current_user.id, seller_id: current_user.id)
     end
+  
 
 end
