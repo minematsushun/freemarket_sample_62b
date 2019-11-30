@@ -27,6 +27,12 @@ class ItemsController < ApplicationController
   # 商品詳細の編集
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
+
+      @category_parents_array = ['---']
+      Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.category_name
+    end
+
       # @grandchild = Category.find(@item[:category_id])
       # @child = @grandchild.parent
       # @parent = @child.parent
