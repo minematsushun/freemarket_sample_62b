@@ -13,16 +13,18 @@
     %section.confirmation-main__container__buy-content
       .confirmation-main__container__buy-content__inner
         %h3.confirmation-main__container__buy-content__inner__item
-          image
+          =image_tag ("#{@item.image}"),class: "huku_1"
         .confirmation-main__container__buy-content__inner__item-name
           .confirmation-main__container__buy-content__inner__item-name__box
-          服
+            = @item.product_name
+           
 
         -# ポイント、支払い金額、購入ボタン
         .confirmation-main__container__buy-content__inner__buy-form
           .confirmation-main__container__buy-content__inner__buy-form__list
             %p.confirmation-main__container__buy-content__inner__buy-form__list__price
-              ¥2,800
+              ¥
+              = @item.price
               %span.confirmation-main__container__buy-content__inner__buy-form__list__price__text
                 送料込み
             %ul.confirmation-main__container__buy-content__inner__buy-form__list__point
@@ -33,8 +35,9 @@
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__left-text
                     支払い金額
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__right-text
-                    ¥2,800         
-              = form_with url: pay_purchase_index_path, method: :post, local: true  do |f|
+                    ¥
+                    = @item.price   
+              = form_with url: done_purchase_index_path(@item.id), method: :post, local: true  do |f|
                 =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn" 
               -# 配送先とユーザーの住所
     %section.confirmation-main__container__buy-info
@@ -42,13 +45,20 @@
         %h3 配送先
         %address.confirmation-main__container__buy-info__container__address
           .confirmation-main__container__buy-info__container__address__postal-code 
-            〒aaaa-bbbb
+            〒
+            = @user.post_code
           .confirmation-main__container__buy-info__container__address__address-name 
-            東京都目黒区八雲4-10-13
-          .confirmation-main__container__buy-info__container__address__user-name  
-            タモリ
-          =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
+            = @user.address_prefecture
+            = @user.address_city
+            = @user.address_number
+
+          .confirmation-main__container__buy-info__container__address__user-name
+            = @user.address_last_name
+            = @user.address_first_name  
+            
+          =link_to "/purchase/show", class: 'confirmation-main__container__buy-info__container__user-info-fix',method: :get do
             %span 変更する >
+          
   
 
     -# クレジットカード情報
@@ -65,12 +75,13 @@
           - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
           = exp_month + " / " + exp_year
           = image_tag '//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?210491352', class: "confirmation-main__container__credit-info__inner__logo"
-          =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
+          =link_to card_new_path, class: 'confirmation-main__container__buy-info__container__user-info-fix' do
             %span 変更する >
 
 
 -# merucariロゴフッター
 = render 'shared/sub_footer'
+
 
 
 
