@@ -37,8 +37,9 @@
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__right-text
                     ¥
                     = @item.price   
-              = form_with url: done_purchase_index_path(@item.id), method: :post, local: true  do |f|
+              = form_with url: done_items_path(@item.id), method: :post, local: true  do |f|
                 =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn" 
+                
               -# 配送先とユーザーの住所
     %section.confirmation-main__container__buy-info
       .confirmation-main__container__buy-info__container
@@ -48,7 +49,7 @@
             〒
             = @user.post_code
           .confirmation-main__container__buy-info__container__address__address-name 
-            = @address.name
+            = @user.address_prefecture
             = @user.address_city
             = @user.address_number
 
@@ -56,7 +57,7 @@
             = @user.address_last_name
             = @user.address_first_name  
             
-          =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
+          =link_to "/purchase/show", class: 'confirmation-main__container__buy-info__container__user-info-fix',method: :get do
             %span 変更する >
           
   
@@ -81,6 +82,7 @@
 
 -# merucariロゴフッター
 = render 'shared/sub_footer'
+
 
 
 

@@ -13,16 +13,16 @@
     %section.confirmation-main__container__buy-content
       .confirmation-main__container__buy-content__inner
         %h3.confirmation-main__container__buy-content__inner__item
-          image
+          =image_tag "https://s3-ap-northeast-1.amazonaws.com/freemarket-sample-58c/uploads/image/goods_picture/138/%E3%82%B7%E3%83%A5%E3%83%95%E3%82%9A8.jpg",class: "huku_1"
         .confirmation-main__container__buy-content__inner__item-name
           .confirmation-main__container__buy-content__inner__item-name__box
-          ひきフェス2017 志麻缶バッジ
+          服
 
         -# ポイント、支払い金額、購入ボタン
         .confirmation-main__container__buy-content__inner__buy-form
           .confirmation-main__container__buy-content__inner__buy-form__list
             %p.confirmation-main__container__buy-content__inner__buy-form__list__price
-              ¥600
+              ¥2,800
               %span.confirmation-main__container__buy-content__inner__buy-form__list__price__text
                 送料込み
             %ul.confirmation-main__container__buy-content__inner__buy-form__list__point
@@ -33,38 +33,42 @@
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__left-text
                     支払い金額
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__right-text
-                    ¥600
-              .confirmation-main__container__buy-content__inner__buy-form__list__buy-btn
-                購入する
-
+                    ¥2,800         
+              = form_with url: pay_purchase_index_path, method: :post, local: true  do |f|
+                =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn" 
               -# 配送先とユーザーの住所
     %section.confirmation-main__container__buy-info
       .confirmation-main__container__buy-info__container
         %h3 配送先
         %address.confirmation-main__container__buy-info__container__address
           .confirmation-main__container__buy-info__container__address__postal-code 
-            〒aaaa-bbbb
+            〒689-3541
           .confirmation-main__container__buy-info__container__address__address-name 
-            東京都目黒区八雲4-10-13
+            鳥取県米子市
           .confirmation-main__container__buy-info__container__address__user-name  
-            タモリ
+            加藤
           =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
             %span 変更する >
-            -# %i.fas.fa-chevron-right
+  
 
     -# クレジットカード情報
     %section.confirmation-main__container__credit-info
       .confirmation-main__container__credit-info__inner
-        %h3 支払い方法
+      %h3 支払い方法
+      - if @default_card_information.blank?
+        %br /
+      - else
         .confirmation-main__container__credit-info__inner__card-number
-          ************1234
+          = "**** **** **** " + @default_card_information.last4
         .confirmation-main__container__credit-info__inner__deadline
-          10/25
-        %img.confirmation-main__container__credit-info__inner__logo{ src: "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?210491352"}
-
+          - exp_month = @default_card_information.exp_month.to_s
+          - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+          = exp_month + " / " + exp_year
+          = image_tag '//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?210491352', class: "confirmation-main__container__credit-info__inner__logo"
           =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
             %span 変更する >
-            -# %i.fas.fa-chevron-right
+
 
 -# merucariロゴフッター
 = render 'shared/sub_footer'
+
