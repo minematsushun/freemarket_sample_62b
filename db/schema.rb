@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_11_27_053007) do
 
-
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "prefecture_id"
     t.string "city"
@@ -80,8 +79,6 @@ ActiveRecord::Schema.define(version: 2019_11_27_053007) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "provider"
-    t.string "uid"
     t.string "nickname", null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
