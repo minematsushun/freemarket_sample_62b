@@ -4,10 +4,23 @@ class SignupController < ApplicationController
   before_action :validates_step3, only: :step4 #step3のバリデーション
 
   def index
+    redirect_to root_path if user_signed_in?
   end
 
+  ##omniauth_callbacks_controllerからリダイレクトされたアクション
   def step1
-    @user = User.new
+    if session[:password_confirmation]
+      #sns認証を使った場合は情報利用してインスタンスを作成.
+      #viewで条件分岐などを利用してパスワードフォームを表示させない
+      @user = User.new(
+        #omniauth_callbacks_controllerで定義したsession
+        nickname: session[:nickname],
+        email: session[:email],
+        password: session[:password_confirmation]
+      )
+    else
+      @user = User.new
+    end
   end
 
   def step2
@@ -49,6 +62,11 @@ class SignupController < ApplicationController
     if @user.save
       #ログインするための情報
       session[:id] = @user.id
+      SnsCredential.create(  #ユーザ登録と同時にこっちも登録
+        uid: session[:uid],
+        provider: session[:provider],
+        user_id: @user.id
+      )
       redirect_to done_signup_index_path
     else
       render '/signup/index'

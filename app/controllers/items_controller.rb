@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
+
   before_action :set_item, only: [:edit, :update] 
+  before_action :confirmation, only: [:new]
+
 
   def index
     
@@ -22,51 +25,56 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    
-    @grandchild = Category.find(@item[:category_id])
-    @child = @grandchild.parent
-    @parent = @child.parent
-    @bland = Bland.find(@item[:bland_id])
-    @delivery = Delivery.find(@item[:delivery_id])
-    @charge = @delivery.parent
-    
-    @selected_grandchild_category = @item.category
-    @category_grandchildren_array = [{id: "---", name: "---"}]
-    Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild|
-      grandchildren_hash = {id: "#{grandchild.id}", name: "#{grandchild.name}"}
-      @category_grandchildren_array << grandchildren_hash
-    end
-    @selected_child_category = @selected_grandchild_category.parent
-    @category_children_array = [{id: "---", name: "---"}]
-    Category.find("#{@selected_child_category.id}").siblings.each do |child|
-      children_hash = {id: "#{child.id}", name: "#{child.name}"}
-      @category_children_array << children_hash
-    end
-    @selected_parent_category = @selected_child_category.parent
-    @category_parents_array = [{id: "---", name: "---"}]
-    Category.find("#{@selected_parent_category.id}").siblings.each do |parent|
-      parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
-      @category_parents_array << parent_hash
-    end
+    if user_signed_in? && current_user.id == @item.user_id_id
+      @grandchild = Category.find(@item[:category_id])
+      @child = @grandchild.parent
+      @parent = @child.parent
+      @delivery = Delivery.find(@item[:delivery_id])
+      @charge = @delivery.parent
 
-    @selected_child_delivery = @item.delivery
-    @delivery_children_array = [{id: "---", name: "---"}]
-    Delivery.find("#{@selected_child_delivery.id}").siblings.each do |child|
-      children_hash = {id: "#{child.id}", name: "#{child.name}"}
-      @delivery_children_array << children_hash
-    end
-    @selected_parent_delivery = @selected_child_delivery.parent
-    @delivery_parents_array = [{id: "---", name: "---"}]
-    Delivery.find("#{@selected_parent_delivery.id}").siblings.each do |parent|
-      parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
-      @delivery_parents_array << parent_hash
-    end
+      @selected_grandchild_category = @item.category
+      @category_grandchildren_array = [{id: "---", name: "---"}]
+      Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild|
+        grandchildren_hash = {id: "#{grandchild.id}", name: "#{grandchild.name}"}
+        @category_grandchildren_array << grandchildren_hash
+      end
+      @selected_child_category = @selected_grandchild_category.parent
+      @category_children_array = [{id: "---", name: "---"}]
+      Category.find("#{@selected_child_category.id}").siblings.each do |child|
+        children_hash = {id: "#{child.id}", name: "#{child.name}"}
+        @category_children_array << children_hash
+      end
+      @selected_parent_category = @selected_child_category.parent
+      @category_parents_array = [{id: "---", name: "---"}]
+      Category.find("#{@selected_parent_category.id}").siblings.each do |parent|
+        parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
+        @category_parents_array << parent_hash
+      end
 
-    @bland = Bland.pluck(:name)
+      @selected_child_delivery = @item.delivery
+      @delivery_children_array = [{id: "---", name: "---"}]
+      Delivery.find("#{@selected_child_delivery.id}").siblings.each do |child|
+        children_hash = {id: "#{child.id}", name: "#{child.name}"}
+        @delivery_children_array << children_hash
+      end
+      @selected_parent_delivery = @selected_child_delivery.parent
+      @delivery_parents_array = [{id: "---", name: "---"}]
+      Delivery.find("#{@selected_parent_delivery.id}").siblings.each do |parent|
+        parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
+        @delivery_parents_array << parent_hash
+      end
+
+      @bland = Bland.pluck(:name, :id)
+    
+    elsif user_signed_in?
+      redirect_to(root_path)
+    else
+      redirect_to(user_session_path)
+    end
   end
 
   def update
-    if @item.update(item_params)
+    if @item.update!(item_params)
       redirect_to(items_path)
     else
       redirect_to action: :edit, notice: "全項目入力できていません"
@@ -75,6 +83,15 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    if @item.destroy
+      redirect_to(root_path)
+    else
+      redirect_to action: :edit, notice: "削除できません"
+    end
   end
 
   def new
@@ -114,7 +131,14 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: '出品完了しました！'
     else
+      flash.now[:alert] = "必須項目を埋めてください。"
       render :new
+    end
+  end
+
+  def confirmation  #ログインしていない場合ははユーザー登録に移動
+    unless user_signed_in?
+      redirect_to(user_session_path)
     end
   end
 
@@ -122,7 +146,8 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:product_name,
                                   :product_text,
-                                  :price, :image, 
+                                  :price,
+                                  :image, 
                                   :category_id,
                                   :bland_id, 
                                   :size, 
@@ -131,7 +156,7 @@ class ItemsController < ApplicationController
                                   :shipping_date, 
                                   :commodity_condition, 
                                   :seller_id, 
-                                  :buyer_id).merge(user_id_id: 1, seller_id: 1, buyer_id: 1 )
+                                  :buyer_id).merge(user_id_id: current_user.id, seller_id: current_user.id)
     end
 
 end

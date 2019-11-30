@@ -1,12 +1,6 @@
 -# ページのヘッダー部分
 %header.header
   = render 'shared/sub_header'
-
-  - if @item.errors.any?
-    %p
-      入力した内容にエラーが#{@user.errors.count}件あります
-      - @item.errors.full_messages.each do |message|
-        = message
   
 -# メインコンテンツ
 %main.main-contents
@@ -53,7 +47,7 @@
             カテゴリー
             .form-require
               必須
-            = f.collection_select :name, @category, :id, :name, { prompt: "---" }, {class: "select-default", id: "parent_category"}
+            = f.collection_select :category_id, @category, :id, :name, { prompt: "---" }, {class: "select-default", id: "parent_category"}
 
           .contents-box__category-section__category-box__tag#size
             サイズ
