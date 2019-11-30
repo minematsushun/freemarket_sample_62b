@@ -33,6 +33,9 @@ class ItemsController < ApplicationController
       @category_parent_array << parent.category_name
     end
 
+    @category_child_array = @item.category.parent.parent.children
+    @category_grandchild_array = @item.category.parent.children
+
       # @grandchild = Category.find(@item[:category_id])
       # @child = @grandchild.parent
       # @parent = @child.parent
