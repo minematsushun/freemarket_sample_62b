@@ -23,34 +23,40 @@ class PurchaseController < ApplicationController
     end
   end
 
-  def pay
-    @card = Card.find_by(user_id: current_user.id)
-    @item = Item.find(params[:format])
-    @user = User.find(id= current_user.id)
+#   def pay
+#     @card = Card.find_by(user_id: current_user.id)
+#     @item = Item.find(params[:format])
+#     @user = User.find(id= current_user.id)
 
-    if @card.blank?
-    redirect_to controller: "card", action: "new"
+#     if @card.blank?
+#     redirect_to controller: "card", action: "new"
+#     else
 
-    else
+#     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+#     Payjp::Charge.create(
+#     :amount   => @item.price, 
+#     :customer => @card.customer_id, 
+#     :currency => 'jpy', 
+#   )
+#   redirect_to action: 'done'
+#    end
+#  end
 
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-    Payjp::Charge.create(
-    :amount   => @item.price, 
-    :customer => @card.customer_id, 
-    :currency => 'jpy', 
-  )
-  redirect_to action: 'done'
-   end
- end
+def done
+  @card = Card.find_by(user_id: current_user.id)
+  @item = Item.find(params[:format])
+  @user = User.find(id= current_user.id)
+  redirect_to controller: "card", action: "new" if @card.blank?
 
-  def done
-    @card = current_user.cards.first
-    @item = Item.find(params[:id])
-    @user = User.find(id= current_user.id)
-    redirect_to controller: "card", action: "new" if @card.blank?
-   end  
+  Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+  Payjp::Charge.create(
+  :amount   => @item.price, 
+  :customer => @card.customer_id, 
+  :currency => 'jpy', 
+)
 
-   def show
-   end
+end
+
+
 
  end

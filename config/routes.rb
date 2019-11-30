@@ -51,7 +51,7 @@ Rails.application.routes.draw do
       get 'show', tp: 'purchase#show'
       get 'index', to: 'purchase#index'
       post 'pay', to: 'purchase#pay'
-      get 'done', to: 'purchase#done'
+      post 'done', to: 'purchase#done'
     end
   end
 
