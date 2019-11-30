@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
     @bland = Bland.find(@item[:bland_id])
     @delivery = Delivery.find(@item[:delivery_id])
     @charge = @delivery.parent
+    @address = Prefecture.find(@item[:shipping_region])
   end
 
   def edit
@@ -31,7 +32,7 @@ class ItemsController < ApplicationController
       @parent = @child.parent
       @delivery = Delivery.find(@item[:delivery_id])
       @charge = @delivery.parent
-
+      
       @selected_grandchild_category = @item.category
       @category_grandchildren_array = [{id: "---", name: "---"}]
       Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild|
@@ -74,7 +75,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update!(item_params)
+    if @item.update(item_params)
+      # binding.pry
       redirect_to(items_path)
     else
       redirect_to action: :edit, notice: "全項目入力できていません"
