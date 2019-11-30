@@ -137,6 +137,30 @@
     line-height: 60px;
     text-decoration: none;
 }
+.item-edit-btn {
+    cursor: pointer;
+    font-size: 24px;
+    display: block;
+    font-weight: 600;
+    margin-top: 16px;
+    background-color: #2dea92;
+    color: white;
+    text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+}
+.item-delete-btn {
+    cursor: pointer;
+    font-size: 24px;
+    display: block;
+    font-weight: 600;
+    margin-top: 16px;
+    background-color: #ccc;
+    color: white;
+    text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+}
 .item-description {
     padding: 32px 0 0;
     font-size: 18px;

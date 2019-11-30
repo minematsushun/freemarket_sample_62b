@@ -72,7 +72,6 @@
                 %label{for: "payment_card_security_code"} セキュリティコード
                 %span.form-want 必須
                 = f.text_field :cvc, class: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", maxlength: "4", id: "cvc", class: 'input-defaultss'
-                -# %input#payment_card_security_code.input-defaultss{placeholder: "カード背面4桁もしくは3桁の番号", type: "number", value: ""}/
                 %ul#security-code-error-wrapper.has-disability-text
                 .signup-code
                   .signup-code-text{"data-js" => "show-tips-toggle"}
