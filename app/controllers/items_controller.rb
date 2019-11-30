@@ -36,6 +36,12 @@ class ItemsController < ApplicationController
     @category_child_array = @item.category.parent.parent.children
     @category_grandchild_array = @item.category.parent.children
 
+    @delivery_parent_array = ['---']
+    Delivery.where(ancestry: nil).each do |parent|
+      @delivery_parent_array << parent.delivery_method
+    end
+    @delivery_child_array = @item.delivery.parent.children
+
       # @grandchild = Category.find(@item[:category_id])
       # @child = @grandchild.parent
       # @parent = @child.parent
@@ -61,18 +67,18 @@ class ItemsController < ApplicationController
       #   @category_parents_array << parent_hash
       # end
 
-      @selected_child_delivery = @item.delivery
-      @delivery_children_array = [{id: "---", name: "---"}]
-      Delivery.find("#{@selected_child_delivery.id}").siblings.each do |child|
-        children_hash = {id: "#{child.id}", name: "#{child.name}"}
-        @delivery_children_array << children_hash
-      end
-      @selected_parent_delivery = @selected_child_delivery.parent
-      @delivery_parents_array = [{id: "---", name: "---"}]
-      Delivery.find("#{@selected_parent_delivery.id}").siblings.each do |parent|
-        parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
-        @delivery_parents_array << parent_hash
-      end
+      # @selected_child_delivery = @item.delivery
+      # @delivery_children_array = [{id: "---", name: "---"}]
+      # Delivery.find("#{@selected_child_delivery.id}").siblings.each do |child|
+      #   children_hash = {id: "#{child.id}", name: "#{child.name}"}
+      #   @delivery_children_array << children_hash
+      # end
+      # @selected_parent_delivery = @selected_child_delivery.parent
+      # @delivery_parents_array = [{id: "---", name: "---"}]
+      # Delivery.find("#{@selected_parent_delivery.id}").siblings.each do |parent|
+      #   parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
+      #   @delivery_parents_array << parent_hash
+      # end
 
       @bland = Bland.pluck(:name, :id)
     
