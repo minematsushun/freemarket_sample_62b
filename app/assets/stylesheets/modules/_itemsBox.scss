@@ -87,5 +87,25 @@
     }
   }
 }
+.top-soldout{
+  border-top: 50px solid red;
+  border-right: 50px solid transparent;
+  border-left: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 50px solid red;
+  color: white;
+  position: absolute;
+  top:3.5%;
+  height: 100px;
+  width: 100px;
+}
+.top-soldout__text{
+  font-size: 1.5vw;
+  color: white;
+  top: 8%;
+  left:4%;
+  position: absolute;
+  transform: rotate(-45deg);
+}
 
 
