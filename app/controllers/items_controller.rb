@@ -153,28 +153,28 @@ class ItemsController < ApplicationController
     @user = User.find(id= current_user.id)
     if @card.blank?
     else
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] 
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    @default_card_information = customer.cards.retrieve(@card.card_id)
-    @item.update(buyer_id: current_user.id)
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] 
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
     end
   end
 
   def done
-  @card = Card.find_by(user_id: current_user.id)
-  @item = Item.find(params[:format])
-  @user = User.find(id= current_user.id)
+    @card = Card.find_by(user_id: current_user.id)
+    @item = Item.find(params[:format])
+    @user = User.find(id= current_user.id)
 
   if @card.blank?
-  redirect_to controller: "card", action: "new"
+    redirect_to controller: "card", action: "new"
 
   else
-  Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-  Payjp::Charge.create(
-  :amount   => @item.price, 
-  :customer => @card.customer_id, 
-  :currency => 'jpy', 
-)
+    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp::Charge.create(
+      :amount   => @item.price, 
+      :customer => @card.customer_id, 
+      :currency => 'jpy', 
+    )
+    @item.update(buyer_id: current_user.id)
     end
   end
 
