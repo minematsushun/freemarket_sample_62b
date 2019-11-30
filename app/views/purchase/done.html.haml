@@ -28,9 +28,12 @@
         〒
         = @user.post_code
       .purchase-completed-wrapper__main-container__address__city
-        = @user.address_prefecture
+        = @address.name
         = @user.address_city
         = @user.address_number
+      .confirmation-main__container__buy-info__container__address__user-name
+        = @user.address_last_name
+        = @user.address_first_name  
       .purchase-completed-wrapper__main-container__address__name
 .purchase-confirmation-footer
   = render 'shared/sub_footer'
