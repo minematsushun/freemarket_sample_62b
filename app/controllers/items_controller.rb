@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
 
-      @category_parents_array = ['---']
+      @category_parent_array = ['---']
       Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent
     end
