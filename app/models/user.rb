@@ -24,13 +24,15 @@ class User < ApplicationRecord
     else
       user = User.new(
         nickname: auth.info.name,
-        email: auth.info.email,
+        email: auth.info.email
       )
-      sns = SnsCredential.new(
+      sns = SnsCredential.create(
         uid: auth.uid,
-        provider: auth.provider
+        provider: auth.provider,
+        user_id: user.id
       )
     end
+
     return { user: user, sns: sns}
   end
 
@@ -38,6 +40,7 @@ class User < ApplicationRecord
     user = User.where(id: snscredential.user_id).first
     unless user.present?
       user = User.new(
+        nickname: auth.info.name,
         email: auth.info.email
       )
     end
