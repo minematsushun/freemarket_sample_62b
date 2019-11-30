@@ -10,7 +10,11 @@
       .item-main
         .item-photo
           .photo-big
-            = image_tag("#{@item.image}")
+            = image_tag("#{@item.image}")  
+            - if @item.buyer_id 
+              .show-soldout
+              .show-soldout__text
+                SOLD
           .photo-smallbox
         %table.item-detail
           %tr
