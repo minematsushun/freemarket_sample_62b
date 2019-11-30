@@ -94,11 +94,16 @@
           (税込)
         %span.price-box__fee
           送料込み
-          = link_to buy_items_path(@item.id), class: "item-buy-btn",method: :get do
-            購入画面に進む
-          - if user_signed_in? && current_user.id == @item.user_id_id
-            = link_to '編集画面に進む', edit_item_path(@item), class: "item-edit-btn", method: :get
-            = link_to '削除する', item_path(@item), class: 'item-delete-btn' ,method: :delete
+          - if user_signed_in? 
+            - if current_user.id == @item.user_id_id
+              = link_to '編集画面に進む', edit_item_path(@item), class: "item-edit-btn", method: :get
+              = link_to '削除する', item_path(@item), class: 'item-delete-btn' ,method: :delete
+            - else
+              = link_to buy_items_path(@item.id), class: "item-buy-btn",method: :get do
+                購入画面に進む
+          - else
+            = link_to user_session_path, class: "item-buy-btn",method: :get do
+              購入画面に進む
 
       .item-description
         %p.item-description__inner
