@@ -12,55 +12,59 @@ class User < ApplicationRecord
   # has_many :saling_items, -> { where("buyer_id is NULL") }, foreign_key: "saler_id", class_name: "Item"
   # has_many :sold_items, -> { where("buyer_id is not NULL") }, foreign_key: "saler_id", class_name: "Item"
 
-  def self.without_sns_data(auth)
-    user = User.where(email: auth.info.email).first
-
-    if user.present?
-      sns = SnsCredential.create(
-        uid: auth.uid,
-        provider: auth.provider,
-        user_id: user.id
-      )
-    else
-      user = User.new(
-        nickname: auth.info.name,
-        email: auth.info.email
-      )
-      sns = SnsCredential.create(
-        uid: auth.uid,
-        provider: auth.provider,
-        user_id: user.id
-      )
-    end
-
-    return { user: user, sns: sns}
-  end
-
-  def self.with_sns_data(auth, snscredential)
-    user = User.where(id: snscredential.user_id).first
-    unless user.present?
-      user = User.new(
-        nickname: auth.info.name,
-        email: auth.info.email
-      )
-    end
-    return {user: user}
-  end
-
   # findメソッド実装 omniauthのコールバックで呼ばれるメソッド
   def self.find_for_oauth(auth)
     uid = auth.uid
     provider = auth.provider
-    snscredential = SnsCredential.where(uid: uid, provider: provider).first
+    snscredential = SnsCredential.where(uid: uid, provider: provider).first #firstをつけないとデータが配列で返されて使いたいメソッドが使えなくて困る
+
+    #sns_credentialsが登録されている
     if snscredential.present?
-      user = with_sns_data(auth, snscredential)[:user]
-      sns = snscredential
+      user = User.where(email: auth.info.email).first
+
+      # userが登録されていない
+      unless user.present?
+        user = User.new(
+          email: auth.info.email,
+          nickname: auth.info.name
+          )
+      end
+        sns = snscredential
+        #返り値をハッシュにして扱いやすくする
+        #活用例 info = User.find_oauth(auth)
+        #session[:nickname] = info[:user][:nickname]
+        { user: user, sns: sns }
+
+        #sns_credentialsが登録されていない
     else
-      user = without_sns_data(auth)[:user]
-      sns = without_sns_data(auth)[:sns]
+      user = User.where(email: auth.info.email).first
+
+      #userが登録されている場合
+      if user.present?
+        sns = SnsCredential.create(
+          uid: uid,
+          provider: provider,
+          user_id: user.id
+        )
+
+        { user: user, sns: sns}
+
+      #userが登録されていない場合
+      else
+        user = User.new(
+          email: auth.info.email,
+          nickname: auth.info.name
+        )
+        sns = SnsCredential.new(
+          provider: auth.provider,
+          uid: auth.uid
+        )
+
+        {user: user, sns: sns}
+      end
     end
-    return { user: user, sns: sns}
   end
+
 
   # バリデーション
   VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
