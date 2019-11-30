@@ -110,7 +110,7 @@ $(document).on('turbolinks:load', function () {
 
   // デリバリー欄
   $('#parent_delivery_edit').on('change', function () {
-    var parentDelivery = document.getElementById('delivery_category').value
+    var parentDelivery = document.getElementById('parent_delivery_edit').value
     if (parentDelivery != "---") {
       $.ajax({
         url: 'delivery_children',
@@ -119,6 +119,9 @@ $(document).on('turbolinks:load', function () {
         dataType: 'json'
       })
         .done(function (children_second) {
+          $('#async-select-boxthird').empty();
+          $('#delivery-method_edit').remove();
+          $('#child_delivery_edit').remove();
           var insertHTML = '';
           children_second.forEach(function (children_second) {
             insertHTML += appendOptionsecond(children_second);
@@ -129,7 +132,7 @@ $(document).on('turbolinks:load', function () {
           alert('カテゴリー取得に失敗しました');
         })
     } else {
-      $('#grandchild_category').remove();
+      $('#grandchild_category_edit').remove();
     }
   });
 });

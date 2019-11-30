@@ -91,7 +91,7 @@
             .form-require
               必須
             = f.select :delivery, options_for_select(@delivery_parent_array.map{|c|[c, {}]}, @item.delivery.parent.delivery_method), {}, {class: 'select-default', id: 'parent_delivery_edit'}
-          .contents-box__category-section__category-box__tag
+          .contents-box__category-section__category-box__tag#async-select-boxthird
             配送の方法
             .form-require
               必須

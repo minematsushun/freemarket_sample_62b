@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
       @category_parents_array = ['---']
       Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent.category_name
+      @category_parent_array << parent
     end
 
     @category_child_array = @item.category.parent.parent.children
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
 
     @delivery_parent_array = ['---']
     Delivery.where(ancestry: nil).each do |parent|
-      @delivery_parent_array << parent.delivery_method
+      @delivery_parent_array << parent
     end
     @delivery_child_array = @item.delivery.parent.children
 
