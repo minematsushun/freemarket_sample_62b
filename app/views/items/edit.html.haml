@@ -56,10 +56,10 @@
             カテゴリー
             .form-require
               必須
-            = f.select :category_id, options_for_select(@category_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_category.name), {}, {class: 'select-default', id: 'parent_category1'}
-            = f.select :category_id, options_for_select(@category_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_category.id), {}, {class: 'select-default', id: 'child_category1'}
-            = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'select-default', id: 'grandchild_category1'}
-
+            = f.select :parent, options_for_select(@category_parents_array.map{|c|[c, {}]}, @item.category.parent.parent.category_name), {}, {class: 'select-default', id: 'parent_categoryedit'}
+            = f.select :child, options_for_select(@category_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.parent.id), {}, {class: 'category', id: 'child_category__edit'}
+            = f.select :category_id, options_for_select(@category_grandchild_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.id), {}, {class: 'category', id: 'grandchild_category__edit' }
+          = f.text_field :category, id: 'grand_child_result_id', type: 'hidden'
           .contents-box__category-section__category-box__tag#size
             サイズ
             .form-require
