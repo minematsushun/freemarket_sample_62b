@@ -20,7 +20,6 @@ class CardController < ApplicationController
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        if request.referer.include()
         redirect_to action: "show"
       else
         redirect_to action: "pay"
