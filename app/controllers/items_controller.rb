@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-
-  before_action :set_item, only: [:edit, :update] 
+  before_action :set_item, only: [:edit, :update, :show, :destroy, :buy, :done]
   before_action :confirmation, only: [:new]
 
   # 商品一覧表示
@@ -13,7 +12,6 @@ class ItemsController < ApplicationController
 
   # 商品詳細表示
   def show
-    @item = Item.find(params[:id])
     @box = Item.order("RAND()").limit(6)
     @user = User.find_by(params[:nickname])
     @grandchild = Category.find(@item[:category_id])
@@ -36,6 +34,7 @@ class ItemsController < ApplicationController
     @delivery_child_array = @item.delivery.parent.children
 
     @bland = Bland.pluck(:name, :id)
+
     elsif user_signed_in?
       redirect_to(root_path)
     else
@@ -50,15 +49,11 @@ class ItemsController < ApplicationController
     else
       redirect_to action: :edit, notice: "全項目入力できていません"
     end
-    
+
   end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
 
   def destroy
-    @item = Item.find(params[:id])
     if @item.destroy
       redirect_to(root_path)
     else
@@ -117,33 +112,44 @@ class ItemsController < ApplicationController
   # 商品の購入
   require 'payjp'
   def buy
-    @item = Item.find(params[:format])
-    @card = Card.find_by(user_id: current_user.id)
-    @user = User.find(id= current_user.id)
-    if @card.blank?
+    
+    if user_signed_in? 
+      if current_user.id != @item.seller_id 
+        @user = User.find(id= current_user.id)
+        if @item.buyer_id
+          redirect_to root_path
+        else
+          @card = Card.find_by(user_id: current_user.id)
+          unless @card.blank?
+          Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] 
+          customer = Payjp::Customer.retrieve(@card.customer_id)
+          @default_card_information = customer.cards.retrieve(@card.card_id)
+          @item.update(buyer_id: current_user.id)
+          end
+        end
+      else
+        redirect_to root_path
+      end
     else
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] 
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    @default_card_information = customer.cards.retrieve(@card.card_id)
-    @item.update(buyer_id: current_user.id)
+      redirect_to user_session_path
     end
   end
 
   def done
-  @card = Card.find_by(user_id: current_user.id)
-  @item = Item.find(params[:format])
-  @user = User.find(id= current_user.id)
-
-  if @card.blank?
-  redirect_to controller: "card", action: "new"
-
-  else
-  Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-  Payjp::Charge.create(
-  :amount   => @item.price, 
-  :customer => @card.customer_id, 
-  :currency => 'jpy', 
-)
+    @card = current_user.cards
+    if @card.blank?
+      redirect_to controller: "card", action: "new"
+    else
+      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      Payjp::Charge.create(
+        amount:   @item.price,
+        customer: @card[0].customer_id,
+        currency: 'jpy',
+      )
+      if @item.update(buyer_id: current_user.id)
+      else
+        redirect_to root_path
+      end
     end
   end
 
@@ -156,21 +162,25 @@ class ItemsController < ApplicationController
 
   # データベースへの保存
   private
-    def item_params
-      params.require(:item).permit(:product_name,
-                                  :product_text,
-                                  :price,
-                                  :image, 
-                                  :category_id,
-                                  :bland_id, 
-                                  :size, 
-                                  :delivery_id, 
-                                  :shipping_region, 
-                                  :shipping_date, 
-                                  :commodity_condition, 
-                                  :seller_id, 
-                                  :buyer_id).merge(user_id_id: current_user.id, seller_id: current_user.id)
-    end
-  
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def item_params
+    params.require(:item).permit(:product_name,
+                                :product_text,
+                                :price,
+                                :image, 
+                                :category_id,
+                                :bland_id, 
+                                :size, 
+                                :delivery_id, 
+                                :shipping_region, 
+                                :shipping_date, 
+                                :commodity_condition, 
+                                :seller_id, 
+                                :buyer_id).merge(user_id_id: current_user.id, seller_id: current_user.id)
+  end
 
 end
