@@ -121,15 +121,15 @@ class ItemsController < ApplicationController
   def buy
     @card = current_user.cards.first
     @address = Prefecture.find(current_user.address_prefecture)
-    if user_signed_in?
-      if current_user.id != @item.seller_id
-        if @item.buyer_id
-          redirect_to root_path
-        else
-          unless @card.blank?
-          Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-          customer = Payjp::Customer.retrieve(@card.customer_id)
-          @default_card_information = customer.cards.retrieve(@card.card_id)
+      if user_signed_in?
+        if current_user.id != @item.seller_id
+          if @item.buyer_id
+            redirect_to root_path
+          else
+            unless @card.blank?
+            Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+            customer = Payjp::Customer.retrieve(@card.customer_id)
+            @default_card_information = customer.cards.retrieve(@card.card_id)
           end
         end
       else
