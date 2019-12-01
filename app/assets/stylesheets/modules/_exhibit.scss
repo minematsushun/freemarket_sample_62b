@@ -45,6 +45,7 @@ main {
                     display: flex;
                     flex-wrap: wrap;
                     &__item{
+                        position: relative;
                         height: 72px;
                         width: 64px;
                         &__image{
@@ -177,6 +178,7 @@ main {
                 transition: all ease-out .3s;
                 border-top: 1px solid #f5f5f5;
                 margin-top: 40px;
+                margin-left: 100px;
 
                     &__inner{
                         max-width: 320px;
