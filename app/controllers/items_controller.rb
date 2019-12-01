@@ -112,16 +112,16 @@ class ItemsController < ApplicationController
   # 商品の購入
   require 'payjp'
   def buy
-    
-    if user_signed_in? 
-      if current_user.id != @item.seller_id 
+
+    if user_signed_in?
+      if current_user.id != @item.seller_id
         @user = User.find(id= current_user.id)
         if @item.buyer_id
           redirect_to root_path
         else
           @card = Card.find_by(user_id: current_user.id)
           unless @card.blank?
-          Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] 
+          Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
           customer = Payjp::Customer.retrieve(@card.customer_id)
           @default_card_information = customer.cards.retrieve(@card.card_id)
           @item.update(buyer_id: current_user.id)
