@@ -45,6 +45,7 @@ main {
                     display: flex;
                     flex-wrap: wrap;
                     &__item{
+                        position: relative;
                         height: 72px;
                         width: 64px;
                         &__image{
