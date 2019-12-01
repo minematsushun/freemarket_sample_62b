@@ -56,9 +56,9 @@
             カテゴリー
             .form-require
               必須
-            = f.select :category_id, options_for_select(@category_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_category.name), {}, {class: 'select-default', id: 'parent_category1'}
-            = f.select :category_id, options_for_select(@category_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_category.id), {}, {class: 'select-default', id: 'child_category1'}
-            = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'select-default', id: 'grandchild_category1'}
+            = f.select :category_id, options_for_select(@category_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_category.name), {}, {class: 'select-default', id: 'parent_category_edit'}
+            = f.select :category_id, options_for_select(@category_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_category.id), {}, {class: 'select-default', id: 'child_category_edit'}
+            = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'select-default', id: 'grandchild_category_edit'}
 
           .contents-box__category-section__category-box__tag#size
             サイズ
