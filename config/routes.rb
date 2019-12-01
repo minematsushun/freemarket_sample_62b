@@ -72,15 +72,14 @@ Rails.application.routes.draw do
   get "green/pay" => "green#pay"
 
 
+  get 'items/:id/buy', to: 'items#buy'
+  post 'items/:id/done', to: 'items#done'
   resources :items do
     collection do
       get "category_children", defaults: { format: 'json' }
       get "category_grandchildren", defaults: { format: 'json' }
       get "delivery_children", defaults: { format: 'json' }
-      get 'buy', to: 'items#buy'
-      post 'done', to: 'items#done'
     end
-
 end
 
 end
