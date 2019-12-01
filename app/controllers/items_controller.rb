@@ -116,6 +116,13 @@ class ItemsController < ApplicationController
   require 'payjp'
   def buy
 
+    @item = Item.find(params[:format])
+    @card = Card.find_by(user_id: current_user.id)
+    @user = User.find(id= current_user.id)
+    @address = Prefecture.find(@user[:address_prefecture])
+    if @card.blank?
+
+
     if user_signed_in?
       if current_user.id != @item.seller_id
         @card = current_user.cards
@@ -138,7 +145,9 @@ class ItemsController < ApplicationController
   end
 
   def done
+
     @card = current_user.cards
+    @address = Prefecture.find(@user[:address_prefecture])
     if @card.blank?
       redirect_to controller: "card", action: "new"
     else

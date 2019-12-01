@@ -18,7 +18,8 @@
     .purchase-completed-wrapper__main-container__price
       .purchase-completed-wrapper__main-container__price__value
         ¥
-        = @item.price
+        = @item.price.to_s(:delimited)
+        円
       .purchase-completed-wrapper__main-container__price__note
         送料込み
     .purchase-completed-wrapper__main-container__address
@@ -28,7 +29,8 @@
         〒
         = current_user.post_code
       .purchase-completed-wrapper__main-container__address__city
-        = current_user.address_prefecture
+
+        = @address.name
         = current_user.address_city
         = current_user.address_number
       .purchase-completed-wrapper__main-container__address__name
