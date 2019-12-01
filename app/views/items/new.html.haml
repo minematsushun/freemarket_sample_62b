@@ -15,7 +15,7 @@
         .form-require
           必須
         .capture 
-          最大10枚までアップロードできます
+          1枚までアップロードできます
         .drop-box-item
           %ul
             %li
@@ -53,7 +53,7 @@
             サイズ
             .form-require
               必須
-            = f.select :size, [['S', 'S'],['M', 'M'],['L', 'L']],{ prompt: "---" }, {class: "select-default"}
+            = f.select :size, [['未定', '未定'],['S', 'S'],['M', 'M'],['L', 'L']],{ prompt: "---" }, {class: "select-default"}
 
           .contents-box__category-section__category-box__tag#brand
             ブランド

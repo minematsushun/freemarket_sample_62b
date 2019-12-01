@@ -56,7 +56,6 @@ $(document).on('turbolinks:load', function () {
   $('#parent_category').on('change', function () {
     var parentCategory = document.getElementById('parent_category').value
     if (parentCategory != "---") {
-
       $.ajax({
         url: 'category_children',
         type: 'GET',
@@ -76,7 +75,7 @@ $(document).on('turbolinks:load', function () {
           alert('カテゴリー取得に失敗しました');
         })
     } else {
-      $('#child_category').remove();
+      $('#parent_category').remove();
       $('#grandchild_category').remove();
     }
   });

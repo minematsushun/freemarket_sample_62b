@@ -29,7 +29,6 @@ class ItemsController < ApplicationController
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
 
-
     @category_parent_array = Category.roots
     @category_child_array = @item.category.parent.parent.children
     @category_grandchild_array = @item.category.parent.children
@@ -58,12 +57,15 @@ class ItemsController < ApplicationController
 
 
   def destroy
-    if @item.destroy
-      redirect_to(root_path)
+    if user_signed_in? && current_user.id == @item.seller_id
+      if @item.destroy
+        redirect_to(root_path)
+      else
+        redirect_to action: :edit, notice: "削除できません"
+      end
     else
-      redirect_to action: :edit, notice: "削除できません"
+      redirect_to root_path
     end
-
   end
 
   # 商品出品
@@ -108,8 +110,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: '出品完了しました！'
     else
-      flash.now[:alert] = "必須項目を埋めてください。"
-      render :new
+      render new, alert: '必須項目を埋めてください。'
     end
   end
 
@@ -118,7 +119,6 @@ class ItemsController < ApplicationController
   def buy
     @card = current_user.cards.first
     @address = Prefecture.find(current_user.address_prefecture)
-    if @card.blank?
       if user_signed_in?
         if current_user.id != @item.seller_id
           if @item.buyer_id
@@ -128,14 +128,13 @@ class ItemsController < ApplicationController
             Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
             customer = Payjp::Customer.retrieve(@card.customer_id)
             @default_card_information = customer.cards.retrieve(@card.card_id)
-            end
           end
-        else
-          redirect_to root_path
         end
       else
-        redirect_to user_session_path
+        redirect_to root_path
       end
+    else
+      redirect_to user_session_path
     end
   end
 
