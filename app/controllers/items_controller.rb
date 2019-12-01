@@ -58,12 +58,12 @@ class ItemsController < ApplicationController
 
 
   def destroy
-    if @item.destroy
-      redirect_to(root_path)
-    else
-      redirect_to action: :edit, notice: "削除できません"
-    end
-
+    if current_user.id == @item.seller_id
+      if @item.destroy
+        redirect_to(root_path)
+      else
+        redirect_to action: :edit, notice: "削除できません"
+      end
   end
 
   # 商品出品
@@ -118,8 +118,8 @@ class ItemsController < ApplicationController
   def buy
     @card = current_user.cards.first
     @address = Prefecture.find(current_user.address_prefecture)
-    if @card.blank?
-      if user_signed_in?
+    if user_signed_in?
+      if @card.blank?
         if current_user.id != @item.seller_id
           if @item.buyer_id
             redirect_to root_path
