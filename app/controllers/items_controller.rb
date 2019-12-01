@@ -64,6 +64,9 @@ class ItemsController < ApplicationController
       else
         redirect_to action: :edit, notice: "削除できません"
       end
+    else
+      redirect_to root_path
+    end
   end
 
   # 商品出品
