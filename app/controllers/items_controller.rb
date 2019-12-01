@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :show, :destroy, :buy, :done]
   before_action :confirmation, only: [:new]
+  before_action :move_to_index , except: [:index ,:show]
 
   # 商品一覧表示
   def index
@@ -115,46 +116,40 @@ class ItemsController < ApplicationController
   # 商品の購入
   require 'payjp'
   def buy
-
-    @item = Item.find(params[:format])
-    @card = Card.find_by(user_id: current_user.id)
-    @user = User.find(id= current_user.id)
-    @address = Prefecture.find(@user[:address_prefecture])
+    @card = current_user.cards.first
+    @address = Prefecture.find(current_user.address_prefecture)
     if @card.blank?
-
-
-    if user_signed_in?
-      if current_user.id != @item.seller_id
-        @card = current_user.cards
-        if @item.buyer_id
-          redirect_to root_path
-        else
-          @card = Card.find_by(user_id: current_user.id)
-          unless @card.blank?
-          Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-          customer = Payjp::Customer.retrieve(@card.customer_id)
-          @default_card_information = customer.cards.retrieve(@card.card_id)
+      if user_signed_in?
+        if current_user.id != @item.seller_id
+          if @item.buyer_id
+            redirect_to root_path
+          else
+            unless @card.blank?
+            Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+            customer = Payjp::Customer.retrieve(@card.customer_id)
+            @default_card_information = customer.cards.retrieve(@card.card_id)
+            end
           end
+        else
+          redirect_to root_path
         end
       else
-        redirect_to root_path
+        redirect_to user_session_path
       end
-    else
-      redirect_to user_session_path
     end
   end
 
   def done
 
-    @card = current_user.cards
-    @address = Prefecture.find(@user[:address_prefecture])
+    @card = current_user.cards.first
+    @address = Prefecture.find(current_user.address_prefecture)
     if @card.blank?
       redirect_to controller: "card", action: "new"
     else
       Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
       Payjp::Charge.create(
         amount:   @item.price,
-        customer: @card[0].customer_id,
+        customer: @card.customer_id,
         currency: 'jpy',
       )
       if @item.update(buyer_id: current_user.id)
@@ -173,6 +168,9 @@ class ItemsController < ApplicationController
 
   # データベースへの保存
   private
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
 
   def set_item
     @item = Item.find(params[:id])

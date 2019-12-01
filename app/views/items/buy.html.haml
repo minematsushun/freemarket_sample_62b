@@ -39,7 +39,7 @@
                     ¥
 
                     = @item.price.to_s(:delimited)
-                    円   
+                    円
               = form_with url: done_item_path, method: :post, local: true  do |f|
                 - if @card
                   =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn"
