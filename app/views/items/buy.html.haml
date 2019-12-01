@@ -1,15 +1,15 @@
 -# ページのヘッダー部分
 %header.header
   = render 'shared/sub_header'
-  
+
 -# メイン画面
 %main.confirmation-main
   %section.confirmation-main__container
     -# メイン画面ヘッダー
     %h2.confirmation-main__container__header
       購入内容の確認
-    
-    -# 商品情報、値段              
+
+    -# 商品情報、値段
     %section.confirmation-main__container__buy-content
       .confirmation-main__container__buy-content__inner
         %h3.confirmation-main__container__buy-content__inner__item
@@ -17,7 +17,7 @@
         .confirmation-main__container__buy-content__inner__item-name
           .confirmation-main__container__buy-content__inner__item-name__box
             = @item.product_name
-           
+
 
         -# ポイント、支払い金額、購入ボタン
         .confirmation-main__container__buy-content__inner__buy-form
@@ -36,30 +36,30 @@
                     支払い金額
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__right-text
                     ¥
-                    = @item.price   
-              = form_with url: done_purchase_index_path(@item.id), method: :post, local: true  do |f|
-                =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn" 
+                    = @item.price
+              = form_with url: done_item_path, method: :post, local: true  do |f|
+                =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn"
               -# 配送先とユーザーの住所
     %section.confirmation-main__container__buy-info
       .confirmation-main__container__buy-info__container
         %h3 配送先
         %address.confirmation-main__container__buy-info__container__address
-          .confirmation-main__container__buy-info__container__address__postal-code 
+          .confirmation-main__container__buy-info__container__address__postal-code
             〒
             = @user.post_code
-          .confirmation-main__container__buy-info__container__address__address-name 
-            = @address.name
+          .confirmation-main__container__buy-info__container__address__address-name
+            = @user.address_prefecture
             = @user.address_city
             = @user.address_number
 
           .confirmation-main__container__buy-info__container__address__user-name
             = @user.address_last_name
-            = @user.address_first_name  
-            
-          =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix' do
+            = @user.address_first_name
+
+          =link_to "/purchase/show", class: 'confirmation-main__container__buy-info__container__user-info-fix',method: :get do
             %span 変更する >
-          
-  
+
+
 
     -# クレジットカード情報
     %section.confirmation-main__container__credit-info
@@ -81,6 +81,7 @@
 
 -# merucariロゴフッター
 = render 'shared/sub_footer'
+
 
 
 

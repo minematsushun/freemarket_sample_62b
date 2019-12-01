@@ -49,12 +49,10 @@ class GreenController < ApplicationController
   def checkYourself  #本人確認
   end
 
-  
 
   def miyamoto
   end
 
   def pay
   end
-  
   end

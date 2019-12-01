@@ -46,13 +46,14 @@ Rails.application.routes.draw do
       post 'delete', to: 'card#delete'
     end
   end
-  resources :purchase, only: [:index] do
-    collection do
-      get 'index', to: 'purchase#index'
-      post 'pay', to: 'purchase#pay'
-      get 'done', to: 'purchase#done'
-    end
-  end
+  # resources :purchase, only: [:index] do
+  #   collection do
+  #     get 'show', tp: 'purchase#show'
+  #     get 'index', to: 'purchase#index'
+  #     post 'pay', to: 'purchase#pay'
+  #     post 'done', to: 'purchase#done'
+  #   end
+  # end
 
 
   get "green/sell" => "green#sell"
@@ -77,7 +78,10 @@ Rails.application.routes.draw do
       get "category_grandchildren", defaults: { format: 'json' }
       get "delivery_children", defaults: { format: 'json' }
     end
-
+    member do
+      get 'buy', to: 'items#buy'
+      post 'done', to: 'items#done'
+    end
 end
 
 end
