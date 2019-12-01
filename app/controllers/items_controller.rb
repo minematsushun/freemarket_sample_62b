@@ -118,7 +118,6 @@ class ItemsController < ApplicationController
   def buy
     @card = current_user.cards.first
     @address = Prefecture.find(current_user.address_prefecture)
-    if @card.blank?
       if user_signed_in?
         if current_user.id != @item.seller_id
           if @item.buyer_id
@@ -136,7 +135,6 @@ class ItemsController < ApplicationController
       else
         redirect_to user_session_path
       end
-    end
   end
 
   def done
