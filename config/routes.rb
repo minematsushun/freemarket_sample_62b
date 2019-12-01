@@ -36,12 +36,11 @@ Rails.application.routes.draw do
   #カード新規登録
   get 'purchase/index'
   get 'purchase/done'
-  get 'card/new'
-  get 'card/show'
+  get "index", to: "card#index"
 
   resources :card, only: [:new, :show] do
     collection do
-      post 'show', to: 'card#show'
+      post 'shows', to: 'shows#new'
       post 'pay', to: 'card#pay'
       post 'delete', to: 'card#delete'
     end
