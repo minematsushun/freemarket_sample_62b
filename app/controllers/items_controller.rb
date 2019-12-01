@@ -167,7 +167,6 @@ class ItemsController < ApplicationController
 
   def done
     @card = current_user.cards
-    binding.pry
   if @card.blank?
     redirect_to controller: "card", action: "new"
 
