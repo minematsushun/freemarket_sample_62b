@@ -55,7 +55,6 @@
               = link_to myPage_users_path do
                 = image_tag 'member_photo_noimage_thumb.png'
                 %span マイページ
-              =link_to "ログアウト", destroy_user_session_path, method: :delete
           - else
             %li.header__menu__right__lists__list.top_sign_btn.sign_up_btn
               = link_to signup_index_path do

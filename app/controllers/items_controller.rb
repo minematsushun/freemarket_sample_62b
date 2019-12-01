@@ -145,7 +145,7 @@ class ItemsController < ApplicationController
 
     if user_signed_in?
       if current_user.id != @item.seller_id
-        @user = User.find(id= current_user.id)
+        @card = current_user.cards
         if @item.buyer_id
           redirect_to root_path
         else
@@ -154,7 +154,6 @@ class ItemsController < ApplicationController
           Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
           customer = Payjp::Customer.retrieve(@card.customer_id)
           @default_card_information = customer.cards.retrieve(@card.card_id)
-          @item.update(buyer_id: current_user.id)
           end
         end
       else
