@@ -153,7 +153,7 @@ class ItemsController < ApplicationController
   end
 
   def done
-    @card = Card.find_by(user_id: current_user.id)
+    @card = current_user.cards
     binding.pry
   if @card.blank?
     redirect_to controller: "card", action: "new"
