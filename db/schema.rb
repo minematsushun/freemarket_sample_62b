@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_11_27_053007) do
 
-
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "prefecture_id"
     t.string "city"
@@ -21,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_053007) do
   end
 
   create_table "blands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,10 +41,10 @@ ActiveRecord::Schema.define(version: 2019_11_27_053007) do
   end
 
   create_table "deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ancestry"
+    t.string "ancestry", default: ""
     t.index ["ancestry"], name: "index_deliveries_on_ancestry"
   end
 
@@ -80,8 +79,6 @@ ActiveRecord::Schema.define(version: 2019_11_27_053007) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "provider"
-    t.string "uid"
     t.string "nickname", null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
