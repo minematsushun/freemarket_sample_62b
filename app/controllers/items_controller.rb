@@ -173,9 +173,9 @@ class ItemsController < ApplicationController
   else
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
-      :amount   => @item.price, 
-      :customer => @card.customer_id, 
-      :currency => 'jpy', 
+      amount:   @item.price,
+      customer: @card[0].customer_id,
+      currency: 'jpy',
     )
     @item.update(buyer_id: current_user.id)
     end
