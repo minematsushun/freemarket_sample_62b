@@ -58,12 +58,15 @@ class ItemsController < ApplicationController
 
 
   def destroy
-    if @item.destroy
-      redirect_to(root_path)
+    if user_signed_in? && current_user.id == @item.seller_id
+      if @item.destroy
+        redirect_to(root_path)
+      else
+        redirect_to action: :edit, notice: "削除できません"
+      end
     else
-      redirect_to action: :edit, notice: "削除できません"
+      redirect_to root_path
     end
-
   end
 
   # 商品出品
@@ -127,14 +130,14 @@ class ItemsController < ApplicationController
             Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
             customer = Payjp::Customer.retrieve(@card.customer_id)
             @default_card_information = customer.cards.retrieve(@card.card_id)
-            end
           end
-        else
-          redirect_to root_path
         end
       else
-        redirect_to user_session_path
+        redirect_to root_path
       end
+    else
+      redirect_to user_session_path
+    end
   end
 
   def done
