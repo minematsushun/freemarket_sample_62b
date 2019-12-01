@@ -118,7 +118,7 @@ class ItemsController < ApplicationController
 
     if user_signed_in?
       if current_user.id != @item.seller_id
-        @user = User.find(id= current_user.id)
+        @card = current_user.cards
         if @item.buyer_id
           redirect_to root_path
         else
