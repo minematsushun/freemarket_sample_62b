@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-
-  before_action :set_item, only: [:edit, :update] 
+  before_action :set_item, only: [:edit, :update, :show, :destroy, :buy, :done]
   before_action :confirmation, only: [:new]
 
   # 商品一覧表示
@@ -13,7 +12,6 @@ class ItemsController < ApplicationController
 
   # 商品詳細表示
   def show
-    @item = Item.find(params[:id])
     @box = Item.order("RAND()").limit(6)
     @user = User.find_by(params[:nickname])
     @grandchild = Category.find(@item[:category_id])
@@ -66,7 +64,7 @@ class ItemsController < ApplicationController
       end
 
       @bland = Bland.pluck(:name, :id)
-    
+
     elsif user_signed_in?
       redirect_to(root_path)
     else
@@ -81,15 +79,11 @@ class ItemsController < ApplicationController
     else
       redirect_to action: :edit, notice: "全項目入力できていません"
     end
-    
+
   end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
 
   def destroy
-    @item = Item.find(params[:id])
     if @item.destroy
       redirect_to(root_path)
     else
@@ -148,7 +142,6 @@ class ItemsController < ApplicationController
   # 商品の購入
   require 'payjp'
   def buy
-    @item = Item.find(params[:format])
     @card = Card.find_by(user_id: current_user.id)
     @user = User.find(id= current_user.id)
     if @card.blank?
@@ -161,9 +154,7 @@ class ItemsController < ApplicationController
 
   def done
     @card = Card.find_by(user_id: current_user.id)
-    @item = Item.find(params[:format])
-    @user = User.find(id= current_user.id)
-
+    binding.pry
   if @card.blank?
     redirect_to controller: "card", action: "new"
 
@@ -187,21 +178,25 @@ class ItemsController < ApplicationController
 
   # データベースへの保存
   private
-    def item_params
-      params.require(:item).permit(:product_name,
-                                  :product_text,
-                                  :price,
-                                  :image, 
-                                  :category_id,
-                                  :bland_id, 
-                                  :size, 
-                                  :delivery_id, 
-                                  :shipping_region, 
-                                  :shipping_date, 
-                                  :commodity_condition, 
-                                  :seller_id, 
-                                  :buyer_id).merge(user_id_id: current_user.id, seller_id: current_user.id)
-    end
-  
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def item_params
+    params.require(:item).permit(:product_name,
+                                :product_text,
+                                :price,
+                                :image, 
+                                :category_id,
+                                :bland_id, 
+                                :size, 
+                                :delivery_id, 
+                                :shipping_region, 
+                                :shipping_date, 
+                                :commodity_condition, 
+                                :seller_id, 
+                                :buyer_id).merge(user_id_id: current_user.id, seller_id: current_user.id)
+  end
 
 end
