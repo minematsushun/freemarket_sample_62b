@@ -1,10 +1,10 @@
 class SignupController < ApplicationController
+  before_action :root
   before_action :validates_step1, only: :step2 #step1のバリデーション
   before_action :validates_step2, only: :step3 #step2のバリデーション
   before_action :validates_step3, only: :step4 #step3のバリデーション
 
   def index
-    redirect_to root_path if user_signed_in?
   end
 
   ##omniauth_callbacks_controllerからリダイレクトされたアクション
@@ -147,6 +147,10 @@ class SignupController < ApplicationController
   end
 
   private
+
+  def root
+    redirect_to root_path if user_signed_in?
+  end
 
   def user_params
     params.require(:user).permit(
