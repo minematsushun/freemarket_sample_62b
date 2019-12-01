@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-
-  before_action :set_item, only: [:edit, :update] 
+  before_action :set_item, only: [:edit, :update, :show, :destroy, :buy, :done]
   before_action :confirmation, only: [:new]
 
   # 商品一覧表示
@@ -14,59 +13,31 @@ class ItemsController < ApplicationController
   # 商品詳細表示
   def show
     @item = Item.find(params[:id])
+    @user = User.find(@item[:seller_id])
     @box = Item.order("RAND()").limit(6)
-    @user = User.find_by(params[:nickname])
     @grandchild = Category.find(@item[:category_id])
     @child = @grandchild.parent
     @parent = @child.parent
     @bland = Bland.find(@item[:bland_id])
     @delivery = Delivery.find(@item[:delivery_id])
     @charge = @delivery.parent
+    @address = Prefecture.find(@item[:shipping_region])
   end
 
   # 商品詳細の編集
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
-      @grandchild = Category.find(@item[:category_id])
-      @child = @grandchild.parent
-      @parent = @child.parent
-      @delivery = Delivery.find(@item[:delivery_id])
-      @charge = @delivery.parent
 
-      @selected_grandchild_category = @item.category
-      @category_grandchildren_array = [{id: "---", name: "---"}]
-      Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild|
-        grandchildren_hash = {id: "#{grandchild.id}", name: "#{grandchild.name}"}
-        @category_grandchildren_array << grandchildren_hash
-      end
-      @selected_child_category = @selected_grandchild_category.parent
-      @category_children_array = [{id: "---", name: "---"}]
-      Category.find("#{@selected_child_category.id}").siblings.each do |child|
-        children_hash = {id: "#{child.id}", name: "#{child.name}"}
-        @category_children_array << children_hash
-      end
-      @selected_parent_category = @selected_child_category.parent
-      @category_parents_array = [{id: "---", name: "---"}]
-      Category.find("#{@selected_parent_category.id}").siblings.each do |parent|
-        parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
-        @category_parents_array << parent_hash
-      end
 
-      @selected_child_delivery = @item.delivery
-      @delivery_children_array = [{id: "---", name: "---"}]
-      Delivery.find("#{@selected_child_delivery.id}").siblings.each do |child|
-        children_hash = {id: "#{child.id}", name: "#{child.name}"}
-        @delivery_children_array << children_hash
-      end
-      @selected_parent_delivery = @selected_child_delivery.parent
-      @delivery_parents_array = [{id: "---", name: "---"}]
-      Delivery.find("#{@selected_parent_delivery.id}").siblings.each do |parent|
-        parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
-        @delivery_parents_array << parent_hash
-      end
+    @category_parent_array = Category.roots
+    @category_child_array = @item.category.parent.parent.children
+    @category_grandchild_array = @item.category.parent.children
 
-      @bland = Bland.pluck(:name, :id)
-    
+    @delivery_parent_array = Delivery.roots
+    @delivery_child_array = @item.delivery.parent.children
+
+    @bland = Bland.pluck(:name, :id)
+
     elsif user_signed_in?
       redirect_to(root_path)
     else
@@ -76,20 +47,16 @@ class ItemsController < ApplicationController
 
   # 商品詳細の編集アップデート
   def update
-    if @item.update!(item_params)
+    if @item.update(item_params)
       redirect_to(items_path)
     else
       redirect_to action: :edit, notice: "全項目入力できていません"
     end
-    
+
   end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
 
   def destroy
-    @item = Item.find(params[:id])
     if @item.destroy
       redirect_to(root_path)
     else
@@ -148,35 +115,52 @@ class ItemsController < ApplicationController
   # 商品の購入
   require 'payjp'
   def buy
+
     @item = Item.find(params[:format])
     @card = Card.find_by(user_id: current_user.id)
     @user = User.find(id= current_user.id)
     @address = Prefecture.find(@user[:address_prefecture])
     if @card.blank?
+
+
+    if user_signed_in?
+      if current_user.id != @item.seller_id
+        @card = current_user.cards
+        if @item.buyer_id
+          redirect_to root_path
+        else
+          @card = Card.find_by(user_id: current_user.id)
+          unless @card.blank?
+          Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+          customer = Payjp::Customer.retrieve(@card.customer_id)
+          @default_card_information = customer.cards.retrieve(@card.card_id)
+          end
+        end
+      else
+        redirect_to root_path
+      end
     else
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] 
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    @default_card_information = customer.cards.retrieve(@card.card_id)
-    @item.update(buyer_id: current_user.id)
+      redirect_to user_session_path
     end
   end
 
   def done
-  @card = Card.find_by(user_id: current_user.id)
-  @item = Item.find(params[:format])
-  @user = User.find(id= current_user.id)
-  @address = Prefecture.find(@user[:address_prefecture])
 
-  if @card.blank?
-  redirect_to controller: "card", action: "new"
-
-  else
-  Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-  Payjp::Charge.create(
-  :amount   => @item.price, 
-  :customer => @card.customer_id, 
-  :currency => 'jpy', 
-)
+    @card = current_user.cards
+    @address = Prefecture.find(@user[:address_prefecture])
+    if @card.blank?
+      redirect_to controller: "card", action: "new"
+    else
+      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      Payjp::Charge.create(
+        amount:   @item.price,
+        customer: @card[0].customer_id,
+        currency: 'jpy',
+      )
+      if @item.update(buyer_id: current_user.id)
+      else
+        redirect_to root_path
+      end
     end
   end
 
@@ -189,21 +173,25 @@ class ItemsController < ApplicationController
 
   # データベースへの保存
   private
-    def item_params
-      params.require(:item).permit(:product_name,
-                                  :product_text,
-                                  :price,
-                                  :image, 
-                                  :category_id,
-                                  :bland_id, 
-                                  :size, 
-                                  :delivery_id, 
-                                  :shipping_region, 
-                                  :shipping_date, 
-                                  :commodity_condition, 
-                                  :seller_id, 
-                                  :buyer_id).merge(user_id_id: current_user.id, seller_id: current_user.id)
-    end
-  
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def item_params
+    params.require(:item).permit(:product_name,
+                                :product_text,
+                                :price,
+                                :image, 
+                                :category_id,
+                                :bland_id, 
+                                :size, 
+                                :delivery_id, 
+                                :shipping_region, 
+                                :shipping_date, 
+                                :commodity_condition, 
+                                :seller_id, 
+                                :buyer_id).merge(user_id_id: current_user.id, seller_id: current_user.id)
+  end
 
 end

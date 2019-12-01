@@ -382,3 +382,27 @@
             }
         }
     }
+.show-soldout{
+    border-top: 75px solid red;
+    border-right: 75px solid transparent;
+    border-left: 75px solid transparent;
+    border-bottom: 75px solid transparent;
+    border-left: 75px solid red;
+    position: absolute;
+    top: 0%;
+}
+.show-soldout__text{
+    font-size: 2vw;
+    transform: rotate(-45deg);
+    color: white;
+    position: absolute;
+    top: 6%;
+}
+.notcard{
+    .notcardlink{
+        text-align: center;
+        line-height: 55px;
+        display: block;
+        background-color: #ccc;;
+    }
+}

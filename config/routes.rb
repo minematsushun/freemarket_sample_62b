@@ -77,10 +77,11 @@ Rails.application.routes.draw do
       get "category_children", defaults: { format: 'json' }
       get "category_grandchildren", defaults: { format: 'json' }
       get "delivery_children", defaults: { format: 'json' }
+    end
+    member do
       get 'buy', to: 'items#buy'
       post 'done', to: 'items#done'
     end
-
 end
 
 end

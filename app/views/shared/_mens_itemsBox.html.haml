@@ -19,6 +19,10 @@
                     = mens.price.to_s(:delimited)
                 .top-contents__items__item__image
                   = image_tag ("#{mens.image}"), alt: "" 
+                  - if mens.buyer_id
+                    .top-soldout
+                    .top-soldout__text
+                      SOLD
                 %figcaption
                   %span
                     = mens.product_name
