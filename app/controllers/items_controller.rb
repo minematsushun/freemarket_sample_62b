@@ -12,19 +12,22 @@ class ItemsController < ApplicationController
 
   # 商品詳細表示
   def show
+    @item = Item.find(params[:id])
+    @user = User.find(@item[:seller_id])
     @box = Item.order("RAND()").limit(6)
-    @user = User.find_by(params[:nickname])
     @grandchild = Category.find(@item[:category_id])
     @child = @grandchild.parent
     @parent = @child.parent
     @bland = Bland.find(@item[:bland_id])
     @delivery = Delivery.find(@item[:delivery_id])
     @charge = @delivery.parent
+    @address = Prefecture.find(@item[:shipping_region])
   end
 
   # 商品詳細の編集
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
+
 
     @category_parent_array = Category.roots
     @category_child_array = @item.category.parent.parent.children
@@ -44,7 +47,7 @@ class ItemsController < ApplicationController
 
   # 商品詳細の編集アップデート
   def update
-    if @item.update!(item_params)
+    if @item.update(item_params)
       redirect_to(items_path)
     else
       redirect_to action: :edit, notice: "全項目入力できていません"

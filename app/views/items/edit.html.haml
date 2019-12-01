@@ -56,10 +56,12 @@
             カテゴリー
             .form-require
               必須
+
             = f.select :category_id, options_for_select(@category_parent_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.parent.parent.name), {}, {class: 'select-default', id: 'parent_categoryedit'}
             = f.select :category_id, options_for_select(@category_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.parent.id), {}, {class: 'select-default', id: 'child_category_edit'}
             = f.select :category_id, options_for_select(@category_grandchild_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.id), {}, {class: 'select-default', id: 'grandchild_category_edit' }
           = f.text_field :category, id: 'grand_child_result_id', type: 'hidden'
+
           .contents-box__category-section__category-box__tag#size
             サイズ
             .form-require
