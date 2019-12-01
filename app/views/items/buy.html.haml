@@ -54,17 +54,16 @@
         %address.confirmation-main__container__buy-info__container__address
           .confirmation-main__container__buy-info__container__address__postal-code
             〒
-            = @user.post_code
 
+            = current_user.post_code
           .confirmation-main__container__buy-info__container__address__address-name
             = @address.name
-            = @user.address_city
-            = @user.address_number
+            = current_user.address_city
+            = current_user.address_number
 
           .confirmation-main__container__buy-info__container__address__user-name
-            = @user.address_last_name
-
-            = @user.address_first_name  
+            = current_user.address_last_name
+            = current_user.address_first_name
             
           =link_to "", class: 'confirmation-main__container__buy-info__container__user-info-fix',method: :get do
 
