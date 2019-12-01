@@ -28,21 +28,14 @@ class ItemsController < ApplicationController
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
 
-      @category_parent_array = []
-      Category.where(ancestry: nil).each do |parent_category|
-      @category_parent_array << parent_category
-    end
-
+    @category_parent_array = Category.roots
     @category_child_array = @item.category.parent.parent.children
     @category_grandchild_array = @item.category.parent.children
 
-    @delivery_parent_array = []
-    Delivery.where(ancestry: nil).each do |parent_delivery|
-      @delivery_parent_array << parent_delivery
-    end
+    @delivery_parent_array = Delivery.roots
     @delivery_child_array = @item.delivery.parent.children
 
-      @bland = Bland.pluck(:name, :id)
+    @bland = Bland.pluck(:name, :id)
     elsif user_signed_in?
       redirect_to(root_path)
     else
