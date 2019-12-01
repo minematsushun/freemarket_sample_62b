@@ -13,7 +13,7 @@
   .contents-box
     %section.contents-box__sell-container
       商品の情報を入力
-    = form_with model: @item, class: 'contents-box__form-list' do |f|
+    = form_with model: @item, class: 'contents-box__form-list', id: 'edit_item' do |f|
       -# 画像アップロード部分
       %section.contents-box__form-list__upload-box
         .contents-box__form-list__upload-box__image-text
@@ -56,10 +56,10 @@
             カテゴリー
             .form-require
               必須
-            = f.select :category_id, options_for_select(@category_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_category.name), {}, {class: 'select-default', id: 'parent_category1'}
-            = f.select :category_id, options_for_select(@category_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_category.id), {}, {class: 'select-default', id: 'child_category1'}
-            = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'select-default', id: 'grandchild_category1'}
-
+            = f.select :category_id, options_for_select(@category_parent_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.parent.parent.name), {}, {class: 'select-default', id: 'parent_categoryedit'}
+            = f.select :category_id, options_for_select(@category_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.parent.id), {}, {class: 'select-default', id: 'child_category_edit'}
+            = f.select :category_id, options_for_select(@category_grandchild_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.id), {}, {class: 'select-default', id: 'grandchild_category_edit' }
+          = f.text_field :category, id: 'grand_child_result_id', type: 'hidden'
           .contents-box__category-section__category-box__tag#size
             サイズ
             .form-require
@@ -90,12 +90,12 @@
             配送料の負担
             .form-require
               必須
-            = f.select :delivery_id, options_for_select(@delivery_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_delivery.name), {}, {class: 'select-default', id: 'parent_category1'}
-          .contents-box__category-section__category-box__tag
+            = f.select :delivery, options_for_select(@delivery_parent_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.delivery.parent.name), {}, {class: 'select-default', id: 'parent_delivery_edit'}
+          .contents-box__category-section__category-box__tag#async-select-boxthird
             配送の方法
             .form-require
               必須
-            = f.select :delivery_id, options_for_select(@delivery_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_delivery.id), {}, {class: 'select-default', id: 'child_category1'}
+            = f.select :delivery_id, options_for_select(@delivery_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.delivery.id), {}, {class: 'select-default', id: 'child_delivery_edit'}
         .contents-box__category-section__category-box
           .contents-box__category-section__category-box__tag
             発送元の地域
