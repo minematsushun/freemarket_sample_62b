@@ -167,17 +167,19 @@ class ItemsController < ApplicationController
 
   def done
     @card = current_user.cards
-  if @card.blank?
-    redirect_to controller: "card", action: "new"
-
-  else
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-    Payjp::Charge.create(
-      amount:   @item.price,
-      customer: @card[0].customer_id,
-      currency: 'jpy',
-    )
-    @item.update(buyer_id: current_user.id)
+    if @card.blank?
+      redirect_to controller: "card", action: "new"
+    else
+      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      Payjp::Charge.create(
+        amount:   @item.price,
+        customer: @card[0].customer_id,
+        currency: 'jpy',
+      )
+      if @item.update(buyer_id: current_user.id)
+      else
+        redirect_to root_path
+      end
     end
   end
 
