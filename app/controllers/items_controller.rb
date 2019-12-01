@@ -29,7 +29,6 @@ class ItemsController < ApplicationController
   def edit
     if user_signed_in? && current_user.id == @item.user_id_id
 
-
     @category_parent_array = Category.roots
     @category_child_array = @item.category.parent.parent.children
     @category_grandchild_array = @item.category.parent.children
@@ -111,8 +110,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: '出品完了しました！'
     else
-      flash.now[:alert] = "必須項目を埋めてください。"
-      render :new
+      render new, alert: '必須項目を埋めてください。'
     end
   end
 
