@@ -24,7 +24,8 @@
           .confirmation-main__container__buy-content__inner__buy-form__list
             %p.confirmation-main__container__buy-content__inner__buy-form__list__price
               ¥
-              = @item.price
+              = @item.price.to_s(:delimited)
+              円
               %span.confirmation-main__container__buy-content__inner__buy-form__list__price__text
                 送料込み
             %ul.confirmation-main__container__buy-content__inner__buy-form__list__point
@@ -36,7 +37,8 @@
                     支払い金額
                   .confirmation-main__container__buy-content__inner__buy-form__list__table__list__right-text
                     ¥
-                    = @item.price   
+                    = @item.price.to_s(:delimited)
+                    円   
               = form_with url: done_items_path(@item.id), method: :post, local: true  do |f|
                 =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn" 
                 

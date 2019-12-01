@@ -18,7 +18,8 @@
     .purchase-completed-wrapper__main-container__price
       .purchase-completed-wrapper__main-container__price__value
         ¥
-        = @item.price
+        = @item.price.to_s(:delimited)
+        円
       .purchase-completed-wrapper__main-container__price__note
         送料込み
     .purchase-completed-wrapper__main-container__address
