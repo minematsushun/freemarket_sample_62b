@@ -29,59 +29,20 @@ class ItemsController < ApplicationController
     if user_signed_in? && current_user.id == @item.user_id_id
 
       @category_parent_array = []
-      Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent
+      Category.where(ancestry: nil).each do |parent_category|
+      @category_parent_array << parent_category
     end
 
     @category_child_array = @item.category.parent.parent.children
     @category_grandchild_array = @item.category.parent.children
 
     @delivery_parent_array = []
-    Delivery.where(ancestry: nil).each do |parent|
-      @delivery_parent_array << parent
+    Delivery.where(ancestry: nil).each do |parent_delivery|
+      @delivery_parent_array << parent_delivery
     end
     @delivery_child_array = @item.delivery.parent.children
 
-      # @grandchild = Category.find(@item[:category_id])
-      # @child = @grandchild.parent
-      # @parent = @child.parent
-      # @delivery = Delivery.find(@item[:delivery_id])
-      # @charge = @delivery.parent
-
-      # @selected_grandchild_category = @item.category
-      # @category_grandchildren_array = [{id: "---", name: "---"}]
-      # Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild|
-      #   grandchildren_hash = {id: "#{grandchild.id}", name: "#{grandchild.name}"}
-      #   @category_grandchildren_array << grandchildren_hash
-      # end
-      # @selected_child_category = @selected_grandchild_category.parent
-      # @category_children_array = [{id: "---", name: "---"}]
-      # Category.find("#{@selected_child_category.id}").siblings.each do |child|
-      #   children_hash = {id: "#{child.id}", name: "#{child.name}"}
-      #   @category_children_array << children_hash
-      # end
-      # @selected_parent_category = @selected_child_category.parent
-      # @category_parents_array = [{id: "---", name: "---"}]
-      # Category.find("#{@selected_parent_category.id}").siblings.each do |parent|
-      #   parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
-      #   @category_parents_array << parent_hash
-      # end
-
-      # @selected_child_delivery = @item.delivery
-      # @delivery_children_array = [{id: "---", name: "---"}]
-      # Delivery.find("#{@selected_child_delivery.id}").siblings.each do |child|
-      #   children_hash = {id: "#{child.id}", name: "#{child.name}"}
-      #   @delivery_children_array << children_hash
-      # end
-      # @selected_parent_delivery = @selected_child_delivery.parent
-      # @delivery_parents_array = [{id: "---", name: "---"}]
-      # Delivery.find("#{@selected_parent_delivery.id}").siblings.each do |parent|
-      #   parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
-      #   @delivery_parents_array << parent_hash
-      # end
-
       @bland = Bland.pluck(:name, :id)
-    
     elsif user_signed_in?
       redirect_to(root_path)
     else

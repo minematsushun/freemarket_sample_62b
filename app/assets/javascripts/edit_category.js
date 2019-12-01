@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function () {
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
     childSelectHtml = `
-                      <select class='select-default' name='item[category_id]' id='child_category_edit'>
+                      <select class='select-default' name='item[child]' id='child_category_edit'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
                       </select>
@@ -37,7 +37,7 @@ $(document).on('turbolinks:load', function () {
     var deliverySelectHtml = '';
     deliverySelectHtml = `
                         <div class='contents-box__category-section__category-box__tag#async-select-boxsecond'>
-                        <div class='contents-box__category-section__category-box__tag' id='delivery-method'>
+                        <div class='contents-box__category-section__category-box__tag' id='parent_delivery_edit'>
                           配送の方法
                         <div class='form-require'>
                           必須
