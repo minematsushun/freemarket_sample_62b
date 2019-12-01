@@ -95,7 +95,7 @@
         %span.price-box__fee
           送料込み
 
-          - if user_signed_in? 
+          - if user_signed_in?
             - if current_user.id == @item.user_id_id
               = link_to '編集画面に進む', edit_item_path(@item), class: "item-edit-btn", method: :get
               = link_to '削除する', item_path(@item), class: 'item-delete-btn' ,method: :delete
@@ -109,7 +109,7 @@
       .item-description
         %p.item-description__inner
           = @item.product_text
-          
+
       .button-content
         .button-content__left
           .button-like
@@ -120,7 +120,7 @@
             %i.far.fa-flag
             = link_to "#", class: "button-report__text" do
               不適切な商品の報告
-        
+
         = link_to "#", class: "button-content__right" do
           %i.fas.fa-lock
             あんしん・あんぜんへの取り組み
@@ -128,7 +128,7 @@
   .item-comment-message
     .item-comment-message__box
       %form.message-content-form
-        %p 
+        %p
           相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
       %textarea.message-content-form-box__text
       .message-submit
@@ -140,7 +140,7 @@
       .product-show-itemlink
         = link_to "" ,class: "product-show-messagelink" do
           < ユーザー１のページへ移動
-    
+
       .product-show-itemlink
         = link_to "" ,class: "product-show-messagelink" do
           ユーザー２のページへ移動 >
@@ -155,9 +155,9 @@
           .product-show-twitter-icon
 
       = link_to "https://www.pinterest.jp/pin/create/button/?", class: "product-show-pinterest" do
-        %i.fab.fa-pinterest-square 
+        %i.fab.fa-pinterest-square
         .product-show-pinterest-icon
-    
+
     .product-show-boxposition
       .product-show-items-box
         .product-show-items-name
@@ -167,7 +167,7 @@
         .product-show-items
           %ul
             = render partial: "shared/photobox", collection: @box, as: "box"
-      
+
         .product-show-boxposition
         .product-show-items-box
           .product-show-items-name
@@ -175,7 +175,7 @@
               = @grandchild.name
               = @parent.name
               その他の商品
-          
+
           .product-show-items
             %ul
               = render partial: "shared/photobox", collection: @box, as: "box"
