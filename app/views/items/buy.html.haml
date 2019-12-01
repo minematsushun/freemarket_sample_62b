@@ -38,7 +38,12 @@
                     ¥
                     = @item.price
               = form_with url: done_item_path, method: :post, local: true  do |f|
-                =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn"
+                - if @card
+                  =f.submit "購入する",data: {"turbolinks" => false} ,class: "btn linkbtn"
+                -else
+                  .notcard
+                    = link_to root_path, class: "notcardlink" do
+                      クレジットカードを登録してください
               -# 配送先とユーザーの住所
     %section.confirmation-main__container__buy-info
       .confirmation-main__container__buy-info__container
