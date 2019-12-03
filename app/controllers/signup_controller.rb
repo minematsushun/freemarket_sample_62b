@@ -87,9 +87,9 @@ class SignupController < ApplicationController
     session[:first_name] = user_params[:first_name]
     session[:last_name_kana] = user_params[:last_name_kana]
     session[:first_name_kana] = user_params[:first_name_kana]
-    session[:birthday_year] = user_params[:birthday_year]
-    session[:birthday_month] = user_params[:birthday_month]
-    session[:birthday_day] = user_params[:birthday_day]
+    session[:birthday_year] = params[:birthday][:"birthday(1i)"]
+    session[:birthday_month] = params[:birthday][:"birthday(2i)"]
+    session[:birthday_day] = params[:birthday][:"birthday(3i)"]
     #バリデーション用に、仮でインスタンスを作成
     @user = User.new(
       nickname: session[:nickname], #sessionに保存された値を返す
