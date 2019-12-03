@@ -14,7 +14,7 @@
           .setting-profile
             .setting-profile-image
               %img{height: "60", src: "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: "60"}/
-            = f.text_field :nickname, placeholder: @user.nickname, class: "input-defaults"
+            = f.text_field :nickname, class: "input-defaults"
           .setting-profile-contents
             = f.text_area :introduce, placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪", class: "textarea-defaults"
             = f.submit "変更する", class: "submit-btn"
