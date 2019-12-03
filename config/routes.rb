@@ -26,10 +26,12 @@ Rails.application.routes.draw do
   #mypage関連
   resources :users do
     collection do
+      get 'logout'
       get 'myPage'
+    end
+    member do
       get 'myProfile'
       get 'identification'
-      get 'logout'
     end
   end
 
