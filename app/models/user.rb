@@ -33,6 +33,7 @@ class User < ApplicationRecord
           nickname: auth.info.name
           )
       end
+
         sns = snscredential
         #返り値をハッシュにして扱いやすくする
         #活用例 info = User.find_oauth(auth)
