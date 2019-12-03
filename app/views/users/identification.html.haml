@@ -21,99 +21,51 @@
             %label.mypage__main--form__up
               お名前
             %p.mypage__main--form__under
-              name
+              %p #{@user.first_name} #{@user.last_name}
           .mypage__main--form
             %label.mypage__main--form__up
               お名前カナ
             %p.mypage__main--form__under
-              name
+              %p #{@user.first_name_kana} #{@user.last_name_kana}
           .mypage__main--form
             %label.mypage__main--form__up
               生年月日
             %p.mypage__main--form__under
-              name
-          .mypage__main--form
-            %label.mypage__main--form__up
-              郵便番号
-            %span.mypage__main--form__stamp
-              任意
-            %input.mypage__main--form__input{name: "zip_code", placeholder: "例）1234567", type: "text", value: ""}/
-          .mypage__main--form
-            %label.mypage__main--form__up
-              都道府県
-            %span.mypage__main--form__stamp
-              任意
-            .mypage__main--form__box
-              %select.mypage__main--form__select
-                %option{value: ""} --
-                %option{value: "1"} 北海道
-                %option{value: "2"} 青森県
-                %option{value: "3"} 岩手県
-                %option{value: "4"} 宮城県
-                %option{value: "5"} 秋田県
-                %option{value: "6"} 山形県
-                %option{value: "7"} 福島県
-                %option{value: "8"} 茨城県
-                %option{value: "9"} 栃木県
-                %option{value: "10"} 群馬県
-                %option{value: "11"} 埼玉県
-                %option{value: "12"} 千葉県
-                %option{value: "13"} 東京都
-                %option{value: "14"} 神奈川県
-                %option{value: "15"} 新潟県
-                %option{value: "16"} 富山県
-                %option{value: "17"} 石川県
-                %option{value: "18"} 福井県
-                %option{value: "19"} 山梨県
-                %option{value: "20"} 長野県
-                %option{value: "21"} 岐阜県
-                %option{value: "22"} 静岡県
-                %option{value: "23"} 愛知県
-                %option{value: "24"} 三重県
-                %option{value: "25"} 滋賀県
-                %option{value: "26"} 京都府
-                %option{value: "27"} 大阪府
-                %option{value: "28"} 兵庫県
-                %option{value: "29"} 奈良県
-                %option{value: "30"} 和歌山県
-                %option{value: "31"} 鳥取県
-                %option{value: "32"} 島根県
-                %option{value: "33"} 岡山県
-                %option{value: "34"} 広島県
-                %option{value: "35"} 山口県
-                %option{value: "36"} 徳島県
-                %option{value: "37"} 香川県
-                %option{value: "38"} 愛媛県
-                %option{value: "39"} 高知県
-                %option{value: "40"} 福岡県
-                %option{value: "41"} 佐賀県
-                %option{value: "42"} 長崎県
-                %option{value: "43"} 熊本県
-                %option{value: "44"} 大分県
-                %option{value: "45"} 宮崎県
-                %option{value: "46"} 鹿児島県
-                %option{value: "47"} 沖縄県
-                %option{value: "99"} 未定
-              %i.fas.fa-chevron-down.mypage__main--form__icon
-          .mypage__main--form
-            %label.mypage__main--form__up
-              市区町村
-            %span.mypage__main--form__stamp
-              任意
-            %input.mypage__main--form__input{name: "zip_code", placeholder: "例）横浜市緑区", type: "text", value: ""}/
-          .mypage__main--form
-            %label.mypage__main--form__up
-              番地
-            %span.mypage__main--form__stamp
-              任意
-            %input.mypage__main--form__input{name: "zip_code", placeholder: "青山1-1-1", type: "text", value: ""}/
-          .mypage__main--form
-            %label.mypage__main--form__up
-              建物名
-            %span.mypage__main--form__stamp
-              任意
-            %input.mypage__main--form__input{name: "zip_code", placeholder: "例）柳ビル103", type: "text", value: ""}/
-          %button.mypage__main--btn{type: "submit"} 登録する
+              %p #{@user.birthday_year}年 #{@user.birthday_month}月 #{@user.birthday_day}日
+          = form_with( model: @user) do |f|
+            .mypage__main--form
+              %label.mypage__main--form__up
+                郵便番号
+              %span.mypage__main--form__stamp
+                任意
+              = f.number_field :post_code, placeholder: '1234567', class: "mypage__main--form__input"
+            .mypage__main--form
+              %label.mypage__main--form__up
+                都道府県
+              %span.mypage__main--form__stamp
+                任意
+              .mypage__main--form__box
+                = f.collection_select :address_prefecture, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'mypage__main--form__select'}
+                %i.fas.fa-chevron-down.mypage__main--form__icon
+            .mypage__main--form
+              %label.mypage__main--form__up
+                市区町村
+              %span.mypage__main--form__stamp
+                任意
+              = f.text_field :address_city, class: "mypage__main--form__input"
+            .mypage__main--form
+              %label.mypage__main--form__up
+                番地
+              %span.mypage__main--form__stamp
+                任意
+              = f.text_field :address_number, class: "mypage__main--form__input"
+            .mypage__main--form
+              %label.mypage__main--form__up
+                建物名
+              %span.mypage__main--form__stamp
+                任意
+              = f.text_field :address_building, class: "mypage__main--form__input", placeholder: "例）柳ビル103"
+            =f.submit "更新する", class: "mypage__main--btn"
           .mypage__main--form
             .mypage__main--note
               = link_to "", class: 'mypage__main--note__right' do
