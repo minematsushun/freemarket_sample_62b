@@ -8,7 +8,7 @@ crumb :mypage do
 end
 
 crumb :profile do 
-  link "プロフィール", myProfile_users_path
+  link "プロフィール", myProfile_user_path
   parent :mypage
 end
 # crumb :projects do

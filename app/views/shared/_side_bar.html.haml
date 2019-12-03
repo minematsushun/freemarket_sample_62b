@@ -71,7 +71,7 @@
     設定
   %ul.side-bar__up
     %li
-      = link_to myProfile_users_path, class: 'side-bar__list' do
+      = link_to myProfile_user_path(current_user.id), class: 'side-bar__list' do
         %span  プロフィール
         %i.fas.fa-chevron-right.side-bar__list--mypage__image
     %li
@@ -87,7 +87,7 @@
         %span  メール/パスワード
         %i.fas.fa-chevron-right.side-bar__list--mypage__image
     %li
-      = link_to identification_users_path, class: 'side-bar__list' do
+      = link_to identification_user_path(current_user.id), class: 'side-bar__list' do
         %span  本人情報
         %i.fas.fa-chevron-right.side-bar__list--mypage__image
     %li
