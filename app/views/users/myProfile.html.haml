@@ -1,3 +1,4 @@
+
 .wrapper.clearfix
   = render 'shared/main_header'
   .breadcrumbs
@@ -9,17 +10,14 @@
       %section.i-chapter-container
         %h2.i-chapter-heads
           プロフィール
-        %form{action: "https://www.mercari.com/jp/mypage/profile/", method: "POST"}
-          %input{name: "__csrf_value", type: "hidden", value: "4232f50bdc4135e1eefbf1caf53c8ce4e2c2c924d5ac3b4436f75694b42cdad01b31fc401e83cc62aac52c8ef044cf33354c30cae01ba5f830bff3ec7ec6f3417"}/
+        = form_with(model: @user, local: true) do |f|
           .setting-profile
             .setting-profile-image
               %img{height: "60", src: "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: "60"}/
-            %input.input-defaults{:name => "nickname", :placeholder => "例)AYA☆セール中", :type => "text", :value => "加藤"}/
+            = f.text_field :nickname, placeholder: @user.nickname, class: "input-defaults"
           .setting-profile-contents
-            %textarea.textarea-defaults{placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
-            %input.inputs{name: "after_save_callback", type: "hidden", value: "https://www.mercari.com/jp/mypage/profile/"}/
-            %button.submit-btn{type: "submit"} 
-              変更する
+            = f.text_area :introduce, placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪", class: "textarea-defaults"
+            = f.submit "変更する", class: "submit-btn"
     .side_bar
       =render 'shared/side_bar'
   .footer
