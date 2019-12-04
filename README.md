@@ -23,20 +23,42 @@ Things you may want to cover:
 
 * ...
 
-## Usersテーブル
+## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |nickname|String|null: false|
 |email|String|null: false|
-|password|String|null: false|
-|family_name|String|null: false|
+|reset_password_token|String|
+|nickname|String|null: false|
 |last_name|String|null: false|
-|kana_family_name|String|null: false|
-|kana_last_name|String|null: false|
-|comment|text|null: false|
-|year|integer|null: false|
-|month|integer|null: false|
-|day|integer|null: false|
+|first_name|String|null: false|
+|last_name_kana|String|null: false|
+|first_name_kana|String|null: false|
+|birthday_year|integer|null: false|
+|birthday_month|integer|null: false|
+|birthday_day|integer|null: false|
+|phone_number|integer|null: false|
+|address_last_name|String|null: false|
+|address_first_name|String|null: false|
+|address_last_name_kana|String|null: false|
+|address_first_name_kana|String|null: false|
+|post_code|String|null: false|
+|address_prefecture|String|null: false|
+|address_city|String|null: false|
+|address_number|String|null: false|
+|address_building|String|
+|address_phone_number|integer|
+|introduce|text|
+
+
+
+
+
+
+
+
+
+
 
 ### Association
 has_many :buyer_items, class_name: 'Item', foreign_key: 'buyer_id'
