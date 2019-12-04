@@ -9,9 +9,6 @@ class User < ApplicationRecord
   has_many :cards
   has_many :items
   has_many :sns_credentials, dependent: :destroy
-  # has_many :buyed_items, foreign_key: "buyer_id", class_name: "Item"
-  # has_many :saling_items, -> { where("buyer_id is NULL") }, foreign_key: "saler_id", class_name: "Item"
-  # has_many :sold_items, -> { where("buyer_id is not NULL") }, foreign_key: "saler_id", class_name: "Item"
   has_many :seller_items, class_name: 'Item', foreign_key: 'seller_id'
   has_many :buyer_items, class_name: 'Item', foreign_key: 'buyer_id'
 
