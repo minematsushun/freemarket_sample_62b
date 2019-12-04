@@ -6,24 +6,24 @@ $(document).on('turbolinks:load', function () {
   // 子カテゴリー
   function appendChildrenBox(insertHTML) {
     var childSelectHtml = '';
-    childSelectHtml = `
+    childSelectHtml = `<div id= 'children_wrapper'>
                       <select class='select-default' name='item[category_id]' id='child_category'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
                       </select>
-                      `;
+                      </div>`;
     $('.contents-box__category-section__category-box__tag#async-select-box').append(childSelectHtml);
   }
 
   // 孫カテゴリー
   function appendGrandchildBox(insertHTML) {
     var grandchildSelectHtml = '';
-    grandchildSelectHtml = `
+    grandchildSelectHtml = `<div id= 'grandchildren_wrapper'>
                       <select class='select-default' name='item[category_id]' id='grandchild_category'>
                         <option value='---' data-category='---'>---</option>
                           ${insertHTML}
                       </select>
-                      `;
+                      </div>`;
     $('.contents-box__category-section__category-box__tag#async-select-box').append(grandchildSelectHtml);
   }
 
@@ -52,19 +52,20 @@ $(document).on('turbolinks:load', function () {
     $('.contents-box__category-section__category-box#async-select-boxsecond').append(deliverySelectHtml);
   }
 
-  // 子カテゴリー欄
+  // 親カテゴリー選択後
   $('#parent_category').on('change', function () {
     var parentCategory = document.getElementById('parent_category').value
-    if (parentCategory != "---") {
+    console.log(parentCategory)
+    if (parentCategory !== "") {
       $.ajax({
-        url: 'category_children',
+        url: '/items/category_children',
         type: 'GET',
         data: { name: parentCategory },
         dataType: 'json'
       })
         .done(function (children) {
-          $('#child_category').remove();
-          $('#grandchild_category').remove();
+          $('#children_wrapper').remove();
+          $('#grandchildren_wrapper').remove();
           var insertHTML = '';
           children.forEach(function (child) {
             insertHTML += appendOption(child);
@@ -75,24 +76,24 @@ $(document).on('turbolinks:load', function () {
           alert('カテゴリー取得に失敗しました');
         })
     } else {
-      $('#parent_category').remove();
-      $('#grandchild_category').remove();
+      $('#children_wrapper').remove();
+      $('#grandchildren_wrapper').remove();
     }
   });
 
-  // 孫カテゴリー欄
+  // 子カテゴリー選択後
   $('.contents-box__category-section__category-box__tag#async-select-box').on('change', '#child_category', function () {
     var childId = $('#child_category option:selected').data('category');
-    if (childId != "---") {
+    if (childId != "") {
       $.ajax({
-        url: 'category_grandchildren',
+        url: '/items/category_grandchildren',
         type: 'GET',
         data: { child_id: childId },
         dataType: 'json'
       })
         .done(function (grandchildren) {
           if (grandchildren.length != 0) {
-            $('#grandchild_category').remove();
+            $('#grandchildren_wrapper').remove();
             var insertHTML = '';
             grandchildren.forEach(function (grandchild) {
               insertHTML += appendOption(grandchild);
@@ -104,14 +105,14 @@ $(document).on('turbolinks:load', function () {
           alert('カテゴリー取得に失敗しました');
         })
     } else {
-      $('#grandchild_category').remove();
+      $('#grandchildren_wrapper').remove();
     }
   });
 
   // デリバリー欄
   $('#delivery_category').on('change', function () {
     var parentDelivery = document.getElementById('delivery_category').value
-    if (parentDelivery != "---") {
+    if (parentDelivery != "") {
       $.ajax({
         url: 'delivery_children',
         type: 'GET',
@@ -119,6 +120,8 @@ $(document).on('turbolinks:load', function () {
         dataType: 'json'
       })
         .done(function (children_second) {
+          $('#delivery-method').remove();
+          $('#child_category').remove();
           var insertHTML = '';
           children_second.forEach(function (children_second) {
             insertHTML += appendOptionsecond(children_second);
