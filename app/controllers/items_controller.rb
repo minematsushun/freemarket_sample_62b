@@ -7,8 +7,8 @@ class ItemsController < ApplicationController
   def index
     @ladies = Item.where(category_id:1..199).order("created_at DESC").limit(10)
     @mens = Item.where(category_id:200..345).order("created_at DESC").limit(10)
-    # @book = Item.where(category_id:625..684).order("created_at DESC").limit(10)
-    # @homeappliance = Item.where(category_id:685..797).order("created_at DESC").limit(10)
+    @book = Item.where(category_id:625..684).order("created_at DESC").limit(10)
+    @homeappliance = Item.where(category_id:685..797).order("created_at DESC").limit(10)
   end
 
   # 商品詳細表示
@@ -119,12 +119,12 @@ class ItemsController < ApplicationController
   def buy
     @card = current_user.cards.first
     @address = Prefecture.find(current_user.address_prefecture)
-      if user_signed_in?
-        if current_user.id != @item.seller_id
-          if @item.buyer_id
+    if user_signed_in?
+      if current_user.id != @item.seller_id
+        if @item.buyer_id
             redirect_to root_path
-          else
-            unless @card.blank?
+        else
+          unless @card.blank?
             Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
             customer = Payjp::Customer.retrieve(@card.customer_id)
             @default_card_information = customer.cards.retrieve(@card.card_id)
