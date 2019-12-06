@@ -7,8 +7,8 @@ class ItemsController < ApplicationController
   def index
     @ladies = Item.where(category_id:1..199).order("created_at DESC").limit(10)
     @mens = Item.where(category_id:200..345).order("created_at DESC").limit(10)
-    # @book = Item.where(category_id:625..684).order("created_at DESC").limit(10)
-    # @homeappliance = Item.where(category_id:685..797).order("created_at DESC").limit(10)
+    @book = Item.where(category_id:625..684).order("created_at DESC").limit(10)
+    @homeappliance = Item.where(category_id:685..797).order("created_at DESC").limit(10)
   end
 
   # 商品詳細表示
