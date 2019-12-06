@@ -1,0 +1,25 @@
+.top-contents
+  .top-contents__main
+    %h6
+      おもちゃ・ホビー・グッズ
+    = link_to "", class: 'mypage__main--note__right' do
+      %span
+        もっと見る
+      %i.fas.fa-chevron-right
+  %ul
+    - @homeappliance.each do |homeappliance|
+      %li
+        .top-contents__items
+          .top-contents__items__item
+            = link_to item_path(book) do
+              %figure
+                %span.top-contents__items__item__price{"aria-label" => "Price"}
+                  ¥
+                  #text
+                    = homeappliance.price.to_s(:delimited)
+                .top-contents__items__item__image
+                  = image_tag ("#{homeappliance.image}"), alt: "" 
+                %figcaption
+                  %span
+                    = homeappliance.product_name
+                    
