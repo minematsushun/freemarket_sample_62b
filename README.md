@@ -138,3 +138,4 @@ Things you may want to cover:
 ### Association
 - belongs_to_active_hash :prefecture
 - delegate :name, to: :prefecture
+<!--  -->
