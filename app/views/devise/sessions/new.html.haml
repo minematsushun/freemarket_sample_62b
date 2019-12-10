@@ -14,8 +14,7 @@
   .contents-login__form
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       = f.email_field :email, autofocus: true, autocomplete: "email", class: "contents-login__form--email", placeholder: "メールアドレス", value: ""
-      = f.password_field :password, autocomplete: "current-password", class: "contents-login__form--password", laceholder: "パスワード", value: ""
-      %input.contents-login__form--robot
+      = f.password_field :password, autocomplete: "current-password", class: "contents-login__form--password", placeholder: "パスワード", value: ""
       = f.submit "ログイン", class: "contents-login__form--login"
       =link_to "", class: "contents-login__form--forget" do
         パスワードをお忘れの方
