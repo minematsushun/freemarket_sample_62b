@@ -25,7 +25,7 @@
           .info-contents__forms__form--group
             %label.password パスワード
             %span.require 必須
-            = f.password_field :password, placeholder: '6文字以上', class: "info-contents__forms__form--group--password"
+            = f.password_field :password, placeholder: '6文字以上', class: "info-contents__forms__form--group--password", id: "password"
             .info-contents__forms__form--group--password--checkbox
               %input{type: "checkbox", id: "password-check", class: "checkbox"}
               %label.display パスワードを表示する
@@ -55,8 +55,6 @@
           %p.text2
             ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
         .info-contents__forms__form
-          .form-group
-            %input.contents__form--robot
           .form-group
             %p.text3
               「次へ進む」のボタンを押すことにより、
