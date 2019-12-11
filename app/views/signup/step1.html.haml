@@ -25,7 +25,7 @@
           .info-contents__forms__form--group
             %label.password パスワード
             %span.require 必須
-            = f.password_field :password, placeholder: '6文字以上', class: "info-contents__forms__form--group--password"
+            = f.password_field :password, placeholder: '6文字以上', class: "info-contents__forms__form--group--password", id: "password"
             .info-contents__forms__form--group--password--checkbox
               %input{type: "checkbox", id: "password-check", class: "checkbox"}
               %label.display パスワードを表示する
